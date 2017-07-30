@@ -1,4 +1,6 @@
 *.lst
+missing_articles.txt
+*.tar.gz
 /raw_wiki_articles
 # Created by https://www.gitignore.io/api/node,osx
 

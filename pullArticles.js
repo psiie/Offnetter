@@ -5,6 +5,7 @@ const realFs = require("fs");
 let fs = require("graceful-fs");
 fs.gracefulify(realFs);
 
+let CONCURRENT_CONNECTIONS = 4;
 const WIKI_DL = path.join(__dirname, "raw_wiki_articles");
 let MEDIA_WIKI = "https://en.wikipedia.org/wiki/";
 /* --- Notes about imports --- 
@@ -48,28 +49,32 @@ function downloadWikiArticles(articleListArr) {
     download(url)
       .then(html => fs.writeFile(filePath, html, callback))
       .catch(err => {
+        // Push article back on the queue if it is a 429 (too many requests)
+        if (err.statusCode === 429) {
+          console.log("pushing", article, "back on the queue");
+          queue.push(article);
+        }
         console.log("   ", err.statusCode, article);
-        problemArticles.push(article);
-        callback();
+
+        // Write error out to file
+        const ERR_FILE = path.join(__dirname, "missing_articles.txt");
+        fs.appendFile(ERR_FILE, `${err.statusCode} ${article}\n`, err => {
+          if (err) console.log("problems appending to error file", err);
+          callback();
+        });
       });
   }
 
   /* Initialize a queue that limits concurrent downloads. The queue will 
   automatically start processing. Upon finish, the drain function will run */
-  const problemArticles = [];
-  const queue = async.queue(processArticle, 10);
+  const queue = async.queue(processArticle, CONCURRENT_CONNECTIONS);
   queue.push(articleListArr);
   queue.drain = () => {
     console.log("All articles downloaded");
-    fs.writeFileSync(
-      path.join(__dirname, "missing_articles.txt"),
-      articleListArr.join("\n")
-    );
   };
 }
 
 // ---------- Init ---------- //
-// loadListFile("wiki_list.lst").then(downloadWikiArticles);
 const CMD_ARGS = process.argv;
 if (CMD_ARGS.length < 3) {
   console.log("node pullArticles.js wiki_list.lst");
