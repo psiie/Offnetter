@@ -9,7 +9,7 @@ const SAVE_PATH = path.join(WIKI_DL, "images");
 
 function massDownloadImages(imageArr) {
   const cleanUrl = url => (url[0] === "/" ? url.slice(2) : url);
-  const getFilename = url => url.split("/").slice(-1)[0];
+  const getFilename = url => url.split("/").slice(-1)[0].replace(/%/g, "");
 
   function processImage(url, callback) {
     const dlUrl = cleanUrl(url);
