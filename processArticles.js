@@ -20,10 +20,10 @@ const cleanListOfLinks = linkArr => {
     else if (url[0] === "#") return false;
     else if (/https?:\/\/.+wiki/g.test(url)) return true;
     else if (/https?:\/\//g.test(url)) return false;
-    else if (/File:/g.test(url)) return false;
     else if (/index.php/g.test(url)) return false;
     else if (/action=edit/g.test(url)) return false;
     return true;
+    // else if (/File:/g.test(url)) return false; // Removes potential pictures see: https://en.wikipedia.org/wiki/ASCII
   });
   linkList = linkList.map(url => decodeURI(url));
   linkList = linkList.map(url => url.replace("/wiki/", ""));
@@ -92,6 +92,7 @@ function getCrossReferenceList(zimList) {
     const filePath = path.join(WIKI_DL, file + ".html");
     const html = fs.readFileSync(filePath, "utf8");
     const $ = cheerio.load(html);
+    console.log("examining", filePath.split("/").slice(-1)[0]);
     let linkList = [];
     const references = $("a");
     references.each((idx, each) => linkList.push(each.attribs.href));

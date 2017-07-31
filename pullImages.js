@@ -4,7 +4,12 @@ const download = require("download");
 const cheerio = require("cheerio");
 const fs = require("fs");
 const { loadListFile, cleanUrl, getFilename } = require("./_helper");
-const { WIKI_LIST, CONCURRENT_CONNECTIONS, SAVE_PATH } = require("./config");
+const {
+  WIKI_LIST,
+  CONCURRENT_CONNECTIONS,
+  SAVE_PATH,
+  WIKI_DL
+} = require("./config");
 
 function massDownloadImages(imageArr) {
   function processImage(url, callback) {
@@ -52,6 +57,7 @@ function massDownloadImages(imageArr) {
 
 function gatherImageList(zimList) {
   function processHtmlFile(filename, callback) {
+    console.log("processing html", filename);
     /* Load HTML from file, use Cheerio (like jQuery) to find all
     image tags. Take the src and add it to the master list of imageSources */
     const htmlFilePath = path.join(WIKI_DL, filename + ".html");
