@@ -1,3 +1,5 @@
+// NEed to compare output with iinput for which is smaller
+
 const async = require('async');
 const path = require('path');
 const download = require('download');
