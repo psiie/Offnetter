@@ -33,6 +33,7 @@ const cleanListOfLinks = linkArr => {
 
 function modifyHtml(htmlFiles, crossReferenceList) {
   function saveFile(filename, html, callback) {
+    console.log("saving file");
     const filePath = path.join(PROCESSED_WIKI_DL, filename + ".html");
     fs.writeFile(filePath, html, "utf8", err => {
       if (err) console.log("err writing html file");
@@ -42,6 +43,7 @@ function modifyHtml(htmlFiles, crossReferenceList) {
   }
 
   function cleanSingleFile(file, callback) {
+    console.log("Cleaning file: ", file);
     const filePath = path.join(WIKI_DL, file + ".html");
     let html = fs.readFileSync(filePath, "utf8");
     const $ = cheerio.load(html);
@@ -92,7 +94,10 @@ function getCrossReferenceList(zimList) {
     const filePath = path.join(WIKI_DL, file + ".html");
     const html = fs.readFileSync(filePath, "utf8");
     const $ = cheerio.load(html);
-    console.log("examining", filePath.split("/").slice(-1)[0]);
+    console.log(
+      "Building link list... examining",
+      filePath.split("/").slice(-1)[0]
+    );
     let linkList = [];
     const references = $("a");
     references.each((idx, each) => linkList.push(each.attribs.href));
@@ -110,13 +115,29 @@ function getCrossReferenceList(zimList) {
   }
 
   const masterCrossReferenceList = [];
-
+  console.log("1");
   let htmlFiles = fs.readdirSync(WIKI_DL);
+  console.log("2");
   htmlFiles = htmlFiles.filter(
     files => files.split(".").slice(-1)[0] === "html"
   );
+  console.log("3");
   htmlFiles = htmlFiles.map(file => file.split(".").slice(0, -1).join("."));
-  htmlFiles = htmlFiles.filter(file => zimList.indexOf(file) !== -1);
+  console.log("4");
+  htmlFiles = htmlFiles.filter(file => {
+    const acceptance = zimList.indexOf(file) !== -1;
+    /* Filtering phase looks at all files in the raw_wiki_articles and only 
+    grabs a list of files that are in the zimlist. ie: we may have a larger
+    cache than we want in the zim. So we must filter our list */
+    console.log(
+      "Filtering Phase...",
+      file,
+      " is a part of this zim",
+      acceptance
+    );
+    return acceptance;
+  });
+  console.log("Done filtering Wiki List. Starting Queue");
 
   const fileQueue = async.queue(examineHtmlFile, CONCURRENT_CONNECTIONS);
   fileQueue.push(htmlFiles);
@@ -127,5 +148,6 @@ function getCrossReferenceList(zimList) {
 }
 
 loadListFile(WIKI_LIST).then(zimList => {
+  console.log("Wiki List Loaded. Starting Cross Referencing");
   getCrossReferenceList(zimList);
 });
