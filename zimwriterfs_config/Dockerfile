@@ -1,7 +1,8 @@
-FROM ubuntu:latest
+FROM debian:latest
 
 # Configure deb system
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+# NOTE: Commented these out due to commands not being found
 # RUN locale-gen "en_US.UTF-8"
 # ENV LANG en_US.UTF-8
 # RUN update-locale
@@ -51,4 +52,5 @@ RUN cd openzim/zimwriterfs && make all install
 RUN rm -rf openzim
 
 # Boot commands
-CMD zimwriterfs ; /bin/bash
+ADD boot.sh /boot.sh
+CMD /boot.sh
