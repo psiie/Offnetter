@@ -3,9 +3,8 @@ const path = require("path");
 const download = require("download");
 const cheerio = require("cheerio");
 const fs = require("fs");
-const CONCURRENT_CONNECTIONS = 4;
-const WIKI_DL = path.join(__dirname, "raw_wiki_articles");
-const SAVE_PATH = path.join(WIKI_DL, "images");
+const { loadListFile } = require("./_helper");
+const { WIKI_LIST, CONCURRENT_CONNECTIONS, SAVE_PATH } = require("./config");
 
 function massDownloadImages(imageArr) {
   const cleanUrl = url => (url[0] === "/" ? url.slice(2) : url);
@@ -54,7 +53,7 @@ function massDownloadImages(imageArr) {
   };
 }
 
-function gatherImageList() {
+function gatherImageList(zimList) {
   function processHtmlFile(filename, callback) {
     /* Load HTML from file, use Cheerio (like jQuery) to find all
     image tags. Take the src and add it to the master list of imageSources */
@@ -76,6 +75,7 @@ function gatherImageList() {
     files => files.split(".").slice(-1)[0] === "html"
   );
   htmlFiles = htmlFiles.map(files => files.split(".").slice(0, -1).join("."));
+  htmlFiles = htmlFiles.filter(file => zimList.indexOf(file) !== -1);
 
   // Create image folder if not exist
   fs.access(SAVE_PATH, fs.constants.F_OK, doesntExist => {
@@ -93,4 +93,7 @@ function gatherImageList() {
 // --------- Init --------- //
 /* Load up all the html files, find the image links, add to list,
 then download each image (only if not found locally */
-gatherImageList();
+
+loadListFile(WIKI_LIST).then(zimList => {
+  gatherImageList(zimList);
+});

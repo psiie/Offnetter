@@ -3,12 +3,16 @@ const path = require("path");
 const download = require("download");
 const cheerio = require("cheerio");
 const fs = require("fs");
-const WIKI_DL = path.join(__dirname, "raw_wiki_articles");
-// const SAVE_PATH = path.join(WIKI_DL, "images");
-const RELATIVE_SAVE_PATH = "images/";
-const PROCESSED_WIKI_DL = path.join(__dirname, "processed_wiki_articles");
-const CONCURRENT_CONNECTIONS = 4;
-const IMAGE_EXTENSIONS = ["svg", "png", "jpg", "ico"];
+const { loadListFile } = require("./_helper");
+const {
+  WIKI_LIST,
+  RELATIVE_SAVE_PATH,
+  PROCESSED_WIKI_DL,
+  CONCURRENT_CONNECTIONS,
+  IMAGE_EXTENSIONS,
+  WIKI_DL
+} = require("./config");
+
 const getFilename = url => url.split("/").slice(-1)[0].replace(/%/g, "");
 const cleanListOfLinks = linkArr => {
   let linkList = linkArr;
@@ -82,7 +86,7 @@ function modifyHtml(htmlFiles, crossReferenceList) {
   };
 }
 
-function getCrossReferenceList() {
+function getCrossReferenceList(zimList) {
   function examineHtmlFile(file, callback) {
     /* Load in HTML file, look at the links, filter out the obviously 
     bad links and add all of these to the master list */
@@ -111,7 +115,8 @@ function getCrossReferenceList() {
   htmlFiles = htmlFiles.filter(
     files => files.split(".").slice(-1)[0] === "html"
   );
-  htmlFiles = htmlFiles.map(files => files.split(".").slice(0, -1).join("."));
+  htmlFiles = htmlFiles.map(file => file.split(".").slice(0, -1).join("."));
+  htmlFiles = htmlFiles.filter(file => zimList.indexOf(file) !== -1);
 
   const fileQueue = async.queue(examineHtmlFile, CONCURRENT_CONNECTIONS);
   fileQueue.push(htmlFiles);
@@ -121,4 +126,6 @@ function getCrossReferenceList() {
   };
 }
 
-getCrossReferenceList();
+loadListFile(WIKI_LIST).then(zimList => {
+  getCrossReferenceList(zimList);
+});

@@ -4,10 +4,14 @@ const download = require("download");
 const realFs = require("fs");
 let fs = require("graceful-fs");
 fs.gracefulify(realFs);
+const { loadListFile } = require("./_helper");
+const {
+  CONCURRENT_CONNECTIONS,
+  WIKI_DL,
+  MEDIA_WIKI,
+  WIKI_LIST
+} = require("./config");
 
-let CONCURRENT_CONNECTIONS = 4;
-const WIKI_DL = path.join(__dirname, "raw_wiki_articles");
-let MEDIA_WIKI = "https://en.wikipedia.org/wiki/";
 /* --- Notes about imports --- 
 I am using the module graceful-fs which patches fs to fix problems with 
 concurrent-open-file-limits. fs seems to not close files soon enough and
@@ -16,19 +20,6 @@ causes a race condition. Lets see if we can remove it as time goes on.
 Only ever saw this error when writing 54k empty files at once (using 
 async concurrency of 1)
 */
-
-function loadListFile(filename) {
-  /* We must load in the list to be processed before downloading */
-  return new Promise(resolve => {
-    const wikiList = [];
-    const lineReader = require("readline").createInterface({
-      input: require("fs").createReadStream(path.join(__dirname, filename))
-    });
-
-    lineReader.on("line", line => wikiList.push(line));
-    lineReader.on("close", () => resolve(wikiList));
-  });
-}
 
 function downloadWikiArticles(articleListArr) {
   function processArticle(article, callback) {
@@ -75,18 +66,5 @@ function downloadWikiArticles(articleListArr) {
 }
 
 // ---------- Init ---------- //
-const CMD_ARGS = process.argv;
-if (CMD_ARGS.length < 3) {
-  console.log("node pullArticles.js wiki_list.lst");
-  console.log(
-    "node pullArticles.js wiki_list.lst https://fr.wikipedia.org/wiki/"
-  );
-  console.log("\nPlease specify a list file to download");
-  console.log("As well as a mediawiki (default: en wikipedia)");
-  console.log("The file should be a textfile that is newline deliminated");
-  console.log("One Article Per Line");
-} else {
-  if (CMD_ARGS.length > 3) MEDIA_WIKI = CMD_ARGS[3];
-  const WIKI_LIST = CMD_ARGS[2];
-  loadListFile(WIKI_LIST).then(downloadWikiArticles);
-}
+
+loadListFile(WIKI_LIST).then(downloadWikiArticles);
