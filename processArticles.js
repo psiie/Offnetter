@@ -67,7 +67,8 @@ function modifyHtml(htmlFiles, crossReferenceList) {
         const innerText = $(this).text();
         $(this).replaceWith(innerText);
       } else {
-        $(this).attr("href", oldSrc + ".html");
+        const newSrc = oldSrc ? oldSrc + ".html" : "#";
+        $(this).attr("href", newSrc);
       }
     });
 

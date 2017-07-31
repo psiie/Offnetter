@@ -3,6 +3,7 @@ missing_*.txt
 *.tar.gz
 /raw_wiki_articles*
 /processed_wiki_articles*
+output/
 # Created by https://www.gitignore.io/api/node,osx
 
 ### Node ###
