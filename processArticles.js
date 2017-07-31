@@ -5,9 +5,10 @@ const cheerio = require("cheerio");
 const fs = require("fs");
 const WIKI_DL = path.join(__dirname, "raw_wiki_articles");
 // const SAVE_PATH = path.join(WIKI_DL, "images");
-// const RELATIVE_SAVE_PATH = "images/";
+const RELATIVE_SAVE_PATH = "images/";
 const PROCESSED_WIKI_DL = path.join(__dirname, "processed_wiki_articles");
 const CONCURRENT_CONNECTIONS = 4;
+const IMAGE_EXTENSIONS = ["svg", "png", "jpg", "ico"];
 const getFilename = url => url.split("/").slice(-1)[0].replace(/%/g, "");
 const cleanListOfLinks = linkArr => {
   let linkList = linkArr;
@@ -42,19 +43,31 @@ function modifyHtml(htmlFiles, crossReferenceList) {
     let html = fs.readFileSync(filePath, "utf8");
     const $ = cheerio.load(html);
     let links = [];
-    // $("a").each((idx, each) => links.push(each.attribs.href));
-    // links = cleanListOfLinks(links); // a list of all links on the page
 
+    $("script").remove();
+    $("noscript").remove();
+    $("link").remove();
+    $("head").append('<link rel="stylesheet" href="index.css">');
+    $("img").each(function() {
+      const oldSrc = $(this).attr("src");
+      const imageFilename = getFilename(oldSrc);
+      const newSrc = path.join(RELATIVE_SAVE_PATH, imageFilename);
+      $(this).attr("src", newSrc);
+    });
     $("a").each(function() {
       let oldSrc = $(this).attr("href");
+      let ext = oldSrc && oldSrc.split(".").slice(-1)[0];
       oldSrc = cleanListOfLinks([oldSrc])[0];
       oldSrc = oldSrc && oldSrc.replace("//", "");
-      if (crossReferenceList.indexOf(oldSrc) === -1) {
+      // If link is in the zim, update the relative path. If not, remove the <a> tag
+      if (
+        IMAGE_EXTENSIONS.indexOf(ext) === -1 &&
+        crossReferenceList.indexOf(oldSrc) === -1
+      ) {
         const innerText = $(this).text();
         $(this).replaceWith(innerText);
-        // $(this).attr("href", "#"); // Link not going to be in the zim. So lets remove it.
       } else {
-        $(this).attr("href", oldSrc + ".html"); // link is in the zim, but we need to change it to be relative
+        $(this).attr("href", oldSrc + ".html");
       }
     });
 
@@ -108,28 +121,3 @@ function getCrossReferenceList() {
 }
 
 getCrossReferenceList();
-
-// image replacement notes below:
-
-// const html = fs.readFileSync(
-//   path.join(__dirname, "raw_wiki_articles", "Lubin.html"),
-//   "utf8"
-// );
-
-// const $ = cheerio.load(html);
-// $("script").remove();
-// $("noscript").remove();
-// $("link").remove();
-// $("head").append('<link rel="stylesheet" href="index.css">');
-// $("img").each(function() {
-//   const oldSrc = $(this).attr("src");
-//   const imageFilename = getFilename(oldSrc);
-//   const newSrc = path.join(RELATIVE_SAVE_PATH, imageFilename);
-//   $(this).attr("src", newSrc);
-// });
-
-// const processedHtmlPath = path.join(PROCESSED_WIKI_DL, "Lubin.html");
-// fs.writeFile(processedHtmlPath, $.html(), "utf8", err => {
-//   if (err) console.log("error writing file", err);
-//   console.log("done");
-// });
