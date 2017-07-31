@@ -15,6 +15,11 @@ function loadListFile(filename) {
   });
 }
 
+const cleanUrl = url => (url[0] === "/" ? url.slice(2) : url);
+const getFilename = url => url.split("/").slice(-1)[0].replace(/%/g, "");
+
 module.exports = {
-  loadListFile
+  loadListFile,
+  cleanUrl,
+  getFilename
 };

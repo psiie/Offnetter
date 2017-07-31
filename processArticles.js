@@ -3,7 +3,7 @@ const path = require("path");
 const download = require("download");
 const cheerio = require("cheerio");
 const fs = require("fs");
-const { loadListFile } = require("./_helper");
+const { loadListFile, getFilename } = require("./_helper");
 const {
   WIKI_LIST,
   RELATIVE_SAVE_PATH,
@@ -13,7 +13,6 @@ const {
   WIKI_DL
 } = require("./config");
 
-const getFilename = url => url.split("/").slice(-1)[0].replace(/%/g, "");
 const cleanListOfLinks = linkArr => {
   let linkList = linkArr;
   linkList = linkList.filter(url => {

@@ -3,13 +3,10 @@ const path = require("path");
 const download = require("download");
 const cheerio = require("cheerio");
 const fs = require("fs");
-const { loadListFile } = require("./_helper");
+const { loadListFile, cleanUrl, getFilename } = require("./_helper");
 const { WIKI_LIST, CONCURRENT_CONNECTIONS, SAVE_PATH } = require("./config");
 
 function massDownloadImages(imageArr) {
-  const cleanUrl = url => (url[0] === "/" ? url.slice(2) : url);
-  const getFilename = url => url.split("/").slice(-1)[0].replace(/%/g, "");
-
   function processImage(url, callback) {
     const dlUrl = cleanUrl(url);
     const filename = getFilename(url);
