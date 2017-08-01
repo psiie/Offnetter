@@ -15,11 +15,31 @@ function loadListFile(filename) {
   });
 }
 
+const cleanListOfLinks = linkArr => {
+  let linkList = linkArr;
+  linkList = linkList.filter(url => {
+    if (!url) return false;
+    else if (url[0] === "#") return false;
+    else if (/https?:\/\/.+wiki/g.test(url)) return true;
+    else if (/https?:\/\//g.test(url)) return false;
+    else if (/index.php/g.test(url)) return false;
+    else if (/action=edit/g.test(url)) return false;
+    else if (/^\/\//.test(url)) return false;
+    return true;
+    // else if (/File:/g.test(url)) return false; // Removes potential pictures see: https://en.wikipedia.org/wiki/ASCII
+  });
+  linkList = linkList.map(url => decodeURI(url));
+  linkList = linkList.map(url => url.replace(/^\/wiki\//, ""));
+  linkList = linkList.map(url => url.split("?")[0]); // get rid of parameters eg: ?action=submit
+  return linkList;
+};
+
 const cleanUrl = url => (url[0] === "/" ? url.slice(2) : url);
 const getFilename = url => url.split("/").slice(-1)[0].replace(/%/g, "");
 
 module.exports = {
   loadListFile,
   cleanUrl,
-  getFilename
+  getFilename,
+  cleanListOfLinks
 };

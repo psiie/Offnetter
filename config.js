@@ -1,13 +1,14 @@
-const path = require('path');
+const path = require("path");
 
-const WIKI_LIST = 'wiki_list.lst';
-const WIKI_DL = path.join(__dirname, 'raw_wiki_articles');
-const PROCESSED_WIKI_DL = path.join(__dirname, 'processed_wiki_articles');
-const SAVE_PATH = path.join(WIKI_DL, 'images');
-const RELATIVE_SAVE_PATH = 'images/';
-const IMAGE_EXTENSIONS = ['svg', 'png', 'jpg', 'ico'];
+const WIKI_LIST = "wiki_list10g1.lst";
+const WIKI_DL = path.join(__dirname, "raw_wiki_articles");
+const PROCESSED_WIKI_DL = path.join(__dirname, "processed_wiki_articles");
+const SAVE_PATH = path.join(WIKI_DL, "images");
+const RELATIVE_SAVE_PATH = "images/";
+const IMAGE_EXTENSIONS = ["svg", "png", "jpg", "ico"];
+const DATABASE_LINKS = path.join(__dirname, "database_links.db");
 let CONCURRENT_CONNECTIONS = 4;
-let MEDIA_WIKI = 'https://en.wikipedia.org/wiki/';
+let MEDIA_WIKI = "https://en.wikipedia.org/wiki/";
 
 module.exports = {
   WIKI_DL,
@@ -17,5 +18,6 @@ module.exports = {
   RELATIVE_SAVE_PATH,
   PROCESSED_WIKI_DL,
   CONCURRENT_CONNECTIONS,
-  IMAGE_EXTENSIONS
+  IMAGE_EXTENSIONS,
+  DATABASE_LINKS
 };
