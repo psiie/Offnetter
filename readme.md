@@ -15,8 +15,9 @@ You can delete `missing_*.txt` at any time. It is for your reference to `tail -f
 ## Order of operations
   1. node pullArticles.js
   2. node pullImages.js
-  3. node processArticles.js
-  4. node processImages.js
-  5. node createIndex.js
-  6. ./zimwriterfs.sh
-  7. Profit??
+  3. node crossReferenceLinks.js
+  4. node processHtml.js
+  5. node processImages.js
+  6. node createIndex.js
+  7. ./zimwriterfs.sh
+  8. Profit??
