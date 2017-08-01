@@ -21,7 +21,7 @@ function getImageFiles() {
   const alreadyConvertedImages = fs.readdirSync(exportPath);
   let images = fs.readdirSync(SAVE_PATH);
   images = images.filter(file => alreadyConvertedImages.indexOf(file) === -1);
-  images = images.filter(file => IMAGE_EXTENSIONS.indexOf(file.split('.').slice(-1)[0]) !== -1);
+  images = images.filter(file => IMAGE_EXTENSIONS[file.split('.').slice(-1)[0]]);
   convertListOfImages(images);
 }
 
