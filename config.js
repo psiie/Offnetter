@@ -5,7 +5,12 @@ const WIKI_DL = path.join(__dirname, "raw_wiki_articles");
 const PROCESSED_WIKI_DL = path.join(__dirname, "processed_wiki_articles");
 const SAVE_PATH = path.join(WIKI_DL, "images");
 const RELATIVE_SAVE_PATH = "images/";
-const IMAGE_EXTENSIONS = ["svg", "png", "jpg", "ico"];
+const IMAGE_EXTENSIONS = {
+  svg: 1,
+  png: 1,
+  jpg: 1,
+  ico: 1
+};
 const DATABASE_LINKS = path.join(__dirname, "database_links.db");
 let CONCURRENT_CONNECTIONS = 4;
 let MEDIA_WIKI = "https://en.wikipedia.org/wiki/";

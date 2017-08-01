@@ -37,7 +37,9 @@ function modifyHtml(zimList) {
       let anchorCounter = 0;
 
       const $a = $("a");
-      console.log(`${logCounter}/${zimList.length} | Cleaning file: ${file}`);
+      console.log(
+        `${logCounter}/${Object.keys(zimList).length} | Cleaning file: ${file}.html | ${$a.length} links`
+      );
       $("script").remove();
       $("noscript").remove();
       $("link").remove();
@@ -54,32 +56,32 @@ function modifyHtml(zimList) {
         oldSrc = cleanListOfLinks([oldSrc])[0];
         oldSrc = oldSrc && oldSrc.replace("//", "");
 
-        process.stdout.clearLine();
-        process.stdout.cursorTo(0);
-        process.stdout.write(`  ┗ ${anchorCounter}/${$a.length} | ${oldSrc}`);
-        anchorCounter++;
+        // --- DEBUG for extra slow processing --- //
+        // process.stdout.clearLine();
+        // process.stdout.cursorTo(0);
+        // process.stdout.write(`  ┗ ${anchorCounter}/${$a.length} | ${oldSrc}`);
+        // anchorCounter++;
+
         // // If link is in the zim, update the relative path. If not, remove the <a> tag
-        const linkIsInZim =
-          oldSrc &&
-          IMAGE_EXTENSIONS.indexOf(ext) === -1 &&
-          zimList.indexOf(oldSrc) !== -1;
-        // if (linkIsInZim) {
-        //   const newSrc = oldSrc ? oldSrc + ".html" : "#";
-        //   $(this).attr("href", newSrc);
-        // } else {
-        //   const innerText = $(this).text();
-        //   $(this).replaceWith(innerText);
-        // }
+        // IMAGE_EXTENSIONS.indexOf(ext) === -1
+        const linkIsInZim = oldSrc && !IMAGE_EXTENSIONS[ext] && zimList[oldSrc];
+        if (linkIsInZim) {
+          const newSrc = oldSrc ? oldSrc + ".html" : "#";
+          $(this).attr("href", newSrc);
+        } else {
+          const innerText = $(this).text();
+          $(this).replaceWith(innerText);
+        }
       });
-      process.stdout.clearLine();
-      process.stdout.cursorTo(0);
+      // process.stdout.clearLine();
+      // process.stdout.cursorTo(0);
 
       saveFile(file, $.html(), callback);
     });
   }
 
   const queue = async.queue(cleanSingleFile, 1); // Can only be 1 concurrency here
-  queue.push(zimList);
+  queue.push(Object.keys(zimList));
   queue.drain = () => {
     console.log("All html files modified");
   };
@@ -89,6 +91,7 @@ function modifyHtml(zimList) {
 
 /* Examine the output folder and remove that from the list of
 html files to process. This is resuming progress */
+console.log("Reading directory of already processed html");
 let logCounter = 0;
 let alreadyProcessedFiles = fs.readdirSync(PROCESSED_WIKI_DL);
 alreadyProcessedFiles = alreadyProcessedFiles.filter(
@@ -97,14 +100,18 @@ alreadyProcessedFiles = alreadyProcessedFiles.filter(
 alreadyProcessedFiles = alreadyProcessedFiles.map(
   file => file.split(".").slice(0, -1)[0]
 );
-
+console.log("Loading the 'wiki_list.lst'");
 loadListFile(WIKI_LIST).then(zimList => {
-  let filteredZimList = zimList.filter(
-    file => alreadyProcessedFiles.indexOf(file) === -1
-  );
-  filteredZimList.sort();
-  console.log("Wiki List Loaded. Starting article processing");
-  modifyHtml(filteredZimList);
-});
+  console.log("filtering and optimizing list to save time later");
 
-// 3ms per link
+  let optimizedZimList = {}; // Using binary search tree for extra speed later on
+  zimList.forEach((item, idx) => {
+    process.stdout.clearLine();
+    process.stdout.cursorTo(0);
+    process.stdout.write(`  ┗ ${idx}/${zimList.length}`);
+    if (alreadyProcessedFiles.indexOf(item) === -1) optimizedZimList[item] = 1;
+  });
+
+  console.log("Wiki List Loaded. Starting article processing");
+  modifyHtml(optimizedZimList);
+});
