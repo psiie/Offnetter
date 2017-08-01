@@ -1,6 +1,7 @@
 const path = require("path");
 
-const WIKI_LIST = "wiki_list10g1.lst";
+const WIKI_LIST = "wiki_list1g.lst";
+const REPLACE_CSS_CLASSES_IDS = false;
 const WIKI_DL = path.join(__dirname, "raw_wiki_articles");
 const PROCESSED_WIKI_DL = path.join(__dirname, "processed_wiki_articles");
 const SAVE_PATH = path.join(WIKI_DL, "images");
@@ -24,5 +25,6 @@ module.exports = {
   PROCESSED_WIKI_DL,
   CONCURRENT_CONNECTIONS,
   IMAGE_EXTENSIONS,
-  DATABASE_LINKS
+  DATABASE_LINKS,
+  REPLACE_CSS_CLASSES_IDS
 };

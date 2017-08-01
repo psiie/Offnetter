@@ -3,26 +3,49 @@ const path = require("path");
 const download = require("download");
 const cheerio = require("cheerio");
 const fs = require("fs");
-const { loadListFile, getFilename, cleanListOfLinks } = require("./_helper");
+const {
+  loadListFile,
+  getFilename,
+  cleanListOfLinks,
+  cssIds,
+  cssClasses
+} = require("./_helper");
 const {
   WIKI_LIST,
   RELATIVE_SAVE_PATH,
   PROCESSED_WIKI_DL,
   CONCURRENT_CONNECTIONS,
   IMAGE_EXTENSIONS,
+  REPLACE_CSS_CLASSES_IDS,
   WIKI_DL
 } = require("./config");
 
 function modifyHtml(zimList) {
-  function saveFile(filename, html, callback) {
-    const filePath = path.join(PROCESSED_WIKI_DL, filename + ".html");
-    fs.writeFile(filePath, html, "utf8", err => {
-      if (err) console.log("err writing html file", filename);
-      callback();
-    });
-  }
-
   function cleanSingleFile(file, callback) {
+    const saveFile = (filename, html, callback) => {
+      const filePath = path.join(PROCESSED_WIKI_DL, filename + ".html");
+      fs.writeFile(filePath, html, "utf8", err => {
+        if (err) console.log("err writing html file", filename);
+        callback();
+      });
+    };
+
+    const replaceCssIds = (file, $, callback) => {
+      if (!REPLACE_CSS_CLASSES_IDS) {
+        // Classes
+        for (let hClass in cssClasses) {
+          let $items = $(`.${hClass}`);
+          if ($items.length > 0) $items.attr("class", cssClasses[hClass]);
+        }
+        // Ids
+        for (let ids in cssIds) {
+          let $items = $(`#${ids}`);
+          if ($items.length > 0) $items.attr("id", cssIds[ids]);
+        }
+      }
+      saveFile(file, $.html(), callback);
+    };
+
     logCounter++;
     const filePath = path.join(WIKI_DL, file + ".html");
     fs.readFile(filePath, "utf8", (err, html) => {
@@ -43,6 +66,8 @@ function modifyHtml(zimList) {
       $("script").remove();
       $("noscript").remove();
       $("link").remove();
+      $("#mw-navigation").remove(); // left/top banner and sidebar
+      $("#mw-editsection").remove(); // edit buttons next to articles
       $("head").append('<link rel="stylesheet" href="index.css">');
       $("img").each(function() {
         const oldSrc = $(this).attr("src");
@@ -52,6 +77,7 @@ function modifyHtml(zimList) {
       });
       $a.each(function() {
         let oldSrc = $(this).attr("href");
+        if (oldSrc && oldSrc[0] === "#") return; // Dont modify if the link is a page anchor
         let ext = oldSrc && oldSrc.split(".").slice(-1)[0];
         oldSrc = cleanListOfLinks([oldSrc])[0];
         oldSrc = oldSrc && oldSrc.replace("//", "");
@@ -73,10 +99,9 @@ function modifyHtml(zimList) {
           $(this).replaceWith(innerText);
         }
       });
-      // process.stdout.clearLine();
-      // process.stdout.cursorTo(0);
 
-      saveFile(file, $.html(), callback);
+      replaceCssIds(file, $, callback);
+      // saveFile(file, $.html(), callback);
     });
   }
 
