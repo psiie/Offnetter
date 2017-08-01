@@ -1,7 +1,7 @@
 const path = require("path");
 
 const WIKI_LIST = "wiki_list1g.lst";
-const REPLACE_CSS_CLASSES_IDS = false;
+const REPLACE_CSS_CLASSES_IDS = false; // Slow. replaces id/classes with 2 letter codes
 const WIKI_DL = path.join(__dirname, "raw_wiki_articles");
 const PROCESSED_WIKI_DL = path.join(__dirname, "processed_wiki_articles");
 const SAVE_PATH = path.join(WIKI_DL, "images");

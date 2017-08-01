@@ -31,7 +31,7 @@ function modifyHtml(zimList) {
     };
 
     const replaceCssIds = (file, $, callback) => {
-      if (!REPLACE_CSS_CLASSES_IDS) {
+      if (REPLACE_CSS_CLASSES_IDS) {
         // Classes
         for (let hClass in cssClasses) {
           let $items = $(`.${hClass}`);

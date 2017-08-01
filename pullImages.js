@@ -11,7 +11,7 @@ const {
   WIKI_DL
 } = require("./config");
 
-function massDownloadImages(imageArr) {
+function massDownloadImages(imageSources) {
   function processImage(url, callback) {
     const dlUrl = cleanUrl(url);
     const filename = getFilename(url);
@@ -49,7 +49,7 @@ function massDownloadImages(imageArr) {
   }
 
   const queue = async.queue(processImage, CONCURRENT_CONNECTIONS);
-  queue.push(imageArr);
+  queue.push(Object.keys(imageSources));
   queue.drain = () => {
     console.log("All Images Downloaded");
   };
@@ -57,36 +57,38 @@ function massDownloadImages(imageArr) {
 
 function gatherImageList(zimList) {
   function processHtmlFile(filename, callback) {
-    console.log("processing html", filename);
+    console.log(
+      `${logCounter}/${zimList.length} | processing html ${filename}`
+    );
     /* Load HTML from file, use Cheerio (like jQuery) to find all
     image tags. Take the src and add it to the master list of imageSources */
     const htmlFilePath = path.join(WIKI_DL, filename + ".html");
-    const html = fs.readFileSync(htmlFilePath, "utf8");
-    const $ = cheerio.load(html);
-    const img = $("img");
-    const svg = $("svg");
-    img.each((idx, each) => imageSources.push(each.attribs.src));
-    svg.each((idx, each) => imageSources.push(each.attribs.src));
-    callback();
+    fs.readFile(htmlFilePath, "utf8", (err, html) => {
+      logCounter++;
+      if (err) {
+        callback();
+        return;
+      }
+      const $ = cheerio.load(html);
+      const img = $("img");
+      const svg = $("svg");
+      img.each((idx, each) => imageSources[each.attribs.src] = 1);
+      svg.each((idx, each) => imageSources[each.attribs.src] = 1);
+      callback();
+    });
   }
 
-  const imageSources = [];
-
-  // Get list of all html files
-  let htmlFiles = fs.readdirSync(WIKI_DL);
-  htmlFiles = htmlFiles.filter(
-    files => files.split(".").slice(-1)[0] === "html"
-  );
-  htmlFiles = htmlFiles.map(files => files.split(".").slice(0, -1).join("."));
-  htmlFiles = htmlFiles.filter(file => zimList.indexOf(file) !== -1);
+  const imageSources = {};
+  let logCounter = 0;
 
   // Create image folder if not exist
   fs.access(SAVE_PATH, fs.constants.F_OK, doesntExist => {
     if (doesntExist) fs.mkdirSync(SAVE_PATH);
   });
 
+  console.log("Starting to process html files (and looking for image links)");
   const fileQueue = async.queue(processHtmlFile, CONCURRENT_CONNECTIONS);
-  fileQueue.push(htmlFiles);
+  fileQueue.push(zimList);
   fileQueue.drain = () => {
     console.log("All html files parsed for images");
     massDownloadImages(imageSources);
@@ -97,6 +99,8 @@ function gatherImageList(zimList) {
 /* Load up all the html files, find the image links, add to list,
 then download each image (only if not found locally */
 
+console.log("Loading list");
 loadListFile(WIKI_LIST).then(zimList => {
+  console.log("List loaded. Starting to gather images");
   gatherImageList(zimList);
 });

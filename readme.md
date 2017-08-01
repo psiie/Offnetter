@@ -21,3 +21,10 @@ You can delete `missing_*.txt` at any time. It is for your reference to `tail -f
   6. node createIndex.js
   7. ./zimwriterfs.sh
   8. Profit??
+
+## Multitasking
+After you successfully `node pullArticles`, you can `node pullImages.js` at the same time as `node crossReferenceLinks.js`. 
+
+`node crossReferenceLinks.js` can be done at the same time as `node processImages`.
+
+`node processImages.js` can be done at the same time as `node creatIndex.js`
