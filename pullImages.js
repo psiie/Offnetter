@@ -14,7 +14,8 @@ function massDownloadImages(imageSources) {
   function processImage(url, callback) {
     logCounter++;
     const dlUrl = cleanUrl(url);
-    const filename = getFilename(url);
+    let filename = getFilename(url);
+    filename = filename.split("?")[0]; // get rid of query parameters on the filename
     const saveLocation = path.join(SAVE_PATH, filename);
     fs.access(saveLocation, fs.constants.F_OK, doesntExist => {
       if (doesntExist) {
