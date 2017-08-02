@@ -53,60 +53,34 @@ function modifyHtml(zimList) {
         console.log(`Not Found: ${file}`);
         callback();
         return;
+      } else {
+        console.log(
+          `${logCounter}/${Object.keys(zimList).length} | Processing ${file}`
+        );
       }
 
-      const $ = cheerio.load(html);
-      let links = [];
-      let anchorCounter = 0;
-
-      const $a = $("a");
-      console.log(
-        `${logCounter}/${Object.keys(zimList).length} | Cleaning file: ${file}.html | ${$a.length} links`
-      );
-      $("script").remove();
-      $("noscript").remove();
-      $("link").remove();
-      $("#mw-navigation").remove(); // left/top banner and sidebar
-      $("#mw-editsection").remove(); // edit buttons next to articles
-      $("head").append('<link rel="stylesheet" href="index.css">');
-      $("img").each(function() {
-        const oldSrc = $(this).attr("src");
-        const imageFilename = getFilename(oldSrc);
-        const newSrc = path.join(RELATIVE_SAVE_PATH, imageFilename);
-        $(this).attr("src", newSrc);
+      // Fix up links
+      let newHtml = html;
+      newHtml = newHtml.replace(/href="\/wiki\/([^\s]+)?"/g, (m, a) => {
+        if (zimList[a]) return `href="${a}.html"`;
+        else if (/(jpg|png|svg|gif)/.test(a))
+          return `href="images/${a}"`; // may need to remove the "File:"
+        else return "";
       });
-      $a.each(function() {
-        let oldSrc = $(this).attr("href");
-        if (oldSrc && oldSrc[0] === "#") return; // Dont modify if the link is a page anchor
-        let ext = oldSrc && oldSrc.split(".").slice(-1)[0];
-        oldSrc = cleanListOfLinks([oldSrc])[0];
-        oldSrc = oldSrc && oldSrc.replace("//", "");
-
-        // --- DEBUG for extra slow processing --- //
-        // process.stdout.clearLine();
-        // process.stdout.cursorTo(0);
-        // process.stdout.write(`  ┗ ${anchorCounter}/${$a.length} | ${oldSrc}`);
-        // anchorCounter++;
-
-        // // If link is in the zim, update the relative path. If not, remove the <a> tag
-        // IMAGE_EXTENSIONS.indexOf(ext) === -1
-        const linkIsInZim = oldSrc && !IMAGE_EXTENSIONS[ext] && zimList[oldSrc];
-        if (linkIsInZim) {
-          const newSrc = oldSrc ? oldSrc + ".html" : "#";
-          $(this).attr("href", newSrc);
-        } else {
-          const innerText = $(this).text();
-          $(this).replaceWith(innerText);
-        }
+      newHtml = newHtml.replace(/href="[^#][^\s]+"/g, (m, a) => {
+        if (/(https?|\.com|\.org|\.php|\.net)/.test(m)) return "";
+        else return m;
       });
 
-      replaceCssIds(file, $, callback);
-      // saveFile(file, $.html(), callback);
+      saveFile(file, newHtml, callback);
     });
   }
 
+  const zimListArr = Object.keys(zimList);
+  // console.log(zimListArr.length);
+  console.log("1", zimListArr.length);
   const queue = async.queue(cleanSingleFile, 1); // Can only be 1 concurrency here
-  queue.push(Object.keys(zimList));
+  queue.push(zimListArr);
   queue.drain = () => {
     console.log("All html files modified");
   };
@@ -115,28 +89,36 @@ function modifyHtml(zimList) {
 // --- Init --- //
 
 /* Examine the output folder and remove that from the list of
-html files to process. This is resuming progress */
-console.log("Reading directory of already processed html");
+html files to process. This is resuming progress. Because Javascript
+doesn't have hashes like Ruby, this looks more complicated than it is. We
+use Objects like we would Arrays. This increases speed using BinarySearchTrees */
 let logCounter = 0;
-let alreadyProcessedFiles = fs.readdirSync(PROCESSED_WIKI_DL);
-alreadyProcessedFiles = alreadyProcessedFiles.filter(
-  file => file.split(".").slice(-1)[0] === "html"
-);
-alreadyProcessedFiles = alreadyProcessedFiles.map(
-  file => file.split(".").slice(0, -1)[0]
-);
-console.log("Loading the 'wiki_list.lst'");
-loadListFile(WIKI_LIST).then(zimList => {
-  console.log("filtering and optimizing list to save time later");
 
-  let optimizedZimList = {}; // Using binary search tree for extra speed later on
-  zimList.forEach((item, idx) => {
-    process.stdout.clearLine();
-    process.stdout.cursorTo(0);
-    process.stdout.write(`  ┗ ${idx}/${zimList.length}`);
-    if (alreadyProcessedFiles.indexOf(item) === -1) optimizedZimList[item] = 1;
+console.log("Reading directory of already processed html");
+fs.readdir(PROCESSED_WIKI_DL, (err, alreadyProcessedFiles) => {
+  if (err) {
+    console.log("Fatal. Cannot read PROCESSED_WIKI_DL directory");
+    return;
+  }
+
+  let optimAlreadyProcessedFiles = {};
+  alreadyProcessedFiles
+    .filter(file => file.split(".").slice(-1)[0] === "html")
+    .map(file => file.split(".").slice(0, -1)[0])
+    .forEach(file => optimAlreadyProcessedFiles[file] = 1);
+  console.log("Loading the 'wiki_list.lst'");
+
+  loadListFile(WIKI_LIST).then(zimList => {
+    console.log("filtering and optimizing list to save time later");
+    let optimizedZimList = {};
+    zimList.forEach((item, idx) => {
+      process.stdout.clearLine();
+      process.stdout.cursorTo(0);
+      process.stdout.write(`  ┗ ${idx}/${zimList.length}`);
+      if (!optimAlreadyProcessedFiles[item]) optimizedZimList[item] = 1;
+    });
+
+    console.log("Wiki List Loaded. Starting article processing");
+    modifyHtml(optimizedZimList);
   });
-
-  console.log("Wiki List Loaded. Starting article processing");
-  modifyHtml(optimizedZimList);
 });
