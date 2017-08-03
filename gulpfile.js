@@ -63,12 +63,4 @@ gulp.task("htmlmin", () => {
 
 // ----------------------------------------------------------------- //
 
-gulp.task('move-css' () => {
-
-})
-
-// gulp.task("default", ["test"]);
-// gulp.task("default", ["minify-css"]);
-// gulp.task("default", ["htmlmin"]);
 gulp.task("default", ["minify-css", "htmlmin"]);
-gulp.task("nooptim", [""])

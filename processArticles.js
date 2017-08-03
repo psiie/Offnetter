@@ -73,14 +73,7 @@ function modifyHtml(zimList) {
         else return m;
       });
 
-      // use tidy to fix glaring problems with html that will halt the Gulp later
-      tidy(newHtml, (err, tidyHtml) => {
-        if (err) {
-          console.log("Error tidying file. Skipping", file);
-          callback();
-        }
-        saveFile(file, tidyHtml, callback);
-      });
+      saveFile(file, newHtml, callback);
     });
   }
 
