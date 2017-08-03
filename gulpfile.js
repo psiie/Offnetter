@@ -1,12 +1,12 @@
-const gulp = require('gulp');
-const gs = require('gulp-selectors');
-const cleanCSS = require('gulp-clean-css');
-const htmlmin = require('gulp-htmlmin');
+const gulp = require("gulp");
+const gs = require("gulp-selectors");
+const cleanCSS = require("gulp-clean-css");
+const htmlmin = require("gulp-html-minifier");
 
 const cleanCssOpts = {
-  compatibility: 'ie7',
+  compatibility: "ie7",
   rebase: true,
-  rebaseTo: '/',
+  rebaseTo: "/",
   level: 2
 };
 
@@ -32,19 +32,24 @@ const htmlMinOpts = {
   useShortDoctype: true
 };
 
-gulp.task('minify-css', () => {
+gulp.task("minify-css", () => {
   return gulp
-    .src('test_input/index.css') //
+    .src("./index.css") //
     .pipe(cleanCSS(cleanCssOpts)) //
-    .pipe(gulp.dest('test_input/index_clean/')); //
+    .pipe(gulp.dest("preprocessed_wiki_articles/index_clean")); //
 });
 
-gulp.task('minify-css-names', function() {
+gulp.task("htmlmin", function() {
   return gulp
-    .src(['test_input/index_clean/index.css', 'test_input/**/*.html']) //
-    .pipe(gs.run()) //
+    .src([
+      "preprocessed_wiki_articles/index_clean/index.css",
+      "raw_wiki_articles_minimal/**/*.html"
+    ]) //
     .pipe(htmlmin(htmlMinOpts)) //
-    .pipe(gulp.dest('test_output')); //
+    .pipe(gs.run()) //
+    .pipe(gulp.dest("postprocessed_wiki_articles")); //
 });
 
-gulp.task('default', ['minify-css', 'minify-css-names']);
+// gulp.task("default", ["minify-css"]);
+// gulp.task("default", ["htmlmin"]);
+gulp.task("default", ["minify-css", "htmlmin"]);

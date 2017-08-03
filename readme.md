@@ -5,8 +5,9 @@ An optimized way to download a MediaWiki
 Make the following folders:
   * `raw_wiki_articles`
   * `selections`
-  * `processed_wiki_articles`
-  * `processed_wiki_articles/images`
+  * `preprocessed_wiki_articles`
+  * `preprocessed_wiki_articles/images`
+  * `postprocessed_wiki_articles`
 
 Edit `config.js` to reference your wiki_list.lst file path (which will be inside selections/)
 

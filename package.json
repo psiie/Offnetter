@@ -21,8 +21,10 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.7.0",
-    "gulp-htmlmin": "^3.0.0",
+    "gulp-html-minifier": "^0.1.8",
     "gulp-purifycss": "^0.2.0",
-    "gulp-selectors": "^0.1.10"
+    "gulp-selectors": "^0.1.10",
+    "htmllint": "^0.6.0",
+    "htmltidy": "0.0.6"
   }
 }

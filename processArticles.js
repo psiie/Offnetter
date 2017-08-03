@@ -3,6 +3,7 @@ const path = require("path");
 const download = require("download");
 const cheerio = require("cheerio");
 const fs = require("fs");
+const tidy = require("htmltidy").tidy;
 const {
   loadListFile,
   getFilename,
@@ -72,7 +73,14 @@ function modifyHtml(zimList) {
         else return m;
       });
 
-      saveFile(file, newHtml, callback);
+      // use tidy to fix glaring problems with html that will halt the Gulp later
+      tidy(newHtml, (err, tidyHtml) => {
+        if (err) {
+          console.log("Error tidying file. Skipping", file);
+          callback();
+        }
+        saveFile(file, newHtml, callback);
+      });
     });
   }
 
