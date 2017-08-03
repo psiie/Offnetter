@@ -7,6 +7,10 @@ const PRE_PROCESSED_WIKI_DL = path.join(
   __dirname,
   "preprocessed_wiki_articles"
 );
+const POST_PROCESSED_WIKI_DL = path.join(
+  __dirname,
+  "postprocessed_wiki_articles"
+);
 const SAVE_PATH = path.join(WIKI_DL, "images");
 const RELATIVE_SAVE_PATH = "images/";
 const IMAGE_EXTENSIONS = {
@@ -26,6 +30,7 @@ module.exports = {
   SAVE_PATH,
   RELATIVE_SAVE_PATH,
   PRE_PROCESSED_WIKI_DL,
+  POST_PROCESSED_WIKI_DL,
   CONCURRENT_CONNECTIONS,
   IMAGE_EXTENSIONS,
   DATABASE_LINKS,

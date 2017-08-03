@@ -60,8 +60,13 @@ function modifyHtml(zimList) {
         );
       }
 
-      // Fix up links
       let newHtml = html;
+      // inject index.css
+      newHtml = newHtml.replace(/<\/\s?head>/, m => {
+        return `<link rel="stylesheet" href="index.css" /> ${m}`;
+      });
+
+      // Fix up links
       newHtml = newHtml.replace(/href="\/wiki\/([^\s]+)?"/g, (m, a) => {
         if (zimList[a]) return `href="${a}.html"`;
         else if (/(jpg|png|svg|gif)/.test(a))
@@ -72,6 +77,13 @@ function modifyHtml(zimList) {
         if (/(https?|\.com|\.org|\.php|\.net)/.test(m)) return "";
         else return m;
       });
+
+      /* Remove sidebar - Goes from #mw-navigation to #footer. Litterally
+      deletes everything in between. #mw-navigation typically is at the end */
+      newHtml = newHtml.replace(
+        /<div.+id="mw-navigation"(?:.|[\r\n])+?<div.+id="footer"/,
+        '<div id="footer"'
+      );
 
       saveFile(file, newHtml, callback);
     });

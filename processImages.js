@@ -9,11 +9,12 @@ const fs = require("fs");
 const {
   SAVE_PATH,
   RELATIVE_SAVE_PATH,
-  PRE_PROCESSED_WIKI_DL,
+  POST_PROCESSED_WIKI_DL,
   CONCURRENT_CONNECTIONS,
   IMAGE_EXTENSIONS
+  // PRE_PROCESSED_WIKI_DL,
 } = require("./config");
-const exportPath = path.join(PRE_PROCESSED_WIKI_DL, RELATIVE_SAVE_PATH);
+const exportPath = path.join(POST_PROCESSED_WIKI_DL, RELATIVE_SAVE_PATH);
 
 function getImageFiles() {
   /* Load both current image directory and destination. Compare
