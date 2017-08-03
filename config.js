@@ -3,7 +3,10 @@ const path = require("path");
 const WIKI_LIST = "wiki_list1k.lst";
 const REPLACE_CSS_CLASSES_IDS = false; // Slow. replaces id/classes with 2 letter codes
 const WIKI_DL = path.join(__dirname, "raw_wiki_articles");
-const PROCESSED_WIKI_DL = path.join(__dirname, "preprocessed_wiki_articles");
+const PRE_PROCESSED_WIKI_DL = path.join(
+  __dirname,
+  "preprocessed_wiki_articles"
+);
 const SAVE_PATH = path.join(WIKI_DL, "images");
 const RELATIVE_SAVE_PATH = "images/";
 const IMAGE_EXTENSIONS = {
@@ -22,7 +25,7 @@ module.exports = {
   WIKI_LIST,
   SAVE_PATH,
   RELATIVE_SAVE_PATH,
-  PROCESSED_WIKI_DL,
+  PRE_PROCESSED_WIKI_DL,
   CONCURRENT_CONNECTIONS,
   IMAGE_EXTENSIONS,
   DATABASE_LINKS,

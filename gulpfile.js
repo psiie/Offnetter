@@ -43,7 +43,7 @@ gulp.task("htmlmin", function() {
   return gulp
     .src([
       "preprocessed_wiki_articles/index_clean/index.css",
-      "raw_wiki_articles_minimal/**/*.html"
+      "preprocessed_wiki_articles/**/*.html"
     ]) //
     .pipe(htmlmin(htmlMinOpts)) //
     .pipe(gs.run()) //

@@ -5,7 +5,7 @@ const cheerio = require("cheerio");
 const fs = require("fs");
 // const fse = require('fs-extra'); // going to use this to copy files
 const { loadListFile } = require("./_helper");
-const { WIKI_LIST, PROCESSED_WIKI_DL } = require("./config");
+const { WIKI_LIST, PRE_PROCESSED_WIKI_DL } = require("./config");
 
 function generateIndex(indexList) {
   console.log("Starting to generate list");
@@ -26,7 +26,7 @@ function generateIndex(indexList) {
   });
 
   console.log("Writing index.html");
-  const indexPagePath = path.join(PROCESSED_WIKI_DL, "index.html");
+  const indexPagePath = path.join(PRE_PROCESSED_WIKI_DL, "index.html");
   fs.writeFile(indexPagePath, $.html(), "utf8", err => {
     if (err) console.log("error writing index.html page");
     console.log("Index page generated and saved");
@@ -34,7 +34,7 @@ function generateIndex(indexList) {
 }
 
 console.log("Loading list of processed files");
-let processedFiles = fs.readdir(PROCESSED_WIKI_DL, (err, files) => {
+let processedFiles = fs.readdir(PRE_PROCESSED_WIKI_DL, (err, files) => {
   if (err) {
     console.log("Fatal error: Cannot read directory");
     return;
