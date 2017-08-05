@@ -66,16 +66,32 @@ function modifyHtml(zimList) {
         return `<link rel="stylesheet" href="index.css" /> ${m}`;
       });
 
-      // Fix up links
-      newHtml = newHtml.replace(/href="\/wiki\/([^\s]+)?"/g, (m, a) => {
-        if (zimList[a]) return `href="${a}.html"`;
-        else if (/(jpg|png|svg|gif)/.test(a))
-          return `href="images/${a}"`; // may need to remove the "File:"
-        else return "";
-      });
-      newHtml = newHtml.replace(/href="[^#][^\s]+"/g, (m, a) => {
-        if (/(https?|\.com|\.org|\.php|\.net)/.test(m)) return "";
-        else return m;
+      newHtml = newHtml.replace(
+        /<a.+?href="([^\s]*?)".*?>(.*?)<\/\s?a>/g,
+        (m, a, b) => {
+          // dont touch anything if an anchor
+          if (a[0] === "#") return m;
+          // Shorten to a relative path and add .html
+          const href = a.split("/").slice(-1)[0];
+          if (zimList[href]) return `<a href="${href}.html">${b}</a>`;
+          else return `<span>${b}</span>`;
+        }
+      );
+
+      // if (zimList[a]) return `href="${a}.html"`;
+      // else if (/(jpg|png|svg|gif)/.test(a))
+      //   return `href="images/${a}"`; // may need to remove the "File:"
+
+      // Attempts to remove external links
+      // newHtml = newHtml.replace(/href="[^#][^\s]+"/g, (m, a) => {
+      //   if (/(https?|\.com|\.org|\.php|\.net)/.test(m)) return "";
+      //   else return m;
+      // });
+
+      // Fix images so they show up
+      newHtml = newHtml.replace(/img.+src="(.+?)"/g, (m, a) => {
+        let newLink = a.split("/").slice(-1)[0];
+        return `img src="images/${newLink}"`;
       });
 
       /* Remove sidebar - Goes from #mw-navigation to #footer. Litterally

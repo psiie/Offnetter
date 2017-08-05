@@ -86,7 +86,8 @@ function gatherImageList(zimList) {
   fileQueue.push(zimList);
   fileQueue.drain = () => {
     console.log("All html files parsed for images");
-    massDownloadImages(imageSources);
+    console.log(imageSources);
+    // massDownloadImages(imageSources);
   };
 }
 
@@ -100,7 +101,8 @@ fs.access(SAVE_PATH, fs.constants.F_OK, doesntExist => {
 });
 
 console.log("Loading list");
-loadListFile(WIKI_LIST).then(zimList => {
-  console.log("List loaded. Starting to open html and seek image links");
-  gatherImageList(zimList);
-});
+// loadListFile(WIKI_LIST).then(zimList => {
+//   console.log("List loaded. Starting to open html and seek image links");
+//   gatherImageList(zimList);
+// });
+gatherImageList(["ABBA"]);
