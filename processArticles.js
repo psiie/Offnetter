@@ -17,7 +17,7 @@ const {
   PRE_PROCESSED_WIKI_DL,
   CONCURRENT_CONNECTIONS,
   IMAGE_EXTENSIONS,
-  REPLACE_CSS_CLASSES_IDS,
+  // REPLACE_CSS_CLASSES_IDS,
   WIKI_DL
 } = require("./config");
 
@@ -31,21 +31,21 @@ function modifyHtml(zimList) {
       });
     };
 
-    const replaceCssIds = (file, $, callback) => {
-      if (REPLACE_CSS_CLASSES_IDS) {
-        // Classes
-        for (let hClass in cssClasses) {
-          let $items = $(`.${hClass}`);
-          if ($items.length > 0) $items.attr("class", cssClasses[hClass]);
-        }
-        // Ids
-        for (let ids in cssIds) {
-          let $items = $(`#${ids}`);
-          if ($items.length > 0) $items.attr("id", cssIds[ids]);
-        }
-      }
-      saveFile(file, $.html(), callback);
-    };
+    // const replaceCssIds = (file, $, callback) => {
+    //   if (REPLACE_CSS_CLASSES_IDS) {
+    //     // Classes
+    //     for (let hClass in cssClasses) {
+    //       let $items = $(`.${hClass}`);
+    //       if ($items.length > 0) $items.attr("class", cssClasses[hClass]);
+    //     }
+    //     // Ids
+    //     for (let ids in cssIds) {
+    //       let $items = $(`#${ids}`);
+    //       if ($items.length > 0) $items.attr("id", cssIds[ids]);
+    //     }
+    //   }
+    //   saveFile(file, $.html(), callback);
+    // };
 
     logCounter++;
     const filePath = path.join(WIKI_DL, file + ".html");

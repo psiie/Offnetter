@@ -34,8 +34,17 @@ const cleanListOfLinks = linkArr => {
   return linkList;
 };
 
-const cleanUrl = url => (url[0] === "/" ? url.slice(2) : url);
-const getFilename = url => url.split("/").slice(-1)[0].replace(/%/g, "");
+const getFilename = url => decodeURI(url.split("/").slice(-1)[0]);
+const cleanUrl = url => {
+  let newUrl = url;
+  while (newUrl[0] === "/")
+    newUrl = newUrl.slice(1);
+  return newUrl;
+};
+const prependUrl = url => {
+  if (/static\//.test(url)) return `https://wikipedia.org/${url}`;
+  else return url;
+};
 
 const cssIds = {
   bodyContent: "a",
@@ -343,6 +352,7 @@ module.exports = {
   cleanUrl,
   getFilename,
   cleanListOfLinks,
+  prependUrl,
   cssIds,
   cssClasses
 };

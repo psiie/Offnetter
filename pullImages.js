@@ -2,7 +2,12 @@ const async = require("async");
 const path = require("path");
 const download = require("download");
 const fs = require("fs");
-const { loadListFile, cleanUrl, getFilename } = require("./_helper");
+const {
+  loadListFile,
+  cleanUrl,
+  getFilename,
+  prependUrl
+} = require("./_helper");
 const {
   WIKI_LIST,
   CONCURRENT_CONNECTIONS,
@@ -13,9 +18,13 @@ const {
 function massDownloadImages(imageSources) {
   function processImage(url, callback) {
     logCounter++;
-    const dlUrl = cleanUrl(url);
+    let dlUrl = cleanUrl(url);
+    dlUrl = prependUrl(dlUrl);
+
     let filename = getFilename(url);
     filename = filename.split("?")[0]; // get rid of query parameters on the filename
+    filename = decodeURI(filename);
+
     const saveLocation = path.join(SAVE_PATH, filename);
     fs.access(saveLocation, fs.constants.F_OK, doesntExist => {
       if (doesntExist) {
@@ -86,8 +95,7 @@ function gatherImageList(zimList) {
   fileQueue.push(zimList);
   fileQueue.drain = () => {
     console.log("All html files parsed for images");
-    console.log(imageSources);
-    // massDownloadImages(imageSources);
+    massDownloadImages(imageSources);
   };
 }
 
