@@ -1,8 +1,12 @@
 const path = require("path");
 
-const WIKI_LIST = "wiki_list_one.lst";
-// const REPLACE_CSS_CLASSES_IDS = false; // Slow. replaces id/classes with 2 letter codes
+const WIKI_LIST = "wiki_list1k.lst";
 const WIKI_DL = path.join(__dirname, "raw_wiki_articles");
+const SAVE_PATH = path.join(WIKI_DL, "images");
+const RELATIVE_SAVE_PATH = "images/";
+const DATABASE_LINKS = path.join(__dirname, "database_links.db");
+let CONCURRENT_CONNECTIONS = 4;
+let MEDIA_WIKI = "https://en.wikipedia.org/wiki/";
 const PRE_PROCESSED_WIKI_DL = path.join(
   __dirname,
   "preprocessed_wiki_articles"
@@ -11,17 +15,12 @@ const POST_PROCESSED_WIKI_DL = path.join(
   __dirname,
   "postprocessed_wiki_articles"
 );
-const SAVE_PATH = path.join(WIKI_DL, "images");
-const RELATIVE_SAVE_PATH = "images/";
 const IMAGE_EXTENSIONS = {
   svg: 1,
   png: 1,
   jpg: 1,
   ico: 1
 };
-const DATABASE_LINKS = path.join(__dirname, "database_links.db");
-let CONCURRENT_CONNECTIONS = 4;
-let MEDIA_WIKI = "https://en.wikipedia.org/wiki/";
 
 module.exports = {
   WIKI_DL,
@@ -34,5 +33,4 @@ module.exports = {
   CONCURRENT_CONNECTIONS,
   IMAGE_EXTENSIONS,
   DATABASE_LINKS
-  // REPLACE_CSS_CLASSES_IDS
 };

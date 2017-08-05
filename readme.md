@@ -15,15 +15,16 @@ Edit `config.js` to reference your wiki_list.lst file path (which will be inside
 You can delete `missing_*.txt` at any time. It is for your reference to `tail -f`.
 
 ## Order of operations
-  1. node pullArticles.js
-  2. node pullImages.js
+  1. ./prep.sh
+  2. node pullArticles.js
+  3. node pullImages.js
   4. node processArticles.js
   5. gulp (optional. See `What is gulp` if you skip this step )
-  5. node processImages.js
-  6. node createIndex.js
-  7. cp favicon.ico postprocessed_wiki_articles/favicon.ico
-  7. ./zimwriterfs.sh
-  8. Profit??
+  6. node processImages.js
+  7. node createIndex.js
+  8. cp favicon.ico postprocessed_wiki_articles/favicon.ico
+  9. ./zimwriterfs.sh
+  10. Profit??
 
 ## What is gulp? Why Optional?
 Gulp is a tool like node. Everything Gulp does is in streams. Due to tools that were accessible, it was easier to write this ONE tool in gulp. What does it do? It runs gulpfile.js which is written to clean up (broken tags, syntax) html and optimize CSS. It looks at all the css in the index.css and *.html files and renames the classes and Id's into base26 (.header => .a). Severe space savings can be had!

@@ -64,6 +64,16 @@ gulp.task("joint-html-css-minify", () => {
     .pipe(gulp.dest("postprocessed_wiki_articles")); //
 });
 
+gulp.task("move-favicon", () => {
+  gulp
+    .src("favicon.ico") //
+    .pipe(gulp.desk("postprocessed_wiki_articles")); //
+});
+
 // ----------------------------------------------------------------- //
 
-gulp.task("default", ["clean-and-minify-css", "joint-html-css-minify"]);
+gulp.task("default", [
+  "clean-and-minify-css",
+  "joint-html-css-minify",
+  "move-favicon"
+]);
