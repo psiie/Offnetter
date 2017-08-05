@@ -38,3 +38,9 @@ After you successfully `node pullArticles`, you can `node pullImages.js` at the 
 `node crossReferenceLinks.js` can be done at the same time as `node processImages`.
 
 `node processImages.js` can be done at the same time as `node creatIndex.js`
+
+Do note however, that some tasks are internet hungry and others and cpu hungry. If you multitask two at the same time, they may fight for resources.
+
+## Todo
+  * Add timeout for when a 'too fast' statuscode appears.
+  * processImages.js output seems to stick. Need to debounce debug output.

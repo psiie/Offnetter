@@ -25,6 +25,7 @@
     "gulp-htmltidy": "^0.2.3",
     "gulp-purifycss": "^0.2.0",
     "gulp-selectors": "^0.1.10",
+    "gulp-stats": "0.0.4",
     "htmllint": "^0.6.0",
     "htmltidy": "0.0.6"
   }

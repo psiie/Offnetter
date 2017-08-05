@@ -17,7 +17,6 @@ const {
   PRE_PROCESSED_WIKI_DL,
   CONCURRENT_CONNECTIONS,
   IMAGE_EXTENSIONS,
-  // REPLACE_CSS_CLASSES_IDS,
   WIKI_DL
 } = require("./config");
 
@@ -30,22 +29,6 @@ function modifyHtml(zimList) {
         callback();
       });
     };
-
-    // const replaceCssIds = (file, $, callback) => {
-    //   if (REPLACE_CSS_CLASSES_IDS) {
-    //     // Classes
-    //     for (let hClass in cssClasses) {
-    //       let $items = $(`.${hClass}`);
-    //       if ($items.length > 0) $items.attr("class", cssClasses[hClass]);
-    //     }
-    //     // Ids
-    //     for (let ids in cssIds) {
-    //       let $items = $(`#${ids}`);
-    //       if ($items.length > 0) $items.attr("id", cssIds[ids]);
-    //     }
-    //   }
-    //   saveFile(file, $.html(), callback);
-    // };
 
     logCounter++;
     const filePath = path.join(WIKI_DL, file + ".html");
@@ -61,6 +44,16 @@ function modifyHtml(zimList) {
       }
 
       let newHtml = html;
+
+      /* Remove tags (script, link, meta ) */
+      newHtml = newHtml.replace(/<script.*?\/>/g, "");
+      newHtml = newHtml.replace(/<link.*?\/>/g, "");
+      newHtml = newHtml.replace(/<meta.*?\/>/g, "");
+      newHtml = newHtml.replace(
+        /<script(.|[\n\t])*?>(.|[\n\t])*?<\/\s?script>/g,
+        ""
+      );
+
       // inject index.css
       newHtml = newHtml.replace(/<\/\s?head>/, m => {
         return `<link rel="stylesheet" href="index.css" /> ${m}`;
@@ -77,16 +70,6 @@ function modifyHtml(zimList) {
           else return `<span>${b}</span>`;
         }
       );
-
-      // if (zimList[a]) return `href="${a}.html"`;
-      // else if (/(jpg|png|svg|gif)/.test(a))
-      //   return `href="images/${a}"`; // may need to remove the "File:"
-
-      // Attempts to remove external links
-      // newHtml = newHtml.replace(/href="[^#][^\s]+"/g, (m, a) => {
-      //   if (/(https?|\.com|\.org|\.php|\.net)/.test(m)) return "";
-      //   else return m;
-      // });
 
       // Fix images so they show up
       newHtml = newHtml.replace(/img.+src="(.+?)"/g, (m, a) => {

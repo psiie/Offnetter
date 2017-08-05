@@ -3,6 +3,7 @@ const gs = require("gulp-selectors");
 const cleanCSS = require("gulp-clean-css");
 const htmlmin = require("gulp-html-minifier");
 const htmltidy = require("gulp-htmltidy");
+require("gulp-stats")(gulp);
 
 const tidyOpts = {
   doctype: "html5",
@@ -23,10 +24,10 @@ const htmlMinOpts = {
   collapseBooleanAttributes: true,
   decodeEntities: true,
   html5: false,
-  keepClosingSlash: false,
   minifyCSS: false, // uses cleanCSS which we have already done
   minifyURLs: true,
-  removeAttributeQuotes: true,
+  keepClosingSlash: false,
+  // removeAttributeQuotes: true,
   removeComments: true,
   removeEmptyAttributes: true,
   removeEmptyElements: true,
@@ -39,28 +40,30 @@ const htmlMinOpts = {
   useShortDoctype: true
 };
 
-gulp.task("minify-css", () => {
+gulp.task("clean-and-minify-css", () => {
   return gulp
     .src("./index.css") //
     .pipe(cleanCSS(cleanCssOpts)) //
-    .pipe(gulp.dest("preprocessed_wiki_articles/index_clean")); //
+    .pipe(gulp.dest("preprocessed_wiki_articles")); //
 });
 
-gulp.task("htmlmin", () => {
+/* gs.run() normally breaks reference note anchors ( [33] => 33. ) 
+However, with the GLOB selector for cite_note-*, restores some functionality */
+gulp.task("joint-html-css-minify", () => {
   console.log(
     "Warning. You will get no status on this task. It will take a long time"
   );
   return gulp
     .src([
-      "preprocessed_wiki_articles/index_clean/index.css",
+      "preprocessed_wiki_articles/index.css",
       "preprocessed_wiki_articles/**/*.html"
     ]) //
     .pipe(htmltidy(tidyOpts)) //
     .pipe(htmlmin(htmlMinOpts)) //
-    .pipe(gs.run()) //
+    .pipe(gs.run(undefined, { ids: "cite_note-*" })) // npmjs.com/package/gulp-selectors
     .pipe(gulp.dest("postprocessed_wiki_articles")); //
 });
 
 // ----------------------------------------------------------------- //
 
-gulp.task("default", ["minify-css", "htmlmin"]);
+gulp.task("default", ["clean-and-minify-css", "joint-html-css-minify"]);
