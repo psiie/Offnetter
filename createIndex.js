@@ -12,7 +12,16 @@ function generateIndex(indexList) {
   let logCounter = 0;
 
   const $ = cheerio.load("");
-  $("body").append($("<ul>"));
+  const $indexCss = $("<link>");
+  $indexCss.attr("rel", "stylesheet");
+  $indexCss.attr("href", "index.css");
+  $("head").append($indexCss);
+
+  const $ul = $("<ul>");
+  const $indexContainer = $("<div>").addClass("index-container");
+  $indexContainer.append($ul);
+  $("body").append($indexContainer);
+  $("body").addClass("index-body");
 
   indexList.forEach(item => {
     console.log(`${logCounter}/${indexList.length} | Processing ${item}`);
@@ -39,6 +48,8 @@ let processedFiles = fs.readdir(POST_PROCESSED_WIKI_DL, (err, files) => {
     console.log("Fatal error: Cannot read directory");
     return;
   }
-  const fileList = files.map(file => file.split(".").slice(0, -1)[0]);
+  let fileList = files.filter(file => /\.html/.test(file));
+  fileList = fileList.map(file => file.split(".").slice(0, -1)[0]);
+  fileList = fileList.filter(file => !/index/.test(file));
   generateIndex(fileList);
 });

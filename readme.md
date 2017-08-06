@@ -1,15 +1,6 @@
 # mwOffnet
 An optimized way to download a MediaWiki
 
-## Be sure to
-Make the following folders:
-  * `raw_wiki_articles`
-  * `selections`
-  * `preprocessed_wiki_articles`
-  * `preprocessed_wiki_articles/images`
-  * `postprocessed_wiki_articles`
-  * `postprocessed_wiki_articles/images`
-
 Edit `config.js` to reference your wiki_list.lst file path (which will be inside selections/)
 
 You can delete `missing_*.txt` at any time. It is for your reference to `tail -f`.
@@ -19,10 +10,10 @@ You can delete `missing_*.txt` at any time. It is for your reference to `tail -f
   2. node pullArticles.js
   3. node pullImages.js
   4. node processArticles.js
-  5. gulp (optional. See `What is gulp` if you skip this step )
+  5. gulp (optional. See `What is gulp` if you skip this step)
   6. node processImages.js
   7. node createIndex.js
-  8. cp favicon.ico postprocessed_wiki_articles/favicon.ico
+  <!-- 8. cp favicon.ico postprocessed_wiki_articles/favicon.ico -->
   9. ./zimwriterfs.sh
   10. Profit??
 

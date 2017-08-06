@@ -1,3 +1,19 @@
+/* --- index homepage --- */
+ .index-bugfix {color: #000} /* Do not remove. Bug in gulp 
+ appends html5 doctype to css file. first selector fails. Selector does nothing */ 
+.index-body {
+    text-align: center;
+    padding-top: 2em;
+}
+
+.index-container {
+    text-align: left;
+    display: inline-block;
+}
+.index-container ul {
+    list-style: none;
+}
+/* --- End index homepage --- */
 cite,
 dfn {
     font-style: inherit

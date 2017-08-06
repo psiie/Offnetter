@@ -27,6 +27,7 @@
     "gulp-selectors": "^0.1.10",
     "gulp-stats": "0.0.4",
     "htmllint": "^0.6.0",
-    "htmltidy": "0.0.6"
+    "htmltidy": "0.0.6",
+    "run-sequence": "^2.1.0"
   }
 }

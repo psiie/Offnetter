@@ -3,7 +3,13 @@ const gs = require("gulp-selectors");
 const cleanCSS = require("gulp-clean-css");
 const htmlmin = require("gulp-html-minifier");
 const htmltidy = require("gulp-htmltidy");
+const runSequence = require("run-sequence");
 require("gulp-stats")(gulp);
+
+const gsIgnores = {
+  ids: "cite_note-*",
+  classes: "index-*"
+};
 
 const tidyOpts = {
   doctype: "html5",
@@ -60,20 +66,28 @@ gulp.task("joint-html-css-minify", () => {
     ]) //
     .pipe(htmltidy(tidyOpts)) //
     .pipe(htmlmin(htmlMinOpts)) //
-    .pipe(gs.run(undefined, { ids: "cite_note-*" })) // npmjs.com/package/gulp-selectors
+    .pipe(gs.run(undefined, gsIgnores)) // npmjs.com/package/gulp-selectors
     .pipe(gulp.dest("postprocessed_wiki_articles")); //
 });
 
 gulp.task("move-favicon", () => {
   gulp
-    .src("favicon.ico") //
-    .pipe(gulp.desk("postprocessed_wiki_articles")); //
+    .src("./favicon.ico") //
+    .pipe(gulp.dest("postprocessed_wiki_articles")); //
 });
 
 // ----------------------------------------------------------------- //
 
-gulp.task("default", [
-  "clean-and-minify-css",
-  "joint-html-css-minify",
-  "move-favicon"
-]);
+// gulp.task("default", ["clean-and-minify-css","joint-html-css-minify","move-favicon"]);
+gulp.task("default", function(done) {
+  runSequence(
+    "clean-and-minify-css",
+    "joint-html-css-minify",
+    "move-favicon",
+    () => done
+  );
+});
+
+/* Consider splitting "joint-html-css-minify" into multiple tasks. I 
+dont want files to be overwritten in place however and this would make a
+mess requiring another folder. */
