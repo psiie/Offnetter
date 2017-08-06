@@ -13,9 +13,8 @@ You can delete `missing_*.txt` at any time. It is for your reference to `tail -f
   5. gulp (optional. See `What is gulp` if you skip this step)
   6. node processImages.js
   7. node createIndex.js
-  <!-- 8. cp favicon.ico postprocessed_wiki_articles/favicon.ico -->
-  9. ./zimwriterfs.sh
-  10. Profit??
+  8. ./zimwriterfs.sh
+  9. Profit??
 
 ## What is gulp? Why Optional?
 Gulp is a tool like node. Everything Gulp does is in streams. Due to tools that were accessible, it was easier to write this ONE tool in gulp. What does it do? It runs gulpfile.js which is written to clean up (broken tags, syntax) html and optimize CSS. It looks at all the css in the index.css and *.html files and renames the classes and Id's into base26 (.header => .a). Severe space savings can be had!
@@ -23,6 +22,7 @@ Gulp is a tool like node. Everything Gulp does is in streams. Due to tools that 
 #### If you skip this step, you must do the following:
   1. `mv preprocessed_wiki_articles postprocessed_wiki_articles`
   2. `cp index.css postprocessed_wiki_articles/index.css`
+  3. cp favicon.ico postprocessed_wiki_articles/favicon.ico
 
 ## Multitasking
 After you successfully `node pullArticles`, you can `node pullImages.js` at the same time as `node crossReferenceLinks.js`. 

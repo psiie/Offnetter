@@ -27,7 +27,7 @@ function generateIndex(indexList) {
     console.log(`${logCounter}/${indexList.length} | Processing ${item}`);
     let $listItem = $("<li>");
     let $anchor = $("<a>");
-    $anchor.text(item);
+    $anchor.text(item.replace(/_/g, " "));
     $anchor.attr("href", `${item}.html`);
     $listItem.append($anchor);
     $("ul").append($listItem);
@@ -51,5 +51,14 @@ let processedFiles = fs.readdir(POST_PROCESSED_WIKI_DL, (err, files) => {
   let fileList = files.filter(file => /\.html/.test(file));
   fileList = fileList.map(file => file.split(".").slice(0, -1)[0]);
   fileList = fileList.filter(file => !/index/.test(file));
-  generateIndex(fileList);
+
+  // Removes duplicates like "Acre" and "Acre_"
+  const dupRemover = {};
+  fileList.forEach(file => {
+    if (file[file.length - 1] === "_") dupRemover[file.slice(0, -1)] = 1;
+    else dupRemover[file] = 1;
+  });
+
+  // generateIndex(fileList);
+  generateIndex(Object.keys(dupRemover));
 });

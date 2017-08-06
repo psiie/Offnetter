@@ -12,6 +12,11 @@
 }
 .index-container ul {
     list-style: none;
+    margin-left: 0;
+}
+
+.index-container li {
+    margin-bottom: 0.3em;
 }
 /* --- End index homepage --- */
 cite,
