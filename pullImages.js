@@ -23,7 +23,12 @@ function massDownloadImages(imageSources) {
 
     let filename = getFilename(url);
     filename = filename.split("?")[0]; // get rid of query parameters on the filename
-    filename = decodeURI(filename);
+    try {
+      filename = decodeURI(filename);
+    } catch (e) {
+      console.log('Malformed URL. Skipping image', url);
+      return;
+    }
 
     const saveLocation = path.join(SAVE_PATH, filename);
     fs.access(saveLocation, fs.constants.F_OK, doesntExist => {

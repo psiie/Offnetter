@@ -7,7 +7,8 @@ const runSequence = require("run-sequence");
 require("gulp-stats")(gulp);
 
 const gsIgnores = {
-  ids: "cite_note-*",
+  // ids: "cite_note-*",
+  ids: "*", // If we don't ignore all IDs, anchor links breaks :(
   classes: "index-*"
 };
 
@@ -21,19 +22,20 @@ const cleanCssOpts = {
   compatibility: "ie7",
   rebase: true,
   rebaseTo: "/",
-  level: 2
+  level: {
+    2: { all: true }
+  }
 };
 
 const htmlMinOpts = {
-  collapseWhitespace: true,
+  collapseWhitespace: false, // removes whitespace that is a part of text. Potential savings however
   collapseInlineTagWhitespace: true,
   collapseBooleanAttributes: true,
   decodeEntities: true,
-  html5: false,
+  html5: true, // seems to break links when false
   minifyCSS: false, // uses cleanCSS which we have already done
   minifyURLs: true,
   keepClosingSlash: false,
-  // removeAttributeQuotes: true,
   removeComments: true,
   removeEmptyAttributes: true,
   removeEmptyElements: true,

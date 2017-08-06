@@ -74,7 +74,7 @@ function modifyHtml(zimList) {
       // Fix images so they show up
       newHtml = newHtml.replace(/img.+src="(.+?)"/g, (m, a) => {
         let newLink = a.split("/").slice(-1)[0];
-        return `img src="images/${newLink}"`;
+        return `img src="images/${newLink}" onerror="this.style.display='none'"`;
       });
 
       /* Remove sidebar - Goes from #mw-navigation to #footer. Litterally
