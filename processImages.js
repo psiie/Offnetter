@@ -44,13 +44,13 @@ function convertListOfImages(imagesArr) {
     const ext = image.split(".").slice(-1)[0];
 
     // Convert image. If PNG, don't gaussian
-    let convertion = gm(imagePath)
-      .noProfile()
-      .strip()
-      .interlace("Plane")
-      .colorspace("RGB")
-      .colors(64);
-    // if (ext !== 'png') convertion.gaussian(0.001);
+    let convertion = gm(imagePath) //
+      .noProfile() //
+      .strip() //
+      .interlace("Plane") //
+      .colorspace("RGB"); //
+    // .colors(64); // Can corrupt some images
+    // if (ext !== "png") convertion.gaussian(0.001);
     convertion.quality(50);
 
     convertion.write(exportImagePath, err => {
