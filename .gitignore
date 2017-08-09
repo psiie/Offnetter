@@ -3,9 +3,9 @@ missing_*.txt
 *.tar.gz
 /raw_wiki_articles*
 /processed_wiki_articles*
-output/
-postprocessed_wiki_articles/
-preprocessed_wiki_articles/
+output*
+postprocessed_wiki_articles*
+preprocessed_wiki_articles*
 # Created by https://www.gitignore.io/api/node,osx
 
 ### Node ###

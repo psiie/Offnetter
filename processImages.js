@@ -34,9 +34,14 @@ function getImageFiles() {
 
 function convertListOfImages(imagesArr) {
   function convert(image, callback) {
+    const truncFilename = image.length > 64
+      ? image.slice(0, 64) + "..." + image.split(".").slice(-1)
+      : image;
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
-    process.stdout.write(`  ┗ ${logCounter}/${imagesArr.length} | ${image}`);
+    process.stdout.write(
+      `  ┗ ${logCounter}/${imagesArr.length} | ${truncFilename}`
+    );
     logCounter++;
 
     const imagePath = path.join(SAVE_PATH, image);
