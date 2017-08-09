@@ -5,7 +5,7 @@ const path = require("path");
 const download = require("download");
 const cheerio = require("cheerio");
 const gm = require("gm");
-const fs = require("fs");
+const fs = require("graceful-fs");
 const {
   SAVE_PATH,
   RELATIVE_SAVE_PATH,
@@ -34,8 +34,8 @@ function getImageFiles() {
 
 function convertListOfImages(imagesArr) {
   function convert(image, callback) {
-    const truncFilename = image.length > 64
-      ? image.slice(0, 64) + "..." + image.split(".").slice(-1)
+    const truncFilename = image.length > 54
+      ? image.slice(0, 54) + "..." + image.split(".").slice(-1)
       : image;
     process.stdout.clearLine();
     process.stdout.cursorTo(0);

@@ -1,7 +1,7 @@
 const async = require("async");
 const path = require("path");
 const download = require("download");
-const fs = require("fs");
+const fs = require("graceful-fs");
 const {
   loadListFile,
   cleanUrl,
@@ -26,7 +26,7 @@ function massDownloadImages(imageSources) {
     try {
       filename = decodeURI(filename);
     } catch (e) {
-      console.log('Malformed URL. Skipping image', url);
+      console.log("Malformed URL. Skipping image", url);
       return;
     }
 

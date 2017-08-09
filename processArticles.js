@@ -2,7 +2,7 @@ const async = require("async");
 const path = require("path");
 const download = require("download");
 const cheerio = require("cheerio");
-const fs = require("fs");
+const fs = require("graceful-fs");
 const tidy = require("htmltidy").tidy;
 const {
   loadListFile,
