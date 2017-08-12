@@ -5,6 +5,10 @@ Edit `config.js` to reference your wiki_list.lst file path (which will be inside
 
 You can delete `missing_*.txt` at any time. It is for your reference to `tail -f`.
 
+## One time install
+ * sudo apt-get install imagemagick graphicsmagick
+ * npm install
+
 ## Order of operations
   1. ./prep.sh
   2. node pullArticles.js
@@ -35,4 +39,7 @@ Do note however, that some tasks are internet hungry and others and cpu hungry. 
 
 ## Todo
   * Add timeout for when a 'too fast' statuscode appears.
-  * processImages.js output seems to stick. Need to debounce debug output.
+  * Change createIndex.js to append to a file instead of loading all to ram. This should allow the app to scale better.
+
+## Known Problems
+  * ~processImages can't handle 32755 encodings on a NUC. Claims 'too many files open'. Fixed on OSX by using graceful-fs but still broken on linux.~
