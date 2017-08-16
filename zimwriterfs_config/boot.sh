@@ -1,16 +1,16 @@
 #!/bin/bash
 zimwriterfs \
---title "ZimTest" \
---description "A quick test of zimwriterfs docker" \
---creator "Wikipedia Foundation" \
---publisher "Reno McKenzie" \
---tags "IIAB;Wikipedia" \
---language en \
---welcome index.html \
---favicon favicon.ico \
+--title="ZimTest" \
+--description="A quick test of zimwriterfs docker" \
+--creator="Wikipedia Foundation" \
+--publisher="Reno McKenzie" \
+--tags="IIAB;Wikipedia" \
+--language="en" \
+--welcome="index.html" \
+--favicon="favicon.ico" \
 --withFullTextIndex \
 /articles \
-/output/$(date '+%d-%m-%y_%H-%M-%S').zim
+/output/$(date '+%Y%m%d_%A_%I:%M:%S_%p').zim
 
 # Usage: zimwriterfs [mandatory arguments] [optional arguments] HTML_DIRECTORY ZIM_FILE
 
