@@ -7,7 +7,8 @@ const {
   CONCURRENT_CONNECTIONS,
   WIKI_DL,
   MEDIA_WIKI,
-  WIKI_LIST
+  WIKI_LIST,
+  LOG_MISSING
 } = require("./config");
 
 /* --- Notes about imports --- 
@@ -50,11 +51,15 @@ function downloadWikiArticles(articleListArr) {
         console.log("   ", err.statusCode, article);
 
         // Write error out to file
-        const ERR_FILE = path.join(__dirname, "missing_articles.txt");
-        fs.appendFile(ERR_FILE, `${err.statusCode} ${article}\n`, err => {
-          if (err) console.log("problems appending to error file", err);
+        if (LOG_MISSING) {
+          const ERR_FILE = path.join(__dirname, "missing_articles.txt");
+          fs.appendFile(ERR_FILE, `${err.statusCode} ${article}\n`, err => {
+            if (err) console.log("problems appending to error file", err);
+            callback();
+          });
+        } else {
           callback();
-        });
+        }
       });
   }
 
