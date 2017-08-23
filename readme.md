@@ -40,6 +40,7 @@ Do note however, that some tasks are internet hungry and others and cpu hungry. 
 ## Todo
   * Add timeout for when a 'too fast' statuscode appears.
   * Change createIndex.js to append to a file instead of loading all to ram. This should allow the app to scale better.
+  * Redo create-index to append to file output instead of simulating a DOM with cheerio.
 
 ## Known Problems
   * ~processImages can't handle 32755 encodings on a NUC. Claims 'too many files open'. Fixed on OSX by using graceful-fs but still broken on linux.~

@@ -10,7 +10,7 @@ zimwriterfs \
 --favicon="favicon.ico" \
 --withFullTextIndex \
 /articles \
-/output/$(date '+%Y%m%d_%A_%I:%M:%S_%p').zim
+/output/$(date '+%Y-%m-%d_%H%M').zim
 
 # Usage: zimwriterfs [mandatory arguments] [optional arguments] HTML_DIRECTORY ZIM_FILE
 

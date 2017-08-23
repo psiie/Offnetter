@@ -1,7 +1,9 @@
 #! /bin/bash
 mkdir -p raw_wiki_articles/images
-mkdir -p preprocessed_wiki_articles
-mkdir -p postprocessed_wiki_articles/images
+mkdir -p processed_wiki_articles
+mkdir -p processed_wiki_articles/images
+# mkdir -p preprocessed_wiki_articles
+# mkdir -p postprocessed_wiki_articles/images
 mkdir -p selections
 mkdir -p output
 rm missing_articles.txt

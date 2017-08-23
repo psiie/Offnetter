@@ -14,7 +14,7 @@ const {
 const {
   WIKI_LIST,
   RELATIVE_SAVE_PATH,
-  PRE_PROCESSED_WIKI_DL,
+  PROCESSED_WIKI_DL,
   CONCURRENT_CONNECTIONS,
   IMAGE_EXTENSIONS,
   WIKI_DL
@@ -23,7 +23,7 @@ const {
 function modifyHtml(zimList) {
   function cleanSingleFile(file, callback) {
     const saveFile = (filename, html, callback) => {
-      const filePath = path.join(PRE_PROCESSED_WIKI_DL, filename + ".html");
+      const filePath = path.join(PROCESSED_WIKI_DL, filename + ".html");
       fs.writeFile(filePath, html, "utf8", err => {
         if (err) console.log("err writing html file", filename);
         callback();
@@ -107,9 +107,9 @@ use Objects like we would Arrays. This increases speed using BinarySearchTrees *
 let logCounter = 0;
 
 console.log("Reading directory of already processed html");
-fs.readdir(PRE_PROCESSED_WIKI_DL, (err, alreadyProcessedFiles) => {
+fs.readdir(PROCESSED_WIKI_DL, (err, alreadyProcessedFiles) => {
   if (err) {
-    console.log("Fatal. Cannot read PRE_PROCESSED_WIKI_DL directory");
+    console.log("Fatal. Cannot read PROCESSED_WIKI_DL directory");
     return;
   }
   if (!alreadyProcessedFiles) alreadyProcessedFiles = [];

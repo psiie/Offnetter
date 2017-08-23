@@ -9,12 +9,11 @@ const fs = require("graceful-fs");
 const {
   SAVE_PATH,
   RELATIVE_SAVE_PATH,
-  POST_PROCESSED_WIKI_DL,
+  PROCESSED_WIKI_DL,
   CONCURRENT_CONNECTIONS,
   IMAGE_EXTENSIONS
-  // PRE_PROCESSED_WIKI_DL,
 } = require("./config");
-const exportPath = path.join(POST_PROCESSED_WIKI_DL, RELATIVE_SAVE_PATH);
+const exportPath = path.join(PROCESSED_WIKI_DL, RELATIVE_SAVE_PATH);
 
 function getImageFiles() {
   /* Load both current image directory and destination. Compare
