@@ -10,7 +10,7 @@
     text-align: left;
     display: inline-block;
 }
-.index-container ul {
+ul.index-container {
     list-style: none;
     margin-left: 0;
 }
