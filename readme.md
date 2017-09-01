@@ -16,6 +16,7 @@ You can delete `missing_*.txt` at any time. It is for your reference to `tail -f
   4. node processArticles.js
   6. node processImages.js
   7. node createIndex.js
+  8. ./copyRequires.sh
   8. ./zimwriterfs.sh
   9. Profit??
 
