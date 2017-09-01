@@ -16,18 +16,9 @@ You can delete `missing_*.txt` at any time. It is for your reference to `tail -f
   4. node processArticles.js
   6. node processImages.js
   7. node createIndex.js
-  8. ./copyRequires.sh
+  8. ./prepare_zimwriterfs.sh
   8. ./zimwriterfs.sh
   9. Profit??
-
-## Multitasking
-After you successfully `node pullArticles`, you can `node pullImages.js` at the same time as `node crossReferenceLinks.js`. 
-
-`node crossReferenceLinks.js` can be done at the same time as `node processImages`.
-
-`node processImages.js` can be done at the same time as `node creatIndex.js`
-
-Do note however, that some tasks are internet hungry and others and cpu hungry. If you multitask two at the same time, they may fight for resources.
 
 ## Todo
   * Add timeout for when a 'too fast' statuscode appears.
