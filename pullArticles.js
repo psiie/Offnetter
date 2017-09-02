@@ -20,6 +20,12 @@ Only ever saw this error when writing 54k empty files at once (using
 async concurrency of 1)
 */
 
+let delay429 = 0;
+setInterval(() => {
+  if (delay429 > 0) delay429 -= 1;
+  if (delay429 < 0) delay429 = 0;
+}, 5 * 60 * 1000);
+
 function downloadWikiArticles(articleListArr) {
   function processArticle(article, callback) {
     /* Check for file access. If the process returns an error, this means
@@ -46,6 +52,7 @@ function downloadWikiArticles(articleListArr) {
         // Push article back on the queue if it is a 429 (too many requests)
         if (err.statusCode === 429) {
           console.log("pushing", article, "back on the queue");
+          if (delay429 < 3) delay429 += 1;
           queue.push(article);
         }
         console.log("   ", err.statusCode, article);
@@ -55,10 +62,10 @@ function downloadWikiArticles(articleListArr) {
           const ERR_FILE = path.join(__dirname, "missing_articles.txt");
           fs.appendFile(ERR_FILE, `${err.statusCode} ${article}\n`, err => {
             if (err) console.log("problems appending to error file", err);
-            callback();
+            setTimeout(callback, 1000 * delay429);
           });
         } else {
-          callback();
+          setTimeout(callback, 1000 * delay429);
         }
       });
   }
