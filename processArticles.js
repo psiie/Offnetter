@@ -21,6 +21,8 @@ const {
 } = require("./config");
 
 function modifyHtml(zimList) {
+  const startTime = Date.now() / 1000;
+  const totalCount = Object.keys(zimList).length;
   function cleanSingleFile(file, callback) {
     const saveFile = (filename, html, callback) => {
       const filePath = path.join(PROCESSED_WIKI_DL, filename + ".html");
@@ -38,9 +40,19 @@ function modifyHtml(zimList) {
         callback();
         return;
       } else {
-        console.log(
-          `${logCounter}/${Object.keys(zimList).length} | Processing ${file}`
+        const timeDiff = Date.now() / 1000 - startTime;
+        const timePer = timeDiff / logCounter;
+        const timeRemaining = (totalCount - logCounter) * timePer;
+        const hoursRemaining = parseInt(timeRemaining / 60 / 60);
+        const minutesRemaining = parseInt(timeRemaining / 60 % 60);
+        process.stdout.clearLine();
+        process.stdout.cursorTo(0);
+        process.stdout.write(
+          `  ┗ ${hoursRemaining}:${minutesRemaining} | ${logCounter}/${totalCount} | Processing ${file}`
         );
+        // console.log(
+        //   `${logCounter}/${Object.keys(zimList).length} | Processing ${file}`
+        // );
       }
 
       let newHtml = html;
