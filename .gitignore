@@ -6,6 +6,7 @@ missing_*.txt
 output*
 postprocessed_wiki_articles*
 preprocessed_wiki_articles*
+/selections/*
 # Created by https://www.gitignore.io/api/node,osx
 
 ### Node ###

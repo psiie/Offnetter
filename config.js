@@ -1,6 +1,6 @@
 const path = require('path');
 
-const WIKI_LIST = 'wiki_list.1g.lst';
+const WIKI_LIST = 'wiki_list10g.lst';
 const LOG_MISSING = false;
 const WIKI_DL = path.join(__dirname, 'raw_wiki_articles');
 const SAVE_PATH = path.join(WIKI_DL, 'images');

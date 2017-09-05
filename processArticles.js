@@ -35,20 +35,25 @@ function modifyHtml(zimList) {
     logCounter++;
     const filePath = path.join(WIKI_DL, file + ".html");
     fs.readFile(filePath, "utf8", (err, html) => {
+      const timeDiff = Date.now() / 1000 - startTime;
+      const timePer = timeDiff / logCounter;
+      const timeRemaining = (totalCount - logCounter) * timePer;
+      const hoursRemaining = parseInt(timeRemaining / 60 / 60);
+      const minutesRemaining = parseInt(timeRemaining / 60 % 60);
       if (err) {
-        console.log(`Not Found: ${file}`);
-        callback();
-        return;
-      } else {
-        const timeDiff = Date.now() / 1000 - startTime;
-        const timePer = timeDiff / logCounter;
-        const timeRemaining = (totalCount - logCounter) * timePer;
-        const hoursRemaining = parseInt(timeRemaining / 60 / 60);
-        const minutesRemaining = parseInt(timeRemaining / 60 % 60);
         process.stdout.clearLine();
         process.stdout.cursorTo(0);
         process.stdout.write(
-          `  ┗ ${hoursRemaining}:${minutesRemaining} | ${logCounter}/${totalCount} | Processing ${file}`
+          `  ┗ ${hoursRemaining}:${minutesRemaining} | Not Found: ${file}`
+        );
+        // console.log(`Not Found: ${file}`);
+        callback();
+        return;
+      } else {
+        process.stdout.clearLine();
+        process.stdout.cursorTo(0);
+        process.stdout.write(
+          `  ┗ ${hoursRemaining}:${minutesRemaining} | ${logCounter}/${totalCount} | Processing ${file.slice(0, 60)}`
         );
         // console.log(
         //   `${logCounter}/${Object.keys(zimList).length} | Processing ${file}`
