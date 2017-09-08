@@ -6,6 +6,7 @@ const download = require("download");
 const cheerio = require("cheerio");
 const gm = require("gm");
 const fs = require("graceful-fs");
+const fse = require("fs-extra");
 const {
   SAVE_PATH,
   RELATIVE_SAVE_PATH,
@@ -18,29 +19,47 @@ const exportPath = path.join(PROCESSED_WIKI_DL, RELATIVE_SAVE_PATH);
 function getImageFiles() {
   /* Load both current image directory and destination. Compare
   and remove images that have already been converted */
+  const unConvertables = {};
   const alreadyConvertedImg = {};
   fs.readdirSync(exportPath).forEach(file => alreadyConvertedImg[file] = 1);
 
   let images = fs.readdirSync(SAVE_PATH);
   images = images.filter(file => !alreadyConvertedImg[file]);
-  images = images.filter(
-    file => IMAGE_EXTENSIONS[file.split(".").slice(-1)[0]]
-  );
+  images = images.filter(file => {
+    const convertable = IMAGE_EXTENSIONS[file.split(".").slice(-1)[0]];
+    if (!convertable) unConvertables[file] = 1; // mostly SVGs
+    return convertable;
+  });
 
   console.log(`Starting convertion of ${images.length} images`);
-  convertListOfImages(images);
+  console.log(unConvertables);
+  copyUnconvertables(unConvertables, images); // images is passed through
+}
+
+function copyUnconvertables(fileArr, imagesArr) {
+  function copy(file, callback) {
+    const input = path.join(SAVE_PATH, file);
+    const output = path.join(exportPath, file);
+    fse.copy(input, output, err => {
+      if (err) console.log("Error copying", file);
+      callback();
+    });
+  }
+  let logCounter = 0;
+  const queue = async.queue(copy, 1);
+  queue.push(Object.keys(fileArr));
+  queue.drain = () => {
+    console.log("All unconvertable files copied (eg: SVGs)");
+    convertListOfImages(imagesArr);
+  };
 }
 
 function convertListOfImages(imagesArr) {
   function convert(image, callback) {
-    const truncFilename = image.length > 54
-      ? image.slice(0, 54) + "..." + image.split(".").slice(-1)
-      : image;
+    const truncFilename = image.length > 54 ? image.slice(0, 54) + "..." + image.split(".").slice(-1) : image;
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
-    process.stdout.write(
-      `  ┗ ${logCounter}/${imagesArr.length} | ${truncFilename}`
-    );
+    process.stdout.write(`  ┗ ${logCounter}/${imagesArr.length} | ${truncFilename}`);
     logCounter++;
 
     const imagePath = path.join(SAVE_PATH, image);
@@ -73,3 +92,5 @@ function convertListOfImages(imagesArr) {
 
 console.log("Starting. Loading list of images already converted");
 getImageFiles();
+
+// find raw_wiki_articles/images -regex ".*[^.]...$"
