@@ -32,14 +32,15 @@ function getImageFiles() {
   });
 
   console.log(`Starting convertion of ${images.length} images`);
-  console.log(unConvertables);
   copyUnconvertables(unConvertables, images); // images is passed through
 }
 
 function copyUnconvertables(fileArr, imagesArr) {
   function copy(file, callback) {
+    const isSVG = file.length > 32 && file.split(".").length === 1;
     const input = path.join(SAVE_PATH, file);
-    const output = path.join(exportPath, file);
+    let output = path.join(exportPath, file);
+    if (isSVG) output += ".svg";
     fse.copy(input, output, err => {
       if (err) console.log("Error copying", file);
       callback();

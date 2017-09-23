@@ -4,13 +4,7 @@ const download = require("download");
 const cheerio = require("cheerio");
 const fs = require("graceful-fs");
 const tidy = require("htmltidy").tidy;
-const {
-  loadListFile,
-  getFilename,
-  cleanListOfLinks,
-  cssIds,
-  cssClasses
-} = require("./_helper");
+const { loadListFile, getFilename, cleanListOfLinks, cssIds, cssClasses } = require("./_helper");
 const {
   WIKI_LIST,
   RELATIVE_SAVE_PATH,
@@ -43,10 +37,7 @@ function modifyHtml(zimList) {
       if (err) {
         process.stdout.clearLine();
         process.stdout.cursorTo(0);
-        process.stdout.write(
-          `  ┗ ${hoursRemaining}:${minutesRemaining} | Not Found: ${file}`
-        );
-        // console.log(`Not Found: ${file}`);
+        process.stdout.write(`  ┗ ${hoursRemaining}:${minutesRemaining} | Not Found: ${file}`);
         callback();
         return;
       } else {
@@ -55,9 +46,6 @@ function modifyHtml(zimList) {
         process.stdout.write(
           `  ┗ ${hoursRemaining}:${minutesRemaining} | ${logCounter}/${totalCount} | Processing ${file.slice(0, 60)}`
         );
-        // console.log(
-        //   `${logCounter}/${Object.keys(zimList).length} | Processing ${file}`
-        // );
       }
 
       let newHtml = html;
@@ -66,48 +54,43 @@ function modifyHtml(zimList) {
       newHtml = newHtml.replace(/<script.*?\/>/g, "");
       newHtml = newHtml.replace(/<link.*?\/>/g, "");
       newHtml = newHtml.replace(/<meta.*?\/>/g, "");
-      newHtml = newHtml.replace(
-        /<script(.|[\n\t])*?>(.|[\n\t])*?<\/\s?script>/g,
-        ""
-      );
+      newHtml = newHtml.replace(/<script(.|[\n\t])*?>(.|[\n\t])*?<\/\s?script>/g, "");
 
       // inject index.css
       newHtml = newHtml.replace(/<\/\s?head>/, m => {
         return `<link rel="stylesheet" href="index.css" /> ${m}`;
       });
 
-      newHtml = newHtml.replace(
-        /<a.+?href="([^\s]*?)".*?>(.*?)<\/\s?a>/g,
-        (m, a, b) => {
-          // dont touch anything if an anchor
-          if (a[0] === "#") return m;
-          // Shorten to a relative path and add .html
-          const href = a.split("/").slice(-1)[0];
-          if (zimList[href]) return `<a href="${href}.html">${b}</a>`;
-          else return `<span>${b}</span>`;
-        }
-      );
+      newHtml = newHtml.replace(/<a.+?href="([^\s]*?)".*?>(.*?)<\/\s?a>/g, (m, a, b) => {
+        // dont touch anything if an anchor
+        if (a[0] === "#") return m;
+        // Shorten to a relative path and add .html
+        const href = a.split("/").slice(-1)[0];
+        if (zimList[href]) return `<a href="${href}.html">${b}</a>`;
+        else return `<span>${b}</span>`;
+      });
 
       // Fix images so they show up
       newHtml = newHtml.replace(/img.+src="(.+?)"/g, (m, a) => {
         let newLink = a.split("/").slice(-1)[0];
+        if (newLink.length > 32 && newLink.split(".").length === 1) {
+          newLink += ".svg";
+        }
         return `img src="images/${newLink}" onerror="this.style.display='none'"`;
       });
 
       /* Remove sidebar - Goes from #mw-navigation to #footer. Litterally
       deletes everything in between. #mw-navigation typically is at the end */
-      newHtml = newHtml.replace(
-        /<div.+id="mw-navigation"(?:.|[\r\n])+?<div.+id="footer"/,
-        '<div id="footer"'
-      );
+      newHtml = newHtml.replace(/<div.+id="mw-navigation"(?:.|[\r\n])+?<div.+id="footer"/, '<div id="footer"');
+      
+      // Set charset
+      newHtml = newHtml.replace(/<head>/, '<head><meta charset="UTF-8">');
 
       saveFile(file, newHtml, callback);
     });
   }
 
   const zimListArr = Object.keys(zimList);
-  // console.log(zimListArr.length);
-  console.log("1", zimListArr.length);
   const queue = async.queue(cleanSingleFile, 1); // Can only be 1 concurrency here
   queue.push(zimListArr);
   queue.drain = () => {

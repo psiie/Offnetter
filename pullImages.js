@@ -86,7 +86,6 @@ function gatherImageList(zimList) {
   fileQueue.push(zimList);
   fileQueue.drain = () => {
     console.log("All html files parsed for images");
-    console.log("Image list:", imageSources);
     massDownloadImages(imageSources);
   };
 }
