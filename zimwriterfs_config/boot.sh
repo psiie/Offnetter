@@ -1,7 +1,7 @@
 #!/bin/bash
 zimwriterfs \
---title="ZimTest" \
---description="A quick test of zimwriterfs docker" \
+--title="Wikipedia en español" \
+--description="7GB de Wikipedia" \
 --creator="Wikipedia Foundation" \
 --publisher="Reno McKenzie" \
 --tags="IIAB;Wikipedia" \

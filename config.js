@@ -1,6 +1,6 @@
 const path = require('path');
 
-const WIKI_LIST = 'wiki_list10g.lst';
+const WIKI_LIST = 'Sorted_List_eswiki_2017-08.txt';
 const LOG_MISSING = false;
 const WIKI_DL = path.join(__dirname, 'raw_wiki_articles');
 const SAVE_PATH = path.join(WIKI_DL, 'images');

@@ -111,7 +111,7 @@ function modifyHtml(zimList) {
   const queue = async.queue(cleanSingleFile, 1); // Can only be 1 concurrency here
   queue.push(zimListArr);
   queue.drain = () => {
-    console.log("All html files modified");
+    console.log("\nAll html files modified");
   };
 }
 
