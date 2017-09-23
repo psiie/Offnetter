@@ -1,14 +1,14 @@
-const path = require('path');
+const path = require("path");
 
-const WIKI_LIST = 'Sorted_List_eswiki_2017-08.txt';
+const WIKI_LIST = 'wiki_list10g.lst';
 const LOG_MISSING = false;
-const WIKI_DL = path.join(__dirname, 'raw_wiki_articles');
-const SAVE_PATH = path.join(WIKI_DL, 'images');
-const RELATIVE_SAVE_PATH = 'images/';
-const DATABASE_LINKS = path.join(__dirname, 'database_links.db');
+const WIKI_DL = path.join(__dirname, "raw_wiki_articles");
+const SAVE_PATH = path.join(WIKI_DL, "images");
+const RELATIVE_SAVE_PATH = "images/";
+const DATABASE_LINKS = path.join(__dirname, "database_links.db");
 let CONCURRENT_CONNECTIONS = 8;
-let MEDIA_WIKI = 'https://en.wikipedia.org/wiki/';
-const PROCESSED_WIKI_DL = path.join(__dirname, 'processed_wiki_articles');
+let MEDIA_WIKI = "https://en.wikipedia.org/wiki/";
+const PROCESSED_WIKI_DL = path.join(__dirname, "processed_wiki_articles");
 const IMAGE_EXTENSIONS = {
   svg: 1,
   png: 1,
