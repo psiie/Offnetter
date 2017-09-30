@@ -25,8 +25,8 @@ function generateIndex(indexList) {
   indexList.forEach(item => {
     console.log(`${logCounter}/${indexList.length} | Processing ${item}`);
     logCounter++;
-    // let each = item.replace('_', ' ');
-    fs.appendFileSync(indexPagePath, `"${item}",`);
+    const sanitized = item.replace(/"/g, "%22");
+    fs.appendFileSync(indexPagePath, `"${sanitized}",`);
   });
 
   fs.appendFileSync(indexPagePath, foot);
