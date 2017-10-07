@@ -1,5 +1,5 @@
-const WIKI_LIST = 'wiki_list10g.lst';
-let MEDIA_WIKI = "https://en.wikipedia.org/wiki/";
+const WIKI_LIST = 'frwiki-2gb.txt';
+let MEDIA_WIKI = "https://fr.wikipedia.org/wiki/";
 let CONCURRENT_CONNECTIONS = 8;
 // -------------------------------------------------------------------------- //
 const path = require("path");
