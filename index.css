@@ -1,27 +1,85 @@
-/* --- index homepage --- */
- .index-bugfix {color: #000} /* Do not remove. Bug in gulp 
- appends html5 doctype to css file. first selector fails. Selector does nothing */ 
+.hlist ol>li,
+.liste-horizontale ol>li {
+    counter-increment: listitem
+}
+.colonnes li,
+.mw-references-columns li,
+.nocolbreak,
+.references-small li,
+div.columns dd dd,
+div.columns li {
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid-column
+}
+.digits,
+.texhtml {
+    font-variant-numeric: lining-nums tabular-nums
+}
+.hlist ol,
+.liste-horizontale ol {
+    counter-reset: listitem
+}
+.accueil_2017_titres,
+.petites_capitales,
+.romain {
+    font-variant: small-caps
+}
+.latitude,
+.longitude,
+.navbar ul,
+.nowrap,
+.nowraplinks .selflink,
+.nowraplinks a,
+th.navbox-group {
+    white-space: nowrap
+}
+.flowlist dl,
+.flowlist ol,
+.flowlist ul {
+    overflow-x: hidden
+}
+.navbox,
+.navbox-inner,
+.navbox-subgroup {
+    width: 100%
+}
+#interwiki-completelist,
+strong.selflink {
+    font-weight: 700
+}
+.index-bugfix {
+    color: #000
+}
 .index-body {
     text-align: center;
-    padding-top: 2em;
+    padding-top: 2em
 }
-
 .index-container {
     text-align: left;
-    display: inline-block;
+    display: inline-block
+}
+#editpage-specialchars,
+.client-js .collapsible.collapsed>tbody>tr:not(:first-child),
+.client-js .mw-special-Watchlist #watchlist-message,
+span.brokenref {
+    display: none
 }
 ul.index-container {
     list-style: none;
-    margin-left: 0;
+    margin-left: 0
 }
-
 .index-container li {
-    margin-bottom: 0.3em;
+    margin-bottom: .3em
 }
-/* --- End index homepage --- */
 cite,
 dfn {
     font-style: inherit
+}
+.hatnote,
+.italique,
+.mw-tag-markers {
+    font-style: italic
 }
 q {
     quotes: '"' '"' "'" "'"
@@ -30,9 +88,6 @@ blockquote {
     overflow: hidden;
     margin: 1em 0;
     padding: 0 40px
-}
-strong.selflink {
-    font-weight: 700
 }
 small {
     font-size: 85%
@@ -43,15 +98,8 @@ span.reference {
     font-size: 80%
 }
 .ns-talk .mw-body-content dd {
-    margin-top: 0.4em;
-    margin-bottom: 0.4em
-}
-#interwiki-completelist {
-    font-weight: bold
-}
-.client-js .mw-special-Watchlist #watchlist-message,
-.client-js .collapsible.collapsed > tbody > tr:not(:first-child) {
-    display: none
+    margin-top: .4em;
+    margin-bottom: .4em
 }
 span.updatedmarker {
     background-color: transparent;
@@ -61,13 +109,10 @@ span.updatedmarker {
     height: 22px;
     margin-bottom: 6px
 }
-#editpage-specialchars {
-    display: none
-}
-body.action-info .mw-body-content:target,
-.citation:target {
+.citation:target,
+body.action-info .mw-body-content:target {
     background-color: #DEF;
-    background-color: rgba(0, 127, 255, 0.133)
+    background-color: rgba(0, 127, 255, .133)
 }
 .citation {
     word-wrap: break-word
@@ -78,11 +123,11 @@ handheld {
         display: none
     }
 }
-ol.references,
+div.refbegin,
 div.reflist,
-div.refbegin {
+ol.references {
     font-size: 90%;
-    margin-bottom: 0.5em
+    margin-bottom: .5em
 }
 div.refbegin-100 {
     font-size: 100%
@@ -92,51 +137,32 @@ div.reflist ol.references {
     margin-bottom: 0;
     list-style-type: inherit
 }
-sup.reference {
-    font-weight: normal;
-    font-style: normal
-}
-span.brokenref {
-    display: none
-}
-.refbegin-hanging-indents > ul {
+.refbegin-hanging-indents>ul {
     list-style-type: none;
     margin-left: 0
 }
-.refbegin-hanging-indents > ul > li,
-.refbegin-hanging-indents > dl > dd {
+.refbegin-hanging-indents>dl>dd,
+.refbegin-hanging-indents>ul>li {
     margin-left: 0;
     padding-left: 3.2em;
     text-indent: -3.2em;
     list-style: none
 }
 div.columns {
-    margin-top: 0.3em
+    margin-top: .3em
 }
 div.columns dl,
 div.columns ol,
 div.columns ul {
     margin-top: 0
 }
-.nocolbreak,
-div.columns li,
-div.columns dd dd {
-    -webkit-column-break-inside: avoid;
-    page-break-inside: avoid;
-    break-inside: avoid-column
-}
 .flowlist ul {
-    overflow-x: hidden;
     margin-left: 0;
     padding-left: 1.6em
 }
 .flowlist ol {
-    overflow-x: hidden;
     margin-left: 0;
     padding-left: 3.2em
-}
-.flowlist dl {
-    overflow-x: hidden
 }
 .hlist dl,
 .hlist ol,
@@ -150,10 +176,6 @@ div.columns dd dd {
     margin: 0;
     display: inline
 }
-.hlist.inline,
-.hlist.inline dl,
-.hlist.inline ol,
-.hlist.inline ul,
 .hlist dl dl,
 .hlist dl ol,
 .hlist dl ul,
@@ -162,7 +184,11 @@ div.columns dd dd {
 .hlist ol ul,
 .hlist ul dl,
 .hlist ul ol,
-.hlist ul ul {
+.hlist ul ul,
+.hlist.inline,
+.hlist.inline dl,
+.hlist.inline ol,
+.hlist.inline ul {
     display: inline
 }
 .hlist .mw-empty-li {
@@ -174,7 +200,7 @@ div.columns dd dd {
 .hlist dd:after,
 .hlist li:after {
     content: " · ";
-    font-weight: bold
+    font-weight: 700
 }
 .hlist dd:last-child:after,
 .hlist dt:last-child:after,
@@ -191,7 +217,7 @@ div.columns dd dd {
 .hlist li dt:first-child:before,
 .hlist li li:first-child:before {
     content: " (";
-    font-weight: normal
+    font-weight: 400
 }
 .hlist dd dd:last-child:after,
 .hlist dd dt:last-child:after,
@@ -203,26 +229,20 @@ div.columns dd dd {
 .hlist li dt:last-child:after,
 .hlist li li:last-child:after {
     content: ")";
-    font-weight: normal
+    font-weight: 400
 }
-.hlist ol {
-    counter-reset: listitem
-}
-.hlist ol > li {
-    counter-increment: listitem
-}
-.hlist ol > li:before {
+.hlist ol>li:before {
     content: " " counter(listitem) "\a0"
 }
-.hlist dd ol > li:first-child:before,
-.hlist dt ol > li:first-child:before,
-.hlist li ol > li:first-child:before {
+.hlist dd ol>li:first-child:before,
+.hlist dt ol>li:first-child:before,
+.hlist li ol>li:first-child:before {
     content: " (" counter(listitem) "\a0"
 }
 .plainlist ol,
 .plainlist ul {
     line-height: inherit;
-    list-style: none none;
+    list-style: none;
     margin: 0
 }
 .plainlist ol li,
@@ -232,7 +252,6 @@ div.columns dd dd {
 .navbox {
     box-sizing: border-box;
     border: 1px solid #a2a9b1;
-    width: 100%;
     clear: both;
     font-size: 88%;
     text-align: center;
@@ -242,22 +261,17 @@ div.columns dd dd {
 .navbox .navbox {
     margin-top: 0
 }
-.navbox + .navbox {
+.navbox+.navbox {
     margin-top: -1px
 }
-.navbox-inner,
-.navbox-subgroup {
-    width: 100%
-}
+.navbox-abovebelow,
 .navbox-group,
-.navbox-title,
-.navbox-abovebelow {
-    padding: 0.25em 1em;
+.navbox-title {
+    padding: .25em 1em;
     line-height: 1.5em;
     text-align: center
 }
 th.navbox-group {
-    white-space: nowrap;
     text-align: right
 }
 .navbox,
@@ -268,30 +282,30 @@ th.navbox-group {
     line-height: 1.5em;
     border-color: #fdfdfd
 }
-tr + tr > .navbox-abovebelow,
-tr + tr > .navbox-group,
-tr + tr > .navbox-image,
-tr + tr > .navbox-list {
+tr+tr>.navbox-abovebelow,
+tr+tr>.navbox-group,
+tr+tr>.navbox-image,
+tr+tr>.navbox-list {
     border-top: 2px solid #fdfdfd
 }
 .navbox th,
 .navbox-title {
-    background: #ccccff
+    background: #ccf
 }
 .navbox-abovebelow,
-th.navbox-group,
-.navbox-subgroup .navbox-title {
-    background: #ddddff
+.navbox-subgroup .navbox-title,
+th.navbox-group {
+    background: #ddf
 }
-.navbox-subgroup .navbox-group,
-.navbox-subgroup .navbox-abovebelow {
+.navbox-subgroup .navbox-abovebelow,
+.navbox-subgroup .navbox-group {
     background: #e6e6ff
 }
 .navbox-even {
     background: #f7f7f7
 }
 .navbox-odd {
-    background: transparent
+    background: 0 0
 }
 .navbox .hlist td dl,
 .navbox .hlist td ol,
@@ -299,22 +313,21 @@ th.navbox-group,
 .navbox td.hlist dl,
 .navbox td.hlist ol,
 .navbox td.hlist ul {
-    padding: 0.125em 0
+    padding: .125em 0
 }
 .navbar {
     display: inline;
     font-size: 88%;
-    font-weight: normal
+    font-weight: 400
 }
 .navbar ul {
-    display: inline;
-    white-space: nowrap
+    display: inline
 }
 .mw-body-content .navbar ul {
     line-height: inherit
 }
 .navbar li {
-    word-spacing: -0.125em
+    word-spacing: -.125em
 }
 .navbar.mini li abbr[title] {
     font-variant: small-caps;
@@ -322,17 +335,23 @@ th.navbox-group,
     text-decoration: none;
     cursor: inherit
 }
-.infobox_v2 {
+.infobox_v3 {
+    padding: 5px;
+    width: 25em;
     background: #f9f9f9;
-    color: #000;
-    font-size: 90%;
-    line-height: 1.2em;
-    float: right;
-    clear: right;
-    margin: 0 0 .5em 1em;
-    width: 294px;
     border: 1px solid #aaa;
-    border-spacing: 5px;
+    clear: right;
+    float: right;
+    font-size: .9em;
+    line-height: 1.4;
+    margin: 0 0 .5em 1em;
+    max-width: 325px;
+    word-wrap: break-word
+}
+.infobox,
+.infobox.bordered td,
+.infobox.bordered th {
+    border: 1px solid #a2a9b1
 }
 .infobox .navbar {
     font-size: 100%
@@ -344,32 +363,31 @@ th.navbox-group,
 .navbox-title .navbar {
     float: left;
     text-align: left;
-    margin-right: 0.5em
+    margin-right: .5em
 }
 .collapseButton {
     float: right;
-    font-weight: normal;
-    margin-left: 0.5em;
+    font-weight: 400;
+    margin-left: .5em;
     text-align: right;
     width: auto
 }
 .mw-parser-output .mw-collapsible-toggle {
-    font-weight: normal;
+    font-weight: 400;
     text-align: right;
-    padding-right: 0.2em;
-    padding-left: 0.2em
+    padding-right: .2em;
+    padding-left: .2em
 }
 .mw-collapsible-leftside-toggle .mw-collapsible-toggle {
     float: left;
     text-align: left
 }
 .infobox {
-    border: 1px solid #a2a9b1;
     border-spacing: 3px;
     background-color: #f8f9fa;
-    color: black;
-    margin: 0.5em 0 0.5em 1em;
-    padding: 0.2em;
+    color: #000;
+    margin: .5em 0 .5em 1em;
+    padding: .2em;
     float: right;
     clear: right;
     font-size: 88%;
@@ -377,8 +395,8 @@ th.navbox-group,
 }
 .infobox caption {
     font-size: 125%;
-    font-weight: bold;
-    padding: 0.2em;
+    font-weight: 700;
+    padding: .2em;
     text-align: center
 }
 .infobox td,
@@ -386,28 +404,29 @@ th.navbox-group,
     vertical-align: top;
     text-align: left
 }
+.mwe-math-fallback-image-inline,
+img.tex,
+table.mw-hiero-table td {
+    vertical-align: middle
+}
 .infobox.bordered {
     border-collapse: collapse
-}
-.infobox.bordered td,
-.infobox.bordered th {
-    border: 1px solid #a2a9b1
 }
 .infobox.bordered .borderless td,
 .infobox.bordered .borderless th {
     border: 0
+}
+.infobox.standard-talk,
+.infobox.standard-talk.bordered td,
+.infobox.standard-talk.bordered th {
+    border: 1px solid #c0c090
 }
 .infobox.sisterproject {
     width: 20em;
     font-size: 90%
 }
 .infobox.standard-talk {
-    border: 1px solid #c0c090;
     background-color: #f8eaba
-}
-.infobox.standard-talk.bordered td,
-.infobox.standard-talk.bordered th {
-    border: 1px solid #c0c090
 }
 .infobox.bordered .mergedtoprow td,
 .infobox.bordered .mergedtoprow th {
@@ -428,23 +447,23 @@ th.navbox-group,
 .infobox.geography td,
 .infobox.geography th {
     border-top: 1px solid #a2a9b1;
-    padding: 0.4em 0.6em 0.4em 0.6em
+    padding: .4em .6em
 }
 .infobox.geography .mergedtoprow td,
 .infobox.geography .mergedtoprow th {
     border-top: 1px solid #a2a9b1;
-    padding: 0.4em 0.6em 0.2em 0.6em
+    padding: .4em .6em .2em
 }
 .infobox.geography .mergedrow td,
 .infobox.geography .mergedrow th {
     border: 0;
-    padding: 0 0.6em 0.2em 0.6em
+    padding: 0 .6em .2em
 }
 .infobox.geography .mergedbottomrow td,
 .infobox.geography .mergedbottomrow th {
     border-top: 0;
     border-bottom: 1px solid #a2a9b1;
-    padding: 0 0.6em 0.4em 0.6em
+    padding: 0 .6em .4em
 }
 .infobox.geography .maptable td,
 .infobox.geography .maptable th {
@@ -452,27 +471,24 @@ th.navbox-group,
     padding: 0
 }
 .wikitable.plainrowheaders th[scope=row] {
-    font-weight: normal;
+    font-weight: 400;
     text-align: left
 }
-.wikitable td ul,
+.wikitable td dl,
 .wikitable td ol,
-.wikitable td dl {
+.wikitable td ul {
     text-align: left
 }
-.toc.hlist ul,
 #toc.hlist ul,
-.wikitable.hlist td ul,
+.toc.hlist ul,
+.wikitable.hlist td dl,
 .wikitable.hlist td ol,
-.wikitable.hlist td dl {
+.wikitable.hlist td ul {
     text-align: inherit
 }
 div.listenlist {
     background-size: 30px;
     padding-left: 40px
-}
-table.mw-hiero-table td {
-    vertical-align: middle
 }
 div.medialist {
     min-height: 50px;
@@ -486,24 +502,24 @@ div.medialist ul {
     margin: 0
 }
 div.medialist ul li {
-    padding-bottom: 0.5em
+    padding-bottom: .5em
 }
 div.medialist ul li li {
     font-size: 91%;
     padding-bottom: 0
 }
-div#content a[href$=".pdf"].external,
-div#content a[href*=".pdf?"].external,
-div#content a[href*=".pdf#"].external,
 div#content a[href$=".PDF"].external,
+div#content a[href$=".pdf"].external,
+div#content a[href*=".pdf#"].external,
 div#content a[href*=".PDF?"].external,
 div#content a[href*=".PDF#"].external,
-div#mw_content a[href$=".pdf"].external,
-div#mw_content a[href*=".pdf?"].external,
-div#mw_content a[href*=".pdf#"].external,
+div#content a[href*=".pdf?"].external,
 div#mw_content a[href$=".PDF"].external,
+div#mw_content a[href$=".pdf"].external,
+div#mw_content a[href*=".pdf#"].external,
 div#mw_content a[href*=".PDF?"].external,
-div#mw_content a[href*=".PDF#"].external {
+div#mw_content a[href*=".PDF#"].external,
+div#mw_content a[href*=".pdf?"].external {
     padding-right: 18px
 }
 div.columns-2 div.column {
@@ -527,11 +543,7 @@ div.columns-5 div.column {
     min-width: 120px
 }
 .messagebox {
-    border: 1px solid #a2a9b1;
-    background-color: #f8f9fa;
-    width: 80%;
-    margin: 0 auto 1em auto;
-    padding: .2em
+    background-color: #f8f9fa
 }
 .messagebox.merge {
     border: 1px solid #c0b8cc;
@@ -544,7 +556,6 @@ div.columns-5 div.column {
     text-align: center
 }
 .messagebox.standard-talk {
-    border: 1px solid #c0c090;
     background-color: #f8eaba;
     margin: 4px auto
 }
@@ -556,37 +567,32 @@ div.columns-5 div.column {
     margin: 2px 0;
     padding: 2px
 }
-.messagebox.small {
-    width: 238px;
-    font-size: 85%;
-    float: right;
-    clear: both;
-    margin: 0 0 1em 1em;
-    line-height: 1.25em
-}
+.messagebox.small,
 .messagebox.small-talk {
     width: 238px;
     font-size: 85%;
-    float: right;
-    clear: both;
     margin: 0 0 1em 1em;
     line-height: 1.25em;
+    clear: both;
+    float: right
+}
+.messagebox.small-talk {
     background: #F8EABA
 }
-th.mbox-text,
-td.mbox-text {
+td.mbox-text,
+th.mbox-text {
     border: none;
-    padding: 0.25em 0.9em;
+    padding: .25em .9em;
     width: 100%
 }
 td.mbox-image {
     border: none;
-    padding: 2px 0 2px 0.9em;
+    padding: 2px 0 2px .9em;
     text-align: center
 }
 td.mbox-imageright {
     border: none;
-    padding: 2px 0.9em 2px 0;
+    padding: 2px .9em 2px 0;
     text-align: center
 }
 td.mbox-empty-cell {
@@ -600,28 +606,28 @@ table.ambox {
     border-left: 10px solid #36c;
     background: #fbfbfb
 }
-table.ambox + table.ambox {
+table.ambox+table.ambox {
     margin-top: -1px
 }
-.ambox th.mbox-text,
-.ambox td.mbox-text {
-    padding: 0.25em 0.5em
+.ambox td.mbox-text,
+.ambox th.mbox-text {
+    padding: .25em .5em
 }
 .ambox td.mbox-image {
-    padding: 2px 0 2px 0.5em
+    padding: 2px 0 2px .5em
 }
 .ambox td.mbox-imageright {
-    padding: 2px 0.5em 2px 0
+    padding: 2px .5em 2px 0
 }
 table.ambox-notice {
     border-left: 10px solid #36c
 }
+table.ambox-delete,
 table.ambox-speedy {
-    border-left: 10px solid #b32424;
-    background: #fee7e6
-}
-table.ambox-delete {
     border-left: 10px solid #b32424
+}
+table.ambox-speedy {
+    background: #fee7e6
 }
 table.ambox-content {
     border-left: 10px solid #f28500
@@ -635,28 +641,28 @@ table.ambox-move {
 table.ambox-protection {
     border-left: 10px solid #a2a9b1
 }
+table.imbox,
+table.imbox-notice {
+    border: 3px solid #36c
+}
 table.imbox {
     margin: 4px 10%;
     border-collapse: collapse;
-    border: 3px solid #36c;
     background: #fbfbfb
 }
 .imbox .mbox-text .imbox {
-    margin: 0 -0.5em;
+    margin: 0 -.5em;
     display: block
 }
 .mbox-inside .imbox {
     margin: 4px
 }
-table.imbox-notice {
-    border: 3px solid #36c
+table.imbox-delete,
+table.imbox-speedy {
+    border: 3px solid #b32424
 }
 table.imbox-speedy {
-    border: 3px solid #b32424;
     background: #fee7e6
-}
-table.imbox-delete {
-    border: 3px solid #b32424
 }
 table.imbox-content {
     border: 3px solid #f28500
@@ -686,14 +692,23 @@ table.cmbox {
 table.cmbox-notice {
     background: #D8E8FF
 }
+table.cmbox-delete,
+table.cmbox-speedy {
+    background: #FFDBDB
+}
 table.cmbox-speedy {
     margin-top: 4px;
     margin-bottom: 4px;
-    border: 4px solid #b32424;
-    background: #FFDBDB
+    border: 4px solid #b32424
 }
-table.cmbox-delete {
-    background: #FFDBDB
+table.ombox,
+table.tmbox {
+    margin: 4px 10%;
+    border-collapse: collapse
+}
+table.ombox,
+table.ombox-notice {
+    border: 1px solid #a2a9b1
 }
 table.cmbox-content {
     background: #FFE7CE
@@ -708,20 +723,14 @@ table.cmbox-protection {
     background: #EFEFE1
 }
 table.ombox {
-    margin: 4px 10%;
-    border-collapse: collapse;
-    border: 1px solid #a2a9b1;
     background: #f8f9fa
 }
-table.ombox-notice {
-    border: 1px solid #a2a9b1
+table.ombox-delete,
+table.ombox-speedy {
+    border: 2px solid #b32424
 }
 table.ombox-speedy {
-    border: 2px solid #b32424;
     background: #fee7e6
-}
-table.ombox-delete {
-    border: 2px solid #b32424
 }
 table.ombox-content {
     border: 1px solid #f28500
@@ -736,10 +745,12 @@ table.ombox-protection {
     border: 2px solid #a2a9b1
 }
 table.tmbox {
-    margin: 4px 10%;
-    border-collapse: collapse;
     border: 1px solid #c0c090;
     background: #f8eaba
+}
+table.tmbox-delete,
+table.tmbox-speedy {
+    border: 2px solid #b32424
 }
 .mediawiki .mbox-inside .tmbox {
     margin: 2px 0;
@@ -750,11 +761,7 @@ table.tmbox {
     font-size: 100%
 }
 table.tmbox-speedy {
-    border: 2px solid #b32424;
     background: #fee7e6
-}
-table.tmbox-delete {
-    border: 2px solid #b32424
 }
 table.tmbox-content {
     border: 2px solid #f28500
@@ -765,53 +772,53 @@ table.tmbox-style {
 table.tmbox-move {
     border: 2px solid #9932cc
 }
-table.tmbox-protection,
-table.tmbox-notice {
+table.tmbox-notice,
+table.tmbox-protection {
     border: 1px solid #c0c090
 }
 table.dmbox {
     clear: both;
-    margin: 0.9em 1em;
+    margin: .9em 1em;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    background: transparent
+    background: 0 0
+}
+table.fmbox,
+table.fmbox-system {
+    background: #f8f9fa
 }
 table.fmbox {
     clear: both;
-    margin: 0.2em 0;
+    margin: .2em 0;
     width: 100%;
-    border: 1px solid #a2a9b1;
-    background: #f8f9fa
-}
-table.fmbox-system {
-    background: #f8f9fa
+    border: 1px solid #a2a9b1
 }
 table.fmbox-warning {
     border: 1px solid #bb7070;
     background: #ffdbdb
 }
 table.fmbox-editnotice {
-    background: transparent
+    background: 0 0
 }
-div.mw-warning-with-logexcerpt,
-div.mw-lag-warn-high,
-div.mw-cascadeprotectedwarning,
 div#mw-protect-cascadeon,
-div.titleblacklist-warning,
-div.locked-warning {
+div.locked-warning,
+div.mw-cascadeprotectedwarning,
+div.mw-lag-warn-high,
+div.mw-warning-with-logexcerpt,
+div.titleblacklist-warning {
     clear: both;
-    margin: 0.2em 0;
+    margin: .2em 0;
     border: 1px solid #bb7070;
     background: #ffdbdb;
-    padding: 0.25em 0.9em
+    padding: .25em .9em
 }
-div.mw-lag-warn-normal,
-div.fmbox-system {
+div.fmbox-system,
+div.mw-lag-warn-normal {
     clear: both;
-    margin: 0.2em 0;
+    margin: .2em 0;
     border: 1px solid #a2a9b1;
     background: #f8f9fa;
-    padding: 0.25em 0.9em
+    padding: .25em .9em
 }
 html body.mediawiki .mbox-small {
     clear: right;
@@ -831,17 +838,17 @@ html body.mediawiki .mbox-small-left {
     font-size: 88%;
     line-height: 1.25em
 }
+.compact-ambox table .mbox-empty-cell,
 .compact-ambox table .mbox-image,
-.compact-ambox table .mbox-imageright,
-.compact-ambox table .mbox-empty-cell {
+.compact-ambox table .mbox-imageright {
     display: none
 }
 .compact-ambox table.ambox {
     border: none;
     border-collapse: collapse;
-    background: transparent;
-    margin: 0 0 0 1.6em !important;
-    padding: 0 !important;
+    background: 0 0;
+    margin: 0 0 0 1.6em!important;
+    padding: 0!important;
     width: auto;
     display: block
 }
@@ -851,23 +858,23 @@ body.mediawiki .compact-ambox table.mbox-small-left {
     margin: 0
 }
 .compact-ambox table .mbox-text {
-    padding: 0 !important;
-    margin: 0 !important
+    padding: 0!important;
+    margin: 0!important
 }
 .compact-ambox table .mbox-text-span {
     display: list-item;
     line-height: 1.5em;
-    list-style-type: square;
+    list-style-type: square
 }
 .skin-vector .compact-ambox table .mbox-text-span {
-    list-style-type: disc;
+    list-style-type: disc
 }
 .compact-ambox .hide-when-compact {
     display: none
 }
 div.noarticletext {
     border: none;
-    background: transparent;
+    background: 0 0;
     padding: 0
 }
 .visualhide {
@@ -879,124 +886,99 @@ div.noarticletext {
     overflow: hidden
 }
 #wpSave {
-    font-weight: bold
+    font-weight: 700
 }
 .hiddenStructure {
-    display: inline !important;
-    color: #f00;
+    display: inline!important;
+    color: red;
     background-color: #0f0
 }
 .check-icon a.new {
     display: none;
     speak: none
 }
-.nounderlines a,
 .IPA a:link,
-.IPA a:visited {
-    text-decoration: none !important
+.IPA a:visited,
+.nounderlines a {
+    text-decoration: none!important
 }
 div.NavFrame {
-    margin: 0;
-    padding: 4px;
-    border: 1px solid #a2a9b1;
-    text-align: center;
-    border-collapse: collapse;
-    font-size: 95%
+    margin: 0
 }
-div.NavFrame + div.NavFrame {
-    border-top-style: none;
+div.NavFrame+div.NavFrame {
     border-top-style: hidden
 }
 div.NavPic {
     background-color: #fff;
-    margin: 0;
-    padding: 2px;
-    float: left
+    margin: 0
 }
 div.NavFrame div.NavHead {
     line-height: 1.6em;
-    font-weight: bold;
     background-color: #ccf;
     position: relative
-}
-div.NavFrame p,
-div.NavFrame div.NavContent,
-div.NavFrame div.NavContent p {
-    font-size: 100%
 }
 div.NavEnd {
     margin: 0;
     padding: 0;
-    line-height: 1px;
-    clear: both
+    line-height: 1px
 }
 a.NavToggle {
     position: absolute;
     top: 0;
     right: 3px;
-    font-weight: normal;
+    font-weight: 400;
     font-size: 90%
-}
-.hatnote {
-    font-style: italic
 }
 .hatnote i {
     font-style: normal
 }
 div.hatnote {
     padding-left: 1.6em;
-    margin-bottom: 0.5em
+    margin-bottom: .5em
 }
-div.hatnote + div.hatnote {
-    margin-top: -0.5em
+div.hatnote+div.hatnote {
+    margin-top: -.5em
 }
 .listify td {
     display: list-item
 }
+.listify table,
 .listify tr {
     display: block
 }
-.listify table {
-    display: block
-}
+.geo-dec,
 .geo-default,
-.geo-dms,
-.geo-dec {
+.geo-dms {
     display: inline
 }
-.geo-nondefault,
-.geo-multi-punct {
+.geo-multi-punct,
+.geo-nondefault {
     display: none
-}
-.longitude,
-.latitude {
-    white-space: nowrap
 }
 .hlist .tocnumber,
 .hlist .toctext {
     display: inline
 }
-.nonumtoc .tocnumber {
+.nonumtoc .tocnumber,
+.toclimit-2 .toclevel-1 ul,
+.toclimit-3 .toclevel-2 ul,
+.toclimit-4 .toclevel-3 ul,
+.toclimit-5 .toclevel-4 ul,
+.toclimit-6 .toclevel-5 ul,
+.toclimit-7 .toclevel-6 ul,
+.wpb .wpb-header {
     display: none
 }
 .nonumtoc #toc ul,
 .nonumtoc .toc ul {
     line-height: 1.5em;
-    list-style: none none;
+    list-style: none;
     margin: .3em 0 0;
     padding: 0
 }
 .hlist.nonumtoc #toc ul ul,
 .hlist.nonumtoc .toc ul ul {
     margin: 0
-}
-.toclimit-2 .toclevel-1 ul,
-.toclimit-3 .toclevel-2 ul,
-.toclimit-4 .toclevel-3 ul,
-.toclimit-5 .toclevel-4 ul,
-.toclimit-6 .toclevel-5 ul,
-.toclimit-7 .toclevel-6 ul {
-    display: none
 }
 blockquote.templatequote div.templatequotecite {
     line-height: 1.5em;
@@ -1006,14 +988,9 @@ blockquote.templatequote div.templatequotecite {
 }
 div.user-block {
     padding: 5px;
-    margin-bottom: 0.5em;
+    margin-bottom: .5em;
     border: 1px solid #A9A9A9;
     background-color: #FFEFD5
-}
-.nowrap,
-.nowraplinks a,
-.nowraplinks .selflink {
-    white-space: nowrap
 }
 .nowrap pre {
     white-space: pre
@@ -1022,9 +999,18 @@ div.user-block {
 .wraplinks a {
     white-space: normal
 }
+#coordinates,
+.mw-magiclink-isbn,
+.nowrap,
+.texhtml,
+.topbanner .name,
+span.texhtml,
+sup.reference {
+    white-space: nowrap
+}
 .template-documentation {
     clear: both;
-    margin: 1em 0 0 0;
+    margin: 1em 0 0;
     border: 1px solid #a2a9b1;
     background-color: #ecfcf4;
     padding: 1em
@@ -1032,63 +1018,42 @@ div.user-block {
 #wpUploadDescription {
     height: 13em
 }
-.thumbinner {
-    min-width: 100px
-}
-#mw-subcategories,
-#mw-pages,
-#mw-category-media,
 #filehistory,
-#wikiPreview,
-#wikiDiff {
+#mw-category-media,
+#mw-pages,
+#mw-subcategories,
+#wikiDiff,
+#wikiPreview {
     clear: both
-}
-.wpb .wpb-header {
-    display: none
-}
-.wpbs-inner .wpb .wpb-header {
-    display: block
 }
 .wpbs-inner .wpb .wpb-header {
     display: table-row
 }
-.wpbs-inner .wpb-outside {
-    display: none
-}
-.mw-tag-markers {
-    font-style: italic;
-    font-size: 90%
-}
-.sysop-show,
 .accountcreator-show,
-.templateeditor-show,
-.extendedmover-show,
 .autoconfirmed-show,
-.user-show {
+.extendedmover-show,
+.sysop-show,
+.templateeditor-show,
+.user-show,
+.wpbs-inner .wpb-outside {
     display: none
 }
 .ve-ui-mwNoticesPopupTool-item .editnotice-redlink,
 .ve-ui-mwNoticesPopupTool-item .mbox-image,
 .ve-ui-mwNoticesPopupTool-item .mbox-imageright {
-    display: none !important
+    display: none!important
 }
-ul.permissions-errors > li {
-    list-style: none none
+ul.permissions-errors>li {
+    list-style: none
 }
 ul.permissions-errors {
     margin: 0
-}
-.transborder {
-    border: solid transparent
 }
 .times-serif,
 span.texhtml {
     font-family: "Nimbus Roman No9 L", "Times New Roman", Times, serif;
     font-size: 118%;
     line-height: 1
-}
-span.texhtml {
-    white-space: nowrap
 }
 span.texhtml span.texhtml {
     font-size: 100%
@@ -1101,14 +1066,13 @@ span.mwe-math-mathml-inline {
     -moz-font-feature-settings: "lnum", "tnum", "kern" 0;
     -webkit-font-feature-settings: "lnum", "tnum", "kern" 0;
     font-feature-settings: "lnum", "tnum", "kern" 0;
-    font-variant-numeric: lining-nums tabular-nums;
     font-kerning: none
 }
 .mwe-math-fallback-image-display,
 .mwe-math-mathml-display {
-    margin-left: 1.6em !important;
-    margin-top: 0.6em;
-    margin-bottom: 0.6em
+    margin-left: 1.6em!important;
+    margin-top: .6em;
+    margin-bottom: .6em
 }
 .mwe-math-mathml-display math {
     display: inline
@@ -1143,11 +1107,11 @@ table#mw-prefixindex-nav-table {
 }
 @media only screen and (max-width: 800px) {
     .portal-column-left,
-    .portal-column-right,
-    .portal-column-left-wide,
-    .portal-column-right-narrow,
     .portal-column-left-extra-wide,
-    .portal-column-right-extra-narrow {
+    .portal-column-left-wide,
+    .portal-column-right,
+    .portal-column-right-extra-narrow,
+    .portal-column-right-narrow {
         float: inherit;
         width: inherit
     }
@@ -1157,37 +1121,14 @@ table#mw-prefixindex-nav-table {
     padding: 2em;
     background-color: #faf9f2
 }
-.treeview ul {
-    padding: 0;
-    margin: 0
-}
-.treeview li {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-    list-style-image: none
-}
-.treeview li li {
-    padding-left: 20px;
-    text-indent: 0.3em
-}
-.treeview li li.lastline {
-    background-position: 0 -5971px
-}
-.treeview li.emptyline > ul {
-    margin-left: -1px
-}
-.treeview li.emptyline > ul > li:first-child {
-    background-position: 0 9px
-}
 td .sortkey,
 th .sortkey {
     display: none;
     speak: none
 }
-.inputbox-hidecheckboxes form .inputbox-element,
-.inputbox-hidecheckboxes .mw-ui-checkbox {
-    display: none !important
+.inputbox-hidecheckboxes .mw-ui-checkbox,
+.inputbox-hidecheckboxes form .inputbox-element {
+    display: none!important
 }
 .k-player .k-attribution {
     visibility: hidden
@@ -1207,22 +1148,20 @@ th .sortkey {
     #content .gallerybox div.thumb {
         background-color: #f8f9fa
     }
-    .gallerybox .thumb img {
-    }
+    .nochecker .gallerybox .thumb img,
     .ns-0 .gallerybox .thumb img,
-    .ns-2 .gallerybox .thumb img,
     .ns-100 .gallerybox .thumb img,
-    .nochecker .gallerybox .thumb img {
+    .ns-2 .gallerybox .thumb img {
         background: #fff
     }
 }
-.page-Main_Page #deleteconfirm,
-.page-Main_Page #t-cite,
-.page-Main_Page #footer-info-lastmod,
-.action-view.page-Main_Page #siteSub,
 .action-view.page-Main_Page #contentSub,
-.action-view.page-Main_Page .firstHeading {
-    display: none !important
+.action-view.page-Main_Page #siteSub,
+.action-view.page-Main_Page .firstHeading,
+.page-Main_Page #deleteconfirm,
+.page-Main_Page #footer-info-lastmod,
+.page-Main_Page #t-cite {
+    display: none!important
 }
 #coordinates {
     position: absolute;
@@ -1235,8 +1174,7 @@ th .sortkey {
     text-align: right;
     text-indent: 0;
     font-size: 85%;
-    text-transform: none;
-    white-space: nowrap
+    text-transform: none
 }
 div.flaggedrevs_short {
     position: absolute;
@@ -1249,68 +1187,66 @@ div.flaggedrevs_short {
     font-size: 92%
 }
 .mw-body .mw-indicators {
-    padding-top: 0.4em
+    padding-top: .4em
 }
 @media print {
-    .ns-0 .ambox,
-    .ns-0 .navbox,
-    .ns-0 .vertical-navbox,
-    .ns-0 .infobox.sisterproject,
-    .ns-0 .hatnote,
-    .ns-0 .dablink,
-    .ns-0 .metadata,
-    .sistersitebox,
     .editlink,
     .navbar,
+    .nourlexpansion a.external.autonumber:after,
+    .nourlexpansion a.external.text:after,
+    .ns-0 .ambox,
+    .ns-0 .dablink,
+    .ns-0 .hatnote,
+    .ns-0 .infobox.sisterproject,
+    .ns-0 .metadata,
+    .ns-0 .navbox,
+    .ns-0 .vertical-navbox,
+    .sistersitebox,
     a.NavToggle,
     span.collapseButton,
     span.mw-collapsible-toggle,
-    th .sortkey,
-    td .sortkey {
-        display: none !important
+    td .sortkey,
+    th .sortkey {
+        display: none!important
     }
-    .nourlexpansion a.external.text:after,
-    .nourlexpansion a.external.autonumber:after {
-        display: none !important
-    }
-    table.collapsible tr,
+    div.NavContent,
     div.NavPic,
-    div.NavContent {
-        display: block !important
+    table.collapsible tr {
+        display: block!important
     }
     table.collapsible tr {
-        display: table-row !important
+        display: table-row!important
     }
     .mw-parser-output .mw-collapsed .mw-collapsible-content {
-        display: block !important
+        display: block!important
     }
     #firstHeading {
         margin: 0
     }
-    #content a.external.text:after,
-    #content a.external.autonumber:after {
+    #content a.external.autonumber:after,
+    #content a.external.text:after {
         word-wrap: break-word
     }
     .infobox {
-        border: solid 1px #aaa;
+        border: 1px solid #aaa;
         background-color: #fff;
         border-spacing: 0;
         border-collapse: collapse
     }
     .infobox td,
     .infobox th {
-        padding: 2px 5px !important;
+        padding: 2px 5px!important;
         border-bottom: 1px solid #EAECF0
     }
     .infobox a,
-    table.infobox tr:last-child th,
-    table.infobox tr:last-child td {
+    table.infobox tr:last-child td,
+    table.infobox tr:last-child th {
         border: 0
     }
     .refbegin a,
-    .references a,
-    .reference a {
-        color: black !important
+    .reference a,
+    .references a {
+        color: #000!important
     }
     sup.reference {
         font-family: sans-serif;
@@ -1319,20 +1255,23 @@ div.flaggedrevs_short {
     .reference a {
         border-bottom: 0
     }
-    ol.references,
-    div.reflist,
+    cite *,
     div.refbegin,
-    cite * {
-        font-size: inherit !important
+    div.reflist,
+    ol.references {
+        font-size: inherit!important
     }
     .refbegin li,
     .references li {
         color: #666;
         line-height: 14pt
     }
+    .mw-cite-backlink {
+        display: none
+    }
 }
-.mw-cite-backlink,
-.cite-accessibility-label {
+.cite-accessibility-label,
+.mw-cite-backlink {
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -1343,41 +1282,30 @@ div.flaggedrevs_short {
     -moz-column-width: 30em;
     column-width: 30em
 }
-.mw-references-columns li {
-    -webkit-column-break-inside: avoid;
-    page-break-inside: avoid;
-    break-inside: avoid-column
-}
 sup.reference {
     unicode-bidi: -moz-isolate;
     unicode-bidi: -webkit-isolate;
-    unicode-bidi: isolate;
-    white-space: nowrap
+    unicode-bidi: isolate
 }
 ol.references li:target,
 sup.reference:target {
     background-color: #def;
-    background-color: rgba( 0, 127, 255, 0.133)
+    background-color: rgba(0, 127, 255, .133)
 }
 .mw-ext-cite-error {
-    font-weight: bold;
+    font-weight: 700;
     unicode-bidi: embed
 }
-@media print {
-    .mw-cite-backlink {
-        display: none
-    }
-}
 .mwe-math-mathml-inline {
-    display: inline !important
+    display: inline!important
 }
 .mwe-math-mathml-display {
-    display: block !important;
+    display: block!important;
     margin-left: auto;
     margin-right: auto
 }
 .mwe-math-mathml-a11y {
-    clip: rect( 1px, 1px, 1px, 1px);
+    clip: rect(1px, 1px, 1px, 1px);
     overflow: hidden;
     position: absolute;
     width: 1px;
@@ -1385,13 +1313,12 @@ sup.reference:target {
     opacity: 0
 }
 .mwe-math-fallback-image-inline {
-    display: inline-block;
-    vertical-align: middle
+    display: inline-block
 }
 .mwe-math-fallback-image-display {
     display: block;
-    margin-left: auto !important;
-    margin-right: auto !important
+    margin-left: auto!important;
+    margin-right: auto!important
 }
 .mwe-math-fallback-source-inline {
     display: inline;
@@ -1402,15 +1329,12 @@ sup.reference:target {
     margin-left: auto;
     margin-right: auto
 }
-img.tex {
-    vertical-align: middle
-}
 div.mwe-math-element {
     overflow-x: auto;
     max-width: 100%
 }
 #p-lang .uls-settings-trigger {
-    background: transparent no-repeat right top;
+    background: right top no-repeat;
     height: 16px;
     width: 14px;
     float: right;
@@ -1432,34 +1356,53 @@ div.mwe-math-element {
 }
 .client-js .mw-content-ltr .mw-editsection-bracket:first-of-type,
 .client-js .mw-content-rtl .mw-editsection-bracket:not(:first-of-type) {
-    margin-right: 0.25em;
+    margin-right: .25em;
     color: #555
 }
-.client-js .mw-content-rtl .mw-editsection-bracket:first-of-type,
-.client-js .mw-content-ltr .mw-editsection-bracket:not(:first-of-type) {
-    margin-left: 0.25em;
+.client-js .mw-content-ltr .mw-editsection-bracket:not(:first-of-type),
+.client-js .mw-content-rtl .mw-editsection-bracket:first-of-type {
+    margin-left: .25em;
     color: #555
 }
 @media print {
-    .noprint,
-    .catlinks,
-    .magnify,
-    .mw-cite-backlink,
-    .mw-jump,
-    .mw-editsection,
-    .mw-editsection-like,
-    .mw-hidden-catlinks,
-    .mw-indicators,
-    .mw-redirectedfrom,
-    .patrollink,
-    .usermessage,
+    div.floatleft p,
+    div.floatright p {
+        font-style: italic
+    }
+    .center,
+    div.thumbinner {
+        text-align: center
+    }
+    .mw_metadata caption,
+    dt,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    table.wikitable>caption {
+        font-weight: 700
+    }
     #column-one,
+    #f-copyrightico,
+    #f-poweredbyico,
     #footer-places,
     #jump-to-nav,
     #mw-navigation,
     #siteNotice,
-    #f-poweredbyico,
-    #f-copyrightico,
+    .catlinks,
+    .magnify,
+    .mw-cite-backlink,
+    .mw-editsection,
+    .mw-editsection-like,
+    .mw-hidden-catlinks,
+    .mw-indicators,
+    .mw-jump,
+    .mw-redirectedfrom,
+    .noprint,
+    .patrollink,
+    .usermessage,
     li#about,
     li#disclaimer,
     li#mobileview,
@@ -1473,30 +1416,31 @@ div.mwe-math-element {
         padding: 0
     }
     a {
-        background: none !important;
-        padding: 0 !important
+        background: 0 0!important;
+        padding: 0!important
+    }
+    .mw-body,
+    .mw-code,
+    pre {
+        background: #fff;
+        color: #000
     }
     a,
     a.external,
     a.new,
     a.stub {
-        color: #000 !important;
-        text-decoration: none !important;
-        color: inherit !important;
-        text-decoration: inherit !important
+        color: inherit!important;
+        text-decoration: inherit!important
     }
-    .mw-body-content a.external.text:after,
-    .mw-body-content a.external.autonumber:after {
-        content: ' (' attr( href) ')';
+    .mw-body-content a.external.autonumber:after,
+    .mw-body-content a.external.text:after {
+        content: ' (' attr(href) ')';
         word-break: break-all;
         word-wrap: break-word
     }
-    .mw-body-content a.external.text[href^='//']:after,
-    .mw-body-content a.external.autonumber[href^='//']:after {
-        content: ' (https:' attr( href) ')'
-    }
-    dt {
-        font-weight: bold
+    .mw-body-content a.external.autonumber[href^='//']:after,
+    .mw-body-content a.external.text[href^='//']:after {
+        content: ' (https:' attr(href) ')'
     }
     h1,
     h2,
@@ -1504,7 +1448,6 @@ div.mwe-math-element {
     h4,
     h5,
     h6 {
-        font-weight: bold;
         page-break-after: avoid;
         page-break-before: avoid
     }
@@ -1514,20 +1457,22 @@ div.mwe-math-element {
         orphans: 3;
         widows: 3
     }
-    img,
-    figure,
+    #column-content,
+    .mw-body {
+        margin: 0!important
+    }
+    .thumb,
     .wikitable,
-    .thumb {
+    figure,
+    img {
         page-break-inside: avoid
     }
     img {
         border: 0;
         vertical-align: middle
     }
-    pre,
-    .mw-code {
-        background: #fff;
-        color: #000;
+    .mw-code,
+    pre {
         border: 1pt dashed #000;
         padding: 1em 0;
         font-size: 8pt;
@@ -1539,23 +1484,17 @@ div.mwe-math-element {
         list-style-type: square
     }
     #globalWrapper {
-        width: 100% !important;
-        min-width: 0 !important
+        width: 100%!important;
+        min-width: 0!important
     }
     .mw-body {
-        background: #fff;
-        color: #000;
-        border: 0 !important;
-        padding: 0 !important;
-        margin: 0 !important;
+        border: 0!important;
+        padding: 0!important;
         direction: ltr
-    }
-    #column-content {
-        margin: 0 !important
     }
     #column-content .mw-body {
         padding: 1em;
-        margin: 0 !important
+        margin: 0!important
     }
     #toc,
     .toc {
@@ -1568,16 +1507,13 @@ div.mwe-math-element {
     .toctext {
         display: table-cell
     }
+    .mw-content-ltr .tocnumber,
     .tocnumber {
         padding-left: 0;
-        padding-right: 0.5em
-    }
-    .mw-content-ltr .tocnumber {
-        padding-left: 0;
-        padding-right: 0.5em
+        padding-right: .5em
     }
     .mw-content-rtl .tocnumber {
-        padding-left: 0.5em;
+        padding-left: .5em;
         padding-right: 0
     }
     div.floatright,
@@ -1585,41 +1521,31 @@ div.mwe-math-element {
         float: right;
         clear: right;
         position: relative;
-        margin: 0.5em 0 0.8em 1.4em
-    }
-    div.floatright p {
-        font-style: italic
+        margin: .5em 0 .8em 1.4em
     }
     div.floatleft,
     div.tleft {
         float: left;
         clear: left;
         position: relative;
-        margin: 0.5em 1.4em 0.8em 0
-    }
-    div.floatleft p {
-        font-style: italic
-    }
-    .center {
-        text-align: center
+        margin: .5em 1.4em .8em 0
     }
     div.thumb {
         background-color: transparent;
         border: 0;
         width: auto;
-        margin-top: 0.5em;
-        margin-bottom: 0.8em
+        margin-top: .5em;
+        margin-bottom: .8em
+    }
+    div.thumbinner,
+    html .thumbimage {
+        border: 1pt solid #ccc
     }
     div.thumbinner {
         background-color: #fff;
-        border: 1pt solid #ccc;
         padding: 3px;
         font-size: 94%;
-        text-align: center;
         overflow: hidden
-    }
-    html .thumbimage {
-        border: 1pt solid #ccc
     }
     html .thumbcaption {
         border: 0;
@@ -1631,31 +1557,27 @@ div.mwe-math-element {
     img.thumbborder {
         border: 1pt solid #ddd
     }
-    table.wikitable,
-    table.mw_metadata {
+    table.mw_metadata,
+    table.wikitable {
         background: #fff;
         margin: 1em 0;
         border: 1pt solid #aaa;
         border-collapse: collapse
     }
-    table.wikitable > caption,
-    .mw_metadata caption {
-        font-weight: bold
-    }
-    table.wikitable > tr > th,
-    table.wikitable > tr > td,
-    table.wikitable > * > tr > th,
-    table.wikitable > * > tr > td,
+    .mw_metadata td,
     .mw_metadata th,
-    .mw_metadata td {
+    table.wikitable>*>tr>td,
+    table.wikitable>*>tr>th,
+    table.wikitable>tr>td,
+    table.wikitable>tr>th {
         border: 1pt solid #aaa;
-        padding: 0.2em
+        padding: .2em
     }
-    table.wikitable > tr > th,
-    table.wikitable > * > tr > th,
-    .mw_metadata th {
+    .mw_metadata th,
+    table.wikitable>*>tr>th,
+    table.wikitable>tr>th {
         background: #fff;
-        font-weight: bold;
+        font-weight: 700;
         text-align: center
     }
     table.listing,
@@ -1666,18 +1588,18 @@ div.mwe-math-element {
     .catlinks ul {
         display: inline;
         padding: 0;
-        list-style: none none
+        list-style: none
     }
     .catlinks li {
         display: inline-block;
         line-height: 1.15;
-        margin: 0.1em 0;
+        margin: .1em 0;
         border-left: 1pt solid #aaa;
-        padding: 0 0.4em
+        padding: 0 .4em
     }
     .catlinks li:first-child {
         border-left: 0;
-        padding-left: 0.2em
+        padding-left: .2em
     }
     .printfooter {
         padding: 1em 0
@@ -1692,18 +1614,51 @@ div.mwe-math-element {
     }
 }
 @media screen {
+    .mw-input-with-label,
+    td.mw-submit {
+        white-space: nowrap
+    }
+    .mw-input-with-label,
+    wbr {
+        display: inline-block
+    }
+    .catlinks li a.mw-redirect,
+    span.comment {
+        font-style: italic
+    }
+    .botedit,
+    .minoredit,
+    .newpage,
+    .unpatrolled,
+    a.mw-selflink,
+    table.wikitable>caption {
+        font-weight: 700
+    }
+    .mw-datatable,
+    table.wikitable {
+        border-collapse: collapse
+    }
+    .mw-ajax-loader,
+    div.floatleft,
+    div.floatright,
+    table.floatleft,
+    table.floatright {
+        position: relative
+    }
     .mw-content-ltr {
         direction: ltr
     }
     .mw-content-rtl {
         direction: rtl
     }
-    .sitedir-ltr textarea,
-    .sitedir-ltr input {
+    .sitedir-ltr input,
+    .sitedir-ltr textarea {
         direction: ltr
     }
+    .sitedir-rtl input,
     .sitedir-rtl textarea,
-    .sitedir-rtl input {
+    input[dir=rtl],
+    textarea[dir=rtl] {
         direction: rtl
     }
     .mw-userlink {
@@ -1713,36 +1668,26 @@ div.mwe-math-element {
         background-color: #ff0;
         color: #000
     }
-    wbr {
-        display: inline-block
-    }
-    input[type='submit'],
-    input[type='button'],
-    input[type='reset'],
-    input[type='file'] {
+    input[dir=ltr],
+    input[type=submit],
+    input[type=button],
+    input[type=reset],
+    input[type=file],
+    textarea[dir=ltr] {
         direction: ltr
     }
-    textarea[dir='ltr'],
-    input[dir='ltr'] {
-        direction: ltr
-    }
-    textarea[dir='rtl'],
-    input[dir='rtl'] {
-        direction: rtl
-    }
-    abbr[title],
-    .explain[title] {
+    .explain[title],
+    abbr[title] {
         border-bottom: 1px dotted;
         cursor: help
     }
-    @supports ( text-decoration: underline dotted) {
-        abbr[title], .explain[title] {
+    @supports (text-decoration: underline dotted) {
+        .explain[title], abbr[title] {
             border-bottom: 0;
             text-decoration: underline dotted
         }
     }
     span.comment {
-        font-style: italic;
         unicode-bidi: -moz-isolate;
         unicode-bidi: isolate
     }
@@ -1751,9 +1696,7 @@ div.mwe-math-element {
     #wpTextbox1 {
         clear: both
     }
-    .mw-editfont-default:not( textarea) {
-        font-family: monospace
-    }
+    .mw-editfont-default:not( textarea),
     .mw-editfont-monospace {
         font-family: monospace
     }
@@ -1779,8 +1722,7 @@ div.mwe-math-element {
         background-color: #ffa
     }
     .unpatrolled {
-        font-weight: bold;
-        color: #f00
+        color: red
     }
     div.patrollink {
         font-size: 75%;
@@ -1790,18 +1732,9 @@ div.mwe-math-element {
         text-align: right;
         vertical-align: middle
     }
-    td.mw-input {
-        text-align: left
-    }
+    .mw-content-ltr .thumbcaption,
+    td.mw-input,
     td.mw-submit {
-        text-align: left;
-        white-space: nowrap
-    }
-    .mw-input-with-label {
-        white-space: nowrap;
-        display: inline-block
-    }
-    .mw-content-ltr .thumbcaption {
         text-align: left
     }
     .mw-content-ltr .magnify {
@@ -1820,46 +1753,32 @@ div.mwe-math-element {
         display: inline;
         margin: 0;
         padding: 0;
-        list-style: none;
-        list-style-type: none;
-        list-style-image: none;
-        vertical-align: middle !ie
+        list-style: none
     }
     .catlinks li {
         display: inline-block;
         line-height: 1.25em;
         border-left: 1px solid #a2a9b1;
-        margin: 0.125em 0;
-        padding: 0 0.5em;
-        zoom: 1;
-        display: inline !ie
+        margin: .125em 0;
+        padding: 0 .5em;
+        zoom: 1
     }
     .catlinks li:first-child {
-        padding-left: 0.25em;
+        padding-left: .25em;
         border-left: 0
     }
-    .catlinks li a.mw-redirect {
-        font-style: italic
-    }
+    .catlinks-allhidden,
     .mw-hidden-cats-hidden {
         display: none
     }
-    .catlinks-allhidden {
-        display: none
-    }
-    p.mw-protect-editreasons,
+    p.mw-delete-editreasons,
     p.mw-filedelete-editreasons,
-    p.mw-delete-editreasons {
+    p.mw-protect-editreasons {
         font-size: 90%;
         text-align: right
     }
     .autocomment {
-        color: #808080
-    }
-    .newpage,
-    .minoredit,
-    .botedit {
-        font-weight: bold
+        color: grey
     }
     div.mw-warning-with-logexcerpt {
         padding: 3px;
@@ -1867,15 +1786,13 @@ div.mwe-math-element {
         border: 2px solid #2a4b8d;
         clear: both
     }
-    div.mw-warning-with-logexcerpt ul li {
-        font-size: 90%
-    }
+    div.mw-warning-with-logexcerpt ul li,
     span.mw-revdelundel-link,
     strong.mw-revdelundel-link {
         font-size: 90%
     }
-    span.mw-revdelundel-hidden,
-    input.mw-revdelundel-hidden {
+    input.mw-revdelundel-hidden,
+    span.mw-revdelundel-hidden {
         visibility: hidden
     }
     td.mw-revdel-checkbox,
@@ -1886,25 +1803,29 @@ div.mwe-math-element {
     a.new {
         color: #ba0000
     }
+    a.mw-selflink,
+    a.mw-selflink:active,
+    a.mw-selflink:visited {
+        color: inherit
+    }
     a.mw-selflink {
-        color: inherit;
-        font-weight: bold;
         text-decoration: inherit
     }
     a.mw-selflink:hover {
         cursor: inherit;
         text-decoration: inherit
     }
-    a.mw-selflink:active,
-    a.mw-selflink:visited {
-        color: inherit
-    }
     .plainlinks a.external {
-        background: none !important;
-        padding: 0 !important
+        background: 0 0!important;
+        padding: 0!important
     }
-    .rtl a.external.free,
-    .rtl a.external.autonumber {
+    .mw-ajax-loader,
+    .mw-small-spinner {
+        background-position: center center;
+        background-repeat: no-repeat
+    }
+    .rtl a.external.autonumber,
+    .rtl a.external.free {
         direction: ltr;
         unicode-bidi: embed
     }
@@ -1912,27 +1833,23 @@ div.mwe-math-element {
         margin: 1em 0;
         background-color: #f8f9fa;
         border: 1px solid #a2a9b1;
-        border-collapse: collapse;
         color: #000
     }
-    table.wikitable > tr > th,
-    table.wikitable > tr > td,
-    table.wikitable > * > tr > th,
-    table.wikitable > * > tr > td {
+    table.wikitable>*>tr>td,
+    table.wikitable>*>tr>th,
+    table.wikitable>tr>td,
+    table.wikitable>tr>th {
         border: 1px solid #a2a9b1;
-        padding: 0.2em 0.4em
+        padding: .2em .4em
     }
-    table.wikitable > tr > th,
-    table.wikitable > * > tr > th {
+    table.wikitable>*>tr>th,
+    table.wikitable>tr>th {
         background-color: #eaecf0;
         text-align: center
     }
-    table.wikitable > caption {
-        font-weight: bold
-    }
     .error,
-    .warning,
-    .success {
+    .success,
+    .warning {
         font-size: larger
     }
     .error {
@@ -1945,23 +1862,22 @@ div.mwe-math-element {
         color: #009000
     }
     .errorbox,
-    .warningbox,
-    .successbox {
+    .successbox,
+    .warningbox {
         border: 1px solid;
-        padding: 0.5em 1em;
+        padding: .5em 1em;
         margin-bottom: 1em;
         display: inline-block;
-        zoom: 1;
-        *display: inline
+        zoom: 1
     }
     .errorbox h2,
-    .warningbox h2,
-    .successbox h2 {
+    .successbox h2,
+    .warningbox h2 {
         font-size: 1em;
         color: inherit;
-        font-weight: bold;
+        font-weight: 700;
         display: inline;
-        margin: 0 0.5em 0 0;
+        margin: 0 .5em 0 0;
         border: 0
     }
     .errorbox {
@@ -1975,13 +1891,13 @@ div.mwe-math-element {
         background-color: #fdf1d1
     }
     .successbox {
-        color: #008000;
+        color: green;
         border-color: #b7fdb5;
         background-color: #e1fddf
     }
     .mw-infobox {
         border: 2px solid #ff7f00;
-        margin: 0.5em;
+        margin: .5em;
         clear: left;
         overflow: hidden
     }
@@ -1991,7 +1907,7 @@ div.mwe-math-element {
         width: 35px
     }
     .mw-infobox-right {
-        margin: 0.5em 0.5em 0.5em 49px
+        margin: .5em .5em .5em 49px
     }
     .previewnote {
         color: #c00;
@@ -1999,19 +1915,16 @@ div.mwe-math-element {
     }
     .previewnote p {
         text-indent: 3em;
-        margin: 0.8em 0
+        margin: .8em 0
     }
     .visualClear {
         clear: both
-    }
-    .mw-datatable {
-        border-collapse: collapse
     }
     .mw-datatable,
     .mw-datatable td,
     .mw-datatable th {
         border: 1px solid #a2a9b1;
-        padding: 0 0.15em 0 0.15em
+        padding: 0 .15em
     }
     .mw-datatable th {
         background-color: #ddf
@@ -2024,22 +1937,22 @@ div.mwe-math-element {
     }
     .mw-content-ltr ul,
     .mw-content-rtl .mw-content-ltr ul {
-        margin: 0.3em 0 0 1.6em;
+        margin: .3em 0 0 1.6em;
         padding: 0
     }
-    .mw-content-rtl ul,
-    .mw-content-ltr .mw-content-rtl ul {
-        margin: 0.3em 1.6em 0 0;
+    .mw-content-ltr .mw-content-rtl ul,
+    .mw-content-rtl ul {
+        margin: .3em 1.6em 0 0;
         padding: 0
     }
     .mw-content-ltr ol,
     .mw-content-rtl .mw-content-ltr ol {
-        margin: 0.3em 0 0 3.2em;
+        margin: .3em 0 0 3.2em;
         padding: 0
     }
-    .mw-content-rtl ol,
-    .mw-content-ltr .mw-content-rtl ol {
-        margin: 0.3em 3.2em 0 0;
+    .mw-content-ltr .mw-content-rtl ol,
+    .mw-content-rtl ol {
+        margin: .3em 3.2em 0 0;
         padding: 0
     }
     .mw-content-ltr dd,
@@ -2047,23 +1960,18 @@ div.mwe-math-element {
         margin-left: 1.6em;
         margin-right: 0
     }
-    .mw-content-rtl dd,
-    .mw-content-ltr .mw-content-rtl dd {
+    .mw-content-ltr .mw-content-rtl dd,
+    .mw-content-rtl dd {
         margin-right: 1.6em;
         margin-left: 0
     }
     .mw-ajax-loader {
-        background-position: center center;
-        background-repeat: no-repeat;
         padding: 16px;
-        position: relative;
         top: -16px
     }
     .mw-small-spinner {
-        padding: 10px !important;
-        margin-right: 0.6em;
-        background-position: center center;
-        background-repeat: no-repeat
+        padding: 10px!important;
+        margin-right: .6em
     }
     h1:lang( anp),
     h1:lang( as),
@@ -2074,10 +1982,10 @@ div.mwe-math-element {
     h1:lang( hi),
     h1:lang( kn),
     h1:lang( ks),
+    h1:lang( mai),
     h1:lang( ml),
     h1:lang( mr),
     h1:lang( my),
-    h1:lang( mai),
     h1:lang( ne),
     h1:lang( new),
     h1:lang( or),
@@ -2086,112 +1994,112 @@ div.mwe-math-element {
     h1:lang( sa),
     h1:lang( ta),
     h1:lang( te) {
-        line-height: 1.6em !important
+        line-height: 1.6em!important
     }
     h2:lang( anp),
-    h3:lang( anp),
-    h4:lang( anp),
-    h5:lang( anp),
-    h6:lang( anp),
     h2:lang( as),
-    h3:lang( as),
-    h4:lang( as),
-    h5:lang( as),
-    h6:lang( as),
-    h2:lang( bho),
-    h3:lang( bho),
-    h4:lang( bho),
-    h5:lang( bho),
-    h6:lang( bho),
     h2:lang( bh),
-    h3:lang( bh),
-    h4:lang( bh),
-    h5:lang( bh),
-    h6:lang( bh),
+    h2:lang( bho),
     h2:lang( bn),
-    h3:lang( bn),
-    h4:lang( bn),
-    h5:lang( bn),
-    h6:lang( bn),
     h2:lang( gu),
-    h3:lang( gu),
-    h4:lang( gu),
-    h5:lang( gu),
-    h6:lang( gu),
     h2:lang( hi),
-    h3:lang( hi),
-    h4:lang( hi),
-    h5:lang( hi),
-    h6:lang( hi),
     h2:lang( kn),
-    h3:lang( kn),
-    h4:lang( kn),
-    h5:lang( kn),
-    h6:lang( kn),
     h2:lang( ks),
-    h3:lang( ks),
-    h4:lang( ks),
-    h5:lang( ks),
-    h6:lang( ks),
-    h2:lang( ml),
-    h3:lang( ml),
-    h4:lang( ml),
-    h5:lang( ml),
-    h6:lang( ml),
-    h2:lang( mr),
-    h3:lang( mr),
-    h4:lang( mr),
-    h5:lang( mr),
-    h6:lang( mr),
-    h2:lang( my),
-    h3:lang( my),
-    h4:lang( my),
-    h5:lang( my),
-    h6:lang( my),
     h2:lang( mai),
-    h3:lang( mai),
-    h4:lang( mai),
-    h5:lang( mai),
-    h6:lang( mai),
+    h2:lang( ml),
+    h2:lang( mr),
+    h2:lang( my),
     h2:lang( ne),
-    h3:lang( ne),
-    h4:lang( ne),
-    h5:lang( ne),
-    h6:lang( ne),
     h2:lang( new),
-    h3:lang( new),
-    h4:lang( new),
-    h5:lang( new),
-    h6:lang( new),
     h2:lang( or),
-    h3:lang( or),
-    h4:lang( or),
-    h5:lang( or),
-    h6:lang( or),
     h2:lang( pa),
-    h3:lang( pa),
-    h4:lang( pa),
-    h5:lang( pa),
-    h6:lang( pa),
     h2:lang( pi),
-    h3:lang( pi),
-    h4:lang( pi),
-    h5:lang( pi),
-    h6:lang( pi),
     h2:lang( sa),
-    h3:lang( sa),
-    h4:lang( sa),
-    h5:lang( sa),
-    h6:lang( sa),
     h2:lang( ta),
-    h3:lang( ta),
-    h4:lang( ta),
-    h5:lang( ta),
-    h6:lang( ta),
     h2:lang( te),
+    h3:lang( anp),
+    h3:lang( as),
+    h3:lang( bh),
+    h3:lang( bho),
+    h3:lang( bn),
+    h3:lang( gu),
+    h3:lang( hi),
+    h3:lang( kn),
+    h3:lang( ks),
+    h3:lang( mai),
+    h3:lang( ml),
+    h3:lang( mr),
+    h3:lang( my),
+    h3:lang( ne),
+    h3:lang( new),
+    h3:lang( or),
+    h3:lang( pa),
+    h3:lang( pi),
+    h3:lang( sa),
+    h3:lang( ta),
     h3:lang( te),
+    h4:lang( anp),
+    h4:lang( as),
+    h4:lang( bh),
+    h4:lang( bho),
+    h4:lang( bn),
+    h4:lang( gu),
+    h4:lang( hi),
+    h4:lang( kn),
+    h4:lang( ks),
+    h4:lang( mai),
+    h4:lang( ml),
+    h4:lang( mr),
+    h4:lang( my),
+    h4:lang( ne),
+    h4:lang( new),
+    h4:lang( or),
+    h4:lang( pa),
+    h4:lang( pi),
+    h4:lang( sa),
+    h4:lang( ta),
     h4:lang( te),
+    h5:lang( anp),
+    h5:lang( as),
+    h5:lang( bh),
+    h5:lang( bho),
+    h5:lang( bn),
+    h5:lang( gu),
+    h5:lang( hi),
+    h5:lang( kn),
+    h5:lang( ks),
+    h5:lang( mai),
+    h5:lang( ml),
+    h5:lang( mr),
+    h5:lang( my),
+    h5:lang( ne),
+    h5:lang( new),
+    h5:lang( or),
+    h5:lang( pa),
+    h5:lang( pi),
+    h5:lang( sa),
+    h5:lang( ta),
     h5:lang( te),
+    h6:lang( anp),
+    h6:lang( as),
+    h6:lang( bh),
+    h6:lang( bho),
+    h6:lang( bn),
+    h6:lang( gu),
+    h6:lang( hi),
+    h6:lang( kn),
+    h6:lang( ks),
+    h6:lang( mai),
+    h6:lang( ml),
+    h6:lang( mr),
+    h6:lang( my),
+    h6:lang( ne),
+    h6:lang( new),
+    h6:lang( or),
+    h6:lang( pa),
+    h6:lang( pi),
+    h6:lang( sa),
+    h6:lang( ta),
     h6:lang( te) {
         line-height: 1.2em
     }
@@ -2205,61 +2113,56 @@ div.mwe-math-element {
     ol:lang( lrc) li,
     ol:lang( luz) li,
     ol:lang( mzn) li {
-        list-style-type: -moz-persian;
         list-style-type: persian
     }
     ol:lang( ckb) li,
     ol:lang( sdh) li {
-        list-style-type: -moz-arabic-indic;
         list-style-type: arabic-indic
     }
     ol:lang( hi) li,
     ol:lang( mai) li,
     ol:lang( mr) li,
     ol:lang( ne) li {
-        list-style-type: -moz-devanagari;
         list-style-type: devanagari
     }
     ol:lang( as) li,
     ol:lang( bn) li {
-        list-style-type: -moz-bengali;
         list-style-type: bengali
     }
     ol:lang( or) li {
-        list-style-type: -moz-oriya;
         list-style-type: oriya
     }
     #toc ul,
     .toc ul {
-        margin: 0.3em 0
+        margin: .3em 0
     }
-    .mw-content-ltr .toc ul,
     .mw-content-ltr #toc ul,
-    .mw-content-rtl .mw-content-ltr .toc ul,
-    .mw-content-rtl .mw-content-ltr #toc ul {
+    .mw-content-ltr .toc ul,
+    .mw-content-rtl .mw-content-ltr #toc ul,
+    .mw-content-rtl .mw-content-ltr .toc ul {
         text-align: left
     }
-    .mw-content-rtl .toc ul,
-    .mw-content-rtl #toc ul,
+    .mw-content-ltr .mw-content-rtl #toc ul,
     .mw-content-ltr .mw-content-rtl .toc ul,
-    .mw-content-ltr .mw-content-rtl #toc ul {
+    .mw-content-rtl #toc ul,
+    .mw-content-rtl .toc ul {
         text-align: right
     }
-    .mw-content-ltr .toc ul ul,
     .mw-content-ltr #toc ul ul,
-    .mw-content-rtl .mw-content-ltr .toc ul ul,
-    .mw-content-rtl .mw-content-ltr #toc ul ul {
+    .mw-content-ltr .toc ul ul,
+    .mw-content-rtl .mw-content-ltr #toc ul ul,
+    .mw-content-rtl .mw-content-ltr .toc ul ul {
         margin: 0 0 0 2em
     }
-    .mw-content-rtl .toc ul ul,
-    .mw-content-rtl #toc ul ul,
+    .mw-content-ltr .mw-content-rtl #toc ul ul,
     .mw-content-ltr .mw-content-rtl .toc ul ul,
-    .mw-content-ltr .mw-content-rtl #toc ul ul {
+    .mw-content-rtl #toc ul ul,
+    .mw-content-rtl .toc ul ul {
         margin: 0 2em 0 0
     }
     #toc #toctitle,
-    .toc #toctitle,
     #toc .toctitle,
+    .toc #toctitle,
     .toc .toctitle {
         direction: ltr
     }
@@ -2276,29 +2179,23 @@ div.mwe-math-element {
     #mw-revision-nav {
         direction: ltr
     }
-    div.tright,
     div.floatright,
+    div.tright,
     table.floatright {
         clear: right;
         float: right
     }
-    div.tleft,
     div.floatleft,
+    div.tleft,
     table.floatleft {
         float: left;
         clear: left
     }
-    div.floatright,
-    table.floatright,
-    div.floatleft,
-    table.floatleft {
-        position: relative
-    }
     #mw-credits a {
         unicode-bidi: embed
     }
-    .mw-jump,
-    #jump-to-nav {
+    #jump-to-nav,
+    .mw-jump {
         overflow: hidden;
         height: 0;
         zoom: 1
@@ -2310,8 +2207,8 @@ div.mwe-math-element {
         position: absolute;
         z-index: 99
     }
-    .mw-editsection,
-    #jump-to-nav {
+    #jump-to-nav,
+    .mw-editsection {
         -moz-user-select: none;
         -webkit-user-select: none;
         -ms-user-select: none;
@@ -2320,7 +2217,7 @@ div.mwe-math-element {
     .mw-editsection,
     .mw-editsection-like {
         font-size: small;
-        font-weight: normal;
+        font-weight: 400;
         margin-left: 1em;
         vertical-align: baseline;
         line-height: 1em;
@@ -2330,12 +2227,12 @@ div.mwe-math-element {
     .mw-content-rtl .mw-content-ltr .mw-editsection {
         margin-left: 1em
     }
-    .mw-content-rtl .mw-editsection,
-    .mw-content-ltr .mw-content-rtl .mw-editsection {
+    .mw-content-ltr .mw-content-rtl .mw-editsection,
+    .mw-content-rtl .mw-editsection {
         margin-right: 1em
     }
-    sup,
-    sub {
+    sub,
+    sup {
         line-height: 1
     }
 }
@@ -2343,10 +2240,54 @@ div.mwe-math-element {
     display: none
 }
 @media screen {
+    a,
+    a:lang( ar),
+    a:lang( kk-arab),
+    a:lang( mzn),
+    a:lang( ps),
+    a:lang( ur) {
+        text-decoration: none
+    }
+    hr,
+    img {
+        border: 0
+    }
+    ol,
+    ul {
+        padding: 0
+    }
+    dd,
+    dt,
+    li {
+        margin-bottom: .1em
+    }
+    .center,
+    textarea {
+        width: 100%
+    }
+    #toc #toctitle,
+    #toc .toctitle,
+    .center,
+    .toc #toctitle,
+    .toc .toctitle {
+        text-align: center
+    }
+    #toc ul,
+    .toc ul,
+    ol {
+        list-style-image: none
+    }
+    div.floatleft p,
+    div.floatright p {
+        font-style: italic
+    }
+    .usermessage,
+    img {
+        vertical-align: middle
+    }
     a {
-        text-decoration: none;
         color: #0645ad;
-        background: none
+        background: 0 0
     }
     a:not( [href]) {
         cursor: pointer
@@ -2357,26 +2298,19 @@ div.mwe-math-element {
     a:active {
         color: #faa700
     }
-    a:hover,
-    a:focus {
+    a:focus,
+    a:hover {
         text-decoration: underline
-    }
-    a:lang( ar),
-    a:lang( kk-arab),
-    a:lang( mzn),
-    a:lang( ps),
-    a:lang( ur) {
-        text-decoration: none
     }
     a.stub {
         color: #723
     }
-    a.new,
-    #p-personal a.new {
+    #p-personal a.new,
+    a.new {
         color: #ba0000
     }
-    a.new:visited,
-    #p-personal a.new:visited {
+    #p-personal a.new:visited,
+    a.new:visited {
         color: #a55858
     }
     .mw-body-content a.extiw,
@@ -2401,16 +2335,11 @@ div.mwe-math-element {
     .mw-body-content a.external.free {
         word-wrap: break-word
     }
-    img {
-        border: 0;
-        vertical-align: middle
-    }
     hr {
         height: 1px;
         color: #a2a9b1;
         background-color: #a2a9b1;
-        border: 0;
-        margin: 0.2em 0
+        margin: .2em 0
     }
     h1,
     h2,
@@ -2419,13 +2348,28 @@ div.mwe-math-element {
     h5,
     h6 {
         color: #000;
-        background: none;
-        font-weight: normal;
+        background: 0 0;
+        font-weight: 400;
         margin: 0;
         overflow: hidden;
-        padding-top: 0.5em;
-        padding-bottom: 0.17em;
+        padding-top: .5em;
+        padding-bottom: .17em;
         border-bottom: 1px solid #a2a9b1
+    }
+    .mw-code,
+    code,
+    pre {
+        background-color: #f8f9fa
+    }
+    #toc h2,
+    .toc h2,
+    .usermessage,
+    dt,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 700
     }
     h1 {
         font-size: 188%
@@ -2437,8 +2381,7 @@ div.mwe-math-element {
     h4,
     h5,
     h6 {
-        border-bottom: 0;
-        font-weight: bold
+        border-bottom: 0
     }
     h3 {
         font-size: 128%
@@ -2449,86 +2392,70 @@ div.mwe-math-element {
     h5 {
         font-size: 108%
     }
-    h6 {
+    h6,
+    table {
         font-size: 100%
     }
     h1,
     h2 {
-        margin-bottom: 0.6em
+        margin-bottom: .6em
     }
     h3,
     h4,
     h5 {
-        margin-bottom: 0.3em
+        margin-bottom: .3em
     }
     p {
-        margin: 0.4em 0 0.5em 0
+        margin: .4em 0 .5em
     }
     p img {
         margin: 0
     }
     ul {
-        list-style-type: square;
-        margin: 0.3em 0 0 1.6em;
-        padding: 0
+        margin: .3em 0 0 1.6em
     }
     ol {
-        margin: 0.3em 0 0 3.2em;
-        padding: 0;
-        list-style-image: none
-    }
-    li {
-        margin-bottom: 0.1em
-    }
-    dt {
-        font-weight: bold;
-        margin-bottom: 0.1em
+        margin: .3em 0 0 3.2em
     }
     dl {
-        margin-top: 0.2em;
-        margin-bottom: 0.5em
+        margin-top: .2em;
+        margin-bottom: .5em
     }
     dd {
-        margin-left: 1.6em;
-        margin-bottom: 0.1em
+        margin-left: 1.6em
     }
-    pre,
+    .mw-code,
     code,
-    tt,
     kbd,
+    pre,
     samp,
-    .mw-code {
-        font-family: monospace, 'Courier'
+    tt {
+        font-family: monospace, Courier
     }
     code {
         color: #000;
-        background-color: #f8f9fa;
         border: 1px solid #eaecf0;
         border-radius: 2px;
         padding: 1px 4px
     }
-    pre,
-    .mw-code {
+    .mw-code,
+    pre {
         color: #000;
-        background-color: #f8f9fa;
         border: 1px solid #eaecf0;
         padding: 1em;
         white-space: pre-wrap
     }
-    table {
-        font-size: 100%
-    }
     fieldset {
         border: 1px solid #2a4b8d;
-        margin: 1em 0 1em 0;
+        margin: 1em 0;
         padding: 0 1em 1em
     }
     fieldset.nested {
-        margin: 0 0 0.5em 0;
-        padding: 0 0.5em 0.5em
+        margin: 0 0 .5em;
+        padding: 0 .5em .5em
     }
     legend {
-        padding: 0.5em;
+        padding: .5em;
         font-size: 95%
     }
     form {
@@ -2536,18 +2463,13 @@ div.mwe-math-element {
         margin: 0
     }
     textarea {
-        width: 100%;
-        padding: 0.1em;
+        padding: .1em;
         display: block;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
         box-sizing: border-box
     }
-    .center {
-        width: 100%;
-        text-align: center
-    }
-    *.center * {
+    .center * {
         margin-left: auto;
         margin-right: auto
     }
@@ -2558,8 +2480,8 @@ div.mwe-math-element {
         font-size: 100%
     }
     #toc,
-    .toc,
     .mw-warning,
+    .toc,
     .toccolours {
         border: 1px solid #a2a9b1;
         background-color: #f8f9fa;
@@ -2571,7 +2493,6 @@ div.mwe-math-element {
         display: inline-block;
         display: table;
         zoom: 1;
-        *display: inline;
         padding: 7px
     }
     table#toc,
@@ -2587,22 +2508,19 @@ div.mwe-math-element {
         display: inline;
         border: 0;
         padding: 0;
-        font-size: 100%;
-        font-weight: bold
-    }
-    #toc #toctitle,
-    .toc #toctitle,
-    #toc .toctitle,
-    .toc .toctitle {
-        text-align: center
+        font-size: 100%
     }
     #toc ul,
     .toc ul {
         list-style-type: none;
-        list-style-image: none;
         margin-left: 0;
         padding: 0;
         text-align: left
+    }
+    .mw-content-ltr .tocnumber,
+    .tocnumber {
+        padding-left: 0;
+        padding-right: .5em
     }
     #toc ul ul,
     .toc ul ul {
@@ -2614,16 +2532,10 @@ div.mwe-math-element {
         text-decoration: inherit
     }
     .tocnumber {
-        padding-left: 0;
-        padding-right: 0.5em;
         color: #222
     }
-    .mw-content-ltr .tocnumber {
-        padding-left: 0;
-        padding-right: 0.5em
-    }
     .mw-content-rtl .tocnumber {
-        padding-left: 0.5em;
+        padding-left: .5em;
         padding-right: 0
     }
     .mw-warning {
@@ -2633,20 +2545,19 @@ div.mwe-math-element {
     }
     div.floatright,
     table.floatright {
-        margin: 0 0 0.5em 0.5em
-    }
-    div.floatright p {
-        font-style: italic
+        margin: 0 0 .5em .5em
     }
     div.floatleft,
     table.floatleft {
-        margin: 0 0.5em 0.5em 0
+        margin: 0 .5em .5em 0
     }
-    div.floatleft p {
-        font-style: italic
+    .mw-content-ltr .magnify,
+    div.magnify {
+        float: right;
+        margin-left: 3px
     }
     div.thumb {
-        margin-bottom: 0.5em;
+        margin-bottom: .5em;
         width: auto;
         background-color: transparent
     }
@@ -2669,10 +2580,6 @@ div.mwe-math-element {
         font-size: 94%;
         text-align: left
     }
-    div.magnify {
-        float: right;
-        margin-left: 3px
-    }
     div.magnify a {
         display: block;
         text-indent: 15px;
@@ -2685,15 +2592,21 @@ div.mwe-math-element {
         -ms-user-select: none;
         user-select: none
     }
+    #siteSub,
+    body.mw-hide-empty-elt .mw-empty-elt {
+        display: none
+    }
     img.thumbborder {
         border: 1px solid #eaecf0
+    }
+    .catlinks,
+    textarea {
+        border: 1px solid #a2a9b1
     }
     .mw-content-ltr .thumbcaption {
         text-align: left
     }
     .mw-content-ltr .magnify {
-        float: right;
-        margin-left: 3px;
         margin-right: 0
     }
     .mw-content-rtl .thumbcaption {
@@ -2705,39 +2618,30 @@ div.mwe-math-element {
         margin-right: 3px
     }
     div.tright {
-        margin: 0.5em 0 1.3em 1.4em
+        margin: .5em 0 1.3em 1.4em
     }
     div.tleft {
-        margin: 0.5em 1.4em 1.3em 0
-    }
-    body.mw-hide-empty-elt .mw-empty-elt {
-        display: none
+        margin: .5em 1.4em 1.3em 0
     }
     .catlinks {
-        border: 1px solid #a2a9b1;
         background-color: #f8f9fa;
         padding: 5px;
         margin-top: 1em;
         clear: both
     }
-    textarea {
-        border: 1px solid #a2a9b1
-    }
     .editOptions {
         background-color: #eaecf0;
         border: 1px solid #c8ccd1;
         border-top: 0;
-        padding: 1em 1em 1.5em 1em;
+        padding: 1em 1em 1.5em;
         margin-bottom: 2em
     }
     .usermessage {
         background-color: #ffce7b;
-        border: 1px solid #ffa500;
+        border: 1px solid orange;
         color: #000;
-        font-weight: bold;
         margin: 2em 0 1em;
-        padding: 0.5em 1em;
-        vertical-align: middle
+        padding: .5em 1em
     }
     #siteNotice {
         position: relative;
@@ -2745,15 +2649,12 @@ div.mwe-math-element {
         margin: 0
     }
     #localNotice {
-        margin-bottom: 0.9em
+        margin-bottom: .9em
     }
     .firstHeading {
-        margin-bottom: 0.1em;
+        margin-bottom: .1em;
         line-height: 1.2em;
         padding-bottom: 0
-    }
-    #siteSub {
-        display: none
     }
     #jump-to-nav {
         margin-top: -1.4em;
@@ -2770,29 +2671,19 @@ div.mwe-math-element {
     span.subpages {
         display: block
     }
-}
-@media (-webkit-min-device-pixel-ratio: 1.5),
-(min--moz-device-pixel-ratio: 1.5),
-(min-resolution: 1.5dppx),
-(min-resolution: 144dpi) {
-    .mw-wiki-logo {
-        background-size: 135px auto
+    #p-personal ul,
+    div#footer ul,
+    div#mw-panel div.portal div.body ul,
+    div.vectorMenu ul,
+    div.vectorTabs ul {
+        list-style-type: none;
+        list-style-image: none
     }
-}
-@media (-webkit-min-device-pixel-ratio: 2),
-(min--moz-device-pixel-ratio: 2),
-(min-resolution: 2dppx),
-(min-resolution: 192dpi) {
-    .mw-wiki-logo {
-        background-size: 135px auto
-    }
-}
-@media screen {
     html {
         font-size: 100%
     }
-    html,
-    body {
+    body,
+    html {
         height: 100%;
         margin: 0;
         padding: 0;
@@ -2804,64 +2695,67 @@ div.mwe-math-element {
     .mw-body,
     .parsoid-body {
         padding: 1em;
-        background-color: #ffffff;
-        color: #222222;
+        background-color: #fff;
+        color: #222;
         direction: ltr
     }
     .mw-body {
-	max-width: 1280px;
-	margin: 0 auto;
-        border: 1px solid #a7d7f9;
-        /* border-right-width: 0; */
-        margin-top: -1px
+        max-width: 1280px;
+        margin: -1px auto 0;
+        border: 1px solid #a7d7f9
     }
     .mw-body h1,
     .mw-body-content h1,
     .mw-body-content h2 {
-        font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+        font-family: 'Linux Libertine', Georgia, Times, serif;
         line-height: 1.3;
-        margin-bottom: 0.25em;
+        margin-bottom: .25em;
         padding: 0
     }
-    .mw-body h1:lang( ja),
-    .mw-body-content h1:lang( ja),
-    .mw-body-content h2:lang( ja),
     .mw-body h1:lang( he),
-    .mw-body-content h1:lang( he),
-    .mw-body-content h2:lang( he),
+    .mw-body h1:lang( ja),
     .mw-body h1:lang( ko),
+    .mw-body-content h1:lang( he),
+    .mw-body-content h1:lang( ja),
     .mw-body-content h1:lang( ko),
-    .mw-body-content h2:lang( ko) {
+    .mw-body-content h2:lang( he),
+    .mw-body-content h2:lang( ja),
+    .mw-body-content h2:lang( ko),
+    .mw-editsection,
+    .mw-editsection-like {
         font-family: sans-serif
     }
     .mw-body h1,
     .mw-body-content h1 {
         font-size: 1.8em
     }
+    .mw-body .mw-indicators,
+    .mw-body-content {
+        line-height: 1.6;
+        font-size: .875em;
+        position: relative
+    }
     .mw-body .firstHeading {
         overflow: visible
     }
     .mw-body .mw-indicators {
         float: right;
-        line-height: 1.6;
-        font-size: 0.875em;
-        position: relative;
         z-index: 1
     }
     .mw-body .mw-indicator {
         display: inline-block;
-        zoom: 1;
-        *display: inline
+        zoom: 1
+    }
+    #p-personal h3,
+    div.emptyPortlet {
+        display: none
     }
     .mw-body-content {
-        position: relative;
-        line-height: 1.6;
-        font-size: 0.875em;
         z-index: 0
     }
     .mw-body-content p {
         line-height: inherit;
-        margin: 0.5em 0
+        margin: .5em 0
     }
     .mw-body-content h1 {
         margin-top: 1em
@@ -2875,7 +2769,7 @@ div.mwe-math-element {
     .mw-body-content h5,
     .mw-body-content h6 {
         line-height: 1.6;
-        margin-top: 0.3em;
+        margin-top: .3em;
         margin-bottom: 0;
         padding-bottom: 0
     }
@@ -2884,7 +2778,7 @@ div.mwe-math-element {
     }
     .mw-body-content h3,
     .mw-body-content h4 {
-        font-weight: bold
+        font-weight: 700
     }
     .mw-body-content h4,
     .mw-body-content h5,
@@ -2896,63 +2790,51 @@ div.mwe-math-element {
         font-size: 100%;
         font-family: sans-serif
     }
-    .mw-editsection,
-    .mw-editsection-like {
-        font-family: sans-serif
-    }
-    div.emptyPortlet {
-        display: none
-    }
     ul {
-        list-style-type: disc;
+        list-style-type: disc
     }
-    pre,
-    .mw-code {
+    .mw-code,
+    pre {
         line-height: 1.3em
     }
     #siteNotice {
-        font-size: 0.8em
+        font-size: .8em
     }
     #p-personal {
         position: absolute;
-        top: 0.33em;
-        right: 0.75em;
+        top: .33em;
+        right: .75em;
         z-index: 100
     }
-    #p-personal h3 {
-        display: none
-    }
     #p-personal ul {
-        list-style-type: none;
-        list-style-image: none;
         margin: 0;
         padding-left: 10em
     }
     #p-personal li {
         line-height: 1.125em;
         float: left;
-        margin-left: 0.75em;
-        margin-top: 0.5em;
-        font-size: 0.75em;
+        margin-left: .75em;
+        margin-top: .5em;
+        font-size: .75em;
         white-space: nowrap
     }
-    #pt-userpage,
-    #pt-anonuserpage {
+    #pt-anonuserpage,
+    #pt-userpage {
         background-position: left top;
         background-repeat: no-repeat;
-        padding-left: 15px !important
+        padding-left: 15px!important
     }
     #pt-anonuserpage {
         color: #707070
     }
     #p-search {
         float: left;
-        margin-right: 0.5em;
-        margin-left: 0.5em
+        margin-right: .5em;
+        margin-left: .5em
     }
     #p-search h3 {
         display: block;
-        position: absolute !important;
+        position: absolute!important;
         clip: rect(1px, 1px, 1px, 1px);
         width: 1px;
         height: 1px;
@@ -2963,8 +2845,7 @@ div.mwe-math-element {
     }
     #p-search form,
     #p-search input {
-        margin: 0;
-        margin-top: 0.4em
+        margin: .4em 0 0
     }
     div#simpleSearch {
         display: block;
@@ -2974,10 +2855,10 @@ div.mwe-math-element {
         max-width: 20em;
         padding-right: 1.4em;
         height: 1.4em;
-        margin-top: 0.65em;
+        margin-top: .65em;
         position: relative;
         min-height: 1px;
-        border: solid 1px #aaa;
+        border: 1px solid #aaa;
         color: #000;
         background-color: #fff;
         background-position: top left;
@@ -2992,7 +2873,7 @@ div.mwe-math-element {
     }
     div#simpleSearch #searchInput {
         width: 100%;
-        padding: 0.2em 0 0.2em 0.2em;
+        padding: .2em 0 .2em .2em;
         font-size: 13px;
         direction: ltr;
         -webkit-appearance: textfield
@@ -3024,14 +2905,14 @@ div.mwe-math-element {
         color: #72777d;
         opacity: 1
     }
-    div#simpleSearch #searchInput::-webkit-search-decoration,
     div#simpleSearch #searchInput::-webkit-search-cancel-button,
+    div#simpleSearch #searchInput::-webkit-search-decoration,
     div#simpleSearch #searchInput::-webkit-search-results-button,
     div#simpleSearch #searchInput::-webkit-search-results-decoration {
         -webkit-appearance: textfield
     }
-    div#simpleSearch #searchButton,
-    div#simpleSearch #mw-searchButton {
+    div#simpleSearch #mw-searchButton,
+    div#simpleSearch #searchButton {
         position: absolute;
         top: 0;
         right: 0;
@@ -3061,32 +2942,35 @@ div.mwe-math-element {
         background-repeat: no-repeat;
         padding-left: 1px
     }
-    div.vectorTabs ul {
-        float: left;
+    div.vectorTabs ul,
+    div.vectorTabs ul li {
         height: 100%;
-        list-style-type: none;
-        list-style-image: none;
         margin: 0;
         padding: 0;
+        float: left
+    }
+    div.vectorTabs ul {
         background-position: right bottom;
         background-repeat: no-repeat
     }
     div.vectorTabs ul li {
-        float: left;
         line-height: 1.125em;
         display: inline-block;
-        height: 100%;
-        margin: 0;
-        padding: 0;
         background-color: #f3f3f3;
         background-position: bottom left;
         background-repeat: repeat-x;
         white-space: nowrap
     }
-    div.vectorTabs ul > li {
+    div#mw-head div.vectorMenu h3,
+    div.vectorTabs li.icon a,
+    div.vectorTabs span {
+        background-position: bottom right;
+        background-repeat: no-repeat
+    }
+    div.vectorTabs ul>li {
         display: block
     }
-    div.vectorTabs li {}div.vectorTabs li.new a,
+    div.vectorTabs li.new a,
     div.vectorTabs li.new a:visited {
         color: #a55858
     }
@@ -3095,33 +2979,27 @@ div.mwe-math-element {
         color: #222;
         text-decoration: none
     }
-    div.vectorTabs li.icon a {
-        background-position: bottom right;
-        background-repeat: no-repeat
-    }
     div.vectorTabs li a {
         display: inline-block;
         height: 1.9em;
-        padding-left: 0.5em;
-        padding-right: 0.5em;
+        padding-left: .5em;
+        padding-right: .5em;
         color: #0645ad;
         cursor: pointer;
-        font-size: 0.8em
+        font-size: .8em
     }
-    div.vectorTabs li > a {
+    div.vectorTabs li>a {
         display: block
     }
     div.vectorTabs span {
         display: inline-block;
-        background-position: bottom right;
-        background-repeat: no-repeat;
         height: 100%
     }
     div.vectorTabs span a {
         display: inline-block;
         padding-top: 1.25em
     }
-    div.vectorTabs span > a {
+    div.vectorTabs span>a {
         float: left;
         display: block
     }
@@ -3137,8 +3015,6 @@ div.mwe-math-element {
     }
     div#mw-head div.vectorMenu h3 {
         float: left;
-        background-repeat: no-repeat;
-        background-position: bottom right;
         font-size: 1em;
         height: 2.5em;
         padding-right: 1px;
@@ -3146,38 +3022,34 @@ div.mwe-math-element {
     }
     div.vectorMenu h3 span {
         display: block;
-        font-size: 0.8em;
-        padding-left: 0.7em;
+        font-size: .8em;
+        padding-left: .7em;
         padding-top: 1.25em;
         padding-right: 20px;
-        font-weight: normal;
+        font-weight: 400;
         color: #4d4d4d;
         background-position: 100% 100%;
         background-repeat: no-repeat
-    }
-    div.vectorMenuFocus h3 span {
     }
     div.vectorMenu div.menu {
         min-width: 100%;
         position: absolute;
         top: 2.5em;
         left: -1px;
-        background-color: #ffffff;
+        background-color: #fff;
         border: 1px solid #a2a9b1;
         border-top-width: 0;
         clear: both;
-        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
         text-align: left;
         display: none;
         z-index: 1
     }
-    div.vectorMenu:hover div.menu,
-    div.vectorMenu.menuForceShow div.menu {
+    div.vectorMenu.menuForceShow div.menu,
+    div.vectorMenu:hover div.menu {
         display: block
     }
     div.vectorMenu ul {
-        list-style-type: none;
-        list-style-image: none;
         padding: 0;
         margin: 0;
         text-align: left
@@ -3199,13 +3071,13 @@ div.mwe-math-element {
     }
     div.vectorMenu li a {
         display: inline-block;
-        padding: 0.5em;
+        padding: .5em;
         white-space: nowrap;
         color: #0645ad;
         cursor: pointer;
-        font-size: 0.8em
+        font-size: .8em
     }
-    div.vectorMenu li > a {
+    div.vectorMenu li>a {
         display: block
     }
     div.vectorMenu li.selected a,
@@ -3231,9 +3103,9 @@ div.mwe-math-element {
     }
     @-webkit-keyframes rotate {
         from {
-            -webkit-transform: rotate(0deg);
-            -moz-transform: rotate(0deg);
-            transform: rotate(0deg)
+            -webkit-transform: rotate(0);
+            -moz-transform: rotate(0);
+            transform: rotate(0)
         }
         to {
             -webkit-transform: rotate(360deg);
@@ -3243,9 +3115,9 @@ div.mwe-math-element {
     }
     @-moz-keyframes rotate {
         from {
-            -webkit-transform: rotate(0deg);
-            -moz-transform: rotate(0deg);
-            transform: rotate(0deg)
+            -webkit-transform: rotate(0);
+            -moz-transform: rotate(0);
+            transform: rotate(0)
         }
         to {
             -webkit-transform: rotate(360deg);
@@ -3255,9 +3127,9 @@ div.mwe-math-element {
     }
     @keyframes rotate {
         from {
-            -webkit-transform: rotate(0deg);
-            -moz-transform: rotate(0deg);
-            transform: rotate(0deg)
+            -webkit-transform: rotate(0);
+            -moz-transform: rotate(0);
+            transform: rotate(0)
         }
         to {
             -webkit-transform: rotate(360deg);
@@ -3268,32 +3140,24 @@ div.mwe-math-element {
     #ca-unwatch.icon a,
     #ca-watch.icon a {
         margin: 0;
-        padding: 0;
+        padding: 3.1em 0 0;
         display: block;
         width: 26px;
-        padding-top: 3.1em;
-        margin-top: 0;
-        _margin-top: -0.8em;
         height: 0;
         overflow: hidden;
         background-position: 5px 60%
     }
-    #ca-unwatch.icon a {
-    }
-    #ca-watch.icon a {
-    }
-    #ca-unwatch.icon a:hover,
-    #ca-unwatch.icon a:focus {
-    }
-    #ca-watch.icon a:hover,
-    #ca-watch.icon a:focus {
+    #p-logo,
+    #p-logo a {
+        height: 160px;
+        width: 10em
     }
     #ca-unwatch.icon a.loading,
     #ca-watch.icon a.loading {
-        -webkit-animation: rotate 700ms infinite linear;
-        -moz-animation: rotate 700ms infinite linear;
-        -o-animation: rotate 700ms infinite linear;
-        animation: rotate 700ms infinite linear;
+        -webkit-animation: rotate .7s infinite linear;
+        -moz-animation: rotate .7s infinite linear;
+        -o-animation: rotate .7s infinite linear;
+        animation: rotate .7s infinite linear;
         outline: 0;
         cursor: default;
         pointer-events: none;
@@ -3313,12 +3177,11 @@ div.mwe-math-element {
         height: 5em;
         background-position: bottom left;
         background-repeat: repeat-x;
-        background-color: #f6f6f6;
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #ffffff), color-stop(100%, #f6f6f6));
-        background-image: -webkit-linear-gradient(top, #ffffff 50%, #f6f6f6 100%);
-        background-image: -moz-linear-gradient(top, #ffffff 50%, #f6f6f6 100%);
-        background-image: linear-gradient(#ffffff 50%, #f6f6f6 100%);
-        background-color: #ffffff
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #fff), color-stop(100%, #f6f6f6));
+        background-image: -webkit-linear-gradient(top, #fff 50%, #f6f6f6 100%);
+        background-image: -moz-linear-gradient(top, #fff 50%, #f6f6f6 100%);
+        background-image: linear-gradient(#fff 50%, #f6f6f6 100%);
+        background-color: #fff
     }
     #mw-head-base {
         margin-top: -5em;
@@ -3346,14 +3209,8 @@ div.mwe-math-element {
         float: right;
         margin-top: 2.5em
     }
-    #p-logo {
-        width: 10em;
-        height: 160px
-    }
     #p-logo a {
         display: block;
-        width: 10em;
-        height: 160px;
         background-repeat: no-repeat;
         background-position: center center;
         text-decoration: none
@@ -3366,37 +3223,35 @@ div.mwe-math-element {
         left: 0
     }
     div#mw-panel div.portal {
-        margin: 0 0.6em 0 0.7em;
-        padding: 0.25em 0;
+        margin: 0 .6em 0 .7em;
+        padding: .25em 0;
         direction: ltr;
         background-position: top left;
         background-repeat: no-repeat
     }
     div#mw-panel div.portal h3 {
-        font-size: 0.75em;
+        font-size: .75em;
         color: #4d4d4d;
-        font-weight: normal;
-        margin: 0.5em 0 0 0.66666667em;
-        padding: 0.25em 0;
+        font-weight: 400;
+        margin: .5em 0 0 .66666667em;
+        padding: .25em 0;
         cursor: default;
         border: 0
     }
     div#mw-panel div.portal div.body {
-        margin-left: 0.5em;
+        margin-left: .5em;
         padding-top: 0;
         background-repeat: no-repeat
     }
     div#mw-panel div.portal div.body ul {
-        list-style-type: none;
-        list-style-image: none;
         margin: 0;
-        padding: 0.3em 0 0 0
+        padding: .3em 0 0
     }
     div#mw-panel div.portal div.body ul li {
         line-height: 1.125em;
         margin: 0;
-        padding: 0.25em 0;
-        font-size: 0.75em;
+        padding: .25em 0;
+        font-size: .75em;
         word-wrap: break-word
     }
     div#mw-panel div.portal div.body ul li a {
@@ -3405,43 +3260,39 @@ div.mwe-math-element {
     div#mw-panel div.portal div.body ul li a:visited {
         color: #0b0080
     }
-    div#mw-panel #p-logo + div.portal {
+    div#mw-panel #p-logo+div.portal {
         background-image: none;
         margin-top: 1em
     }
-    div#mw-panel #p-logo + div.portal h3 {
+    div#mw-panel #p-logo+div.portal h3 {
         display: none
     }
-    div#mw-panel #p-logo + div.portal div.body {
+    div#mw-panel #p-logo+div.portal div.body {
         background-image: none;
-        margin-left: 0.5em
+        margin-left: .5em
     }
     div#footer {
         margin-left: 10em;
         margin-top: 0;
-        padding: 0.75em;
+        padding: .75em;
         direction: ltr
     }
     div#footer ul {
-        list-style-type: none;
-        list-style-image: none;
         margin: 0;
         padding: 0
     }
     div#footer ul li {
         margin: 0;
-        padding: 0;
-        padding-top: 0.5em;
-        padding-bottom: 0.5em;
+        padding: .5em 0;
         color: #333;
-        font-size: 0.7em
+        font-size: .7em
     }
     div#footer #footer-icons {
         float: right
     }
     div#footer #footer-icons li {
         float: left;
-        margin-left: 0.5em;
+        margin-left: .5em;
         line-height: 2em;
         text-align: right
     }
@@ -3462,60 +3313,75 @@ div.mwe-math-element {
         padding-right: 13px
     }
 }
+@media (-webkit-min-device-pixel-ratio: 1.5),
+(min--moz-device-pixel-ratio: 1.5),
+(min-resolution: 1.5dppx),
+(min-resolution: 144dpi) {
+    .mw-wiki-logo {
+        background-size: 135px auto
+    }
+}
+@media (-webkit-min-device-pixel-ratio: 2),
+(min--moz-device-pixel-ratio: 2),
+(min-resolution: 2dppx),
+(min-resolution: 192dpi) {
+    .mw-wiki-logo {
+        background-size: 135px auto
+    }
+}
 @media screen and (min-width: 982px) {
+    #left-navigation,
+    #mw-head-base,
+    div#footer {
+        margin-left: 11em
+    }
     .mw-body {
-        /* margin-left: 1em; */
-        padding: 1.25em 1.5em 1.5em 1.5em
+        padding: 1.25em 1.5em 1.5em
     }
     div#footer {
-        margin-left: 11em;
         padding: 1.25em
     }
     #mw-panel {
-        padding-left: 0.5em
+        padding-left: .5em
     }
     #p-search {
         margin-right: 1em
     }
-    #left-navigation {
-        margin-left: 11em
-    }
     #p-personal {
         right: 1em
-    }
-    #mw-head-base {
-        margin-left: 11em
     }
 }
 .wb-langlinks-link {
     line-height: 1.125em;
-    font-size: 0.75em;
-    float: right
-}
-.wb-langlinks-link {
-    list-style: none none;
+    font-size: .75em;
+    float: right;
+    list-style: none;
     text-align: right;
-    padding-right: 0.5em !important
+    padding-right: .5em!important
 }
-.wb-langlinks-link > a {
+.wb-langlinks-link>a {
     padding-left: 11px;
-    background: no-repeat left center
+    background: left center no-repeat
 }
-.wb-langlinks-link > a:link,
-.wb-langlinks-link > a:visited {
-    color: #797979 !important
+.wb-langlinks-link>a:link,
+.wb-langlinks-link>a:visited {
+    color: #797979!important
 }
-.wb-langlinks-link > a:hover {
-    color: #0645ad !important
+.wb-langlinks-link>a:hover {
+    color: #0645ad!important
 }
 div.after-portlet-lang:after {
     content: '';
     clear: both;
     display: block
 }
+#helpPage,
+.mw-special-Recentchanges .mw-specialpage-summary {
+    display: none
+}
 div#editpage-specialchars {
     display: block;
-    border: 1px solid #c0c0c0;
+    border: 1px solid silver;
     padding: .5em
 }
 div#editpage-specialchars a {
@@ -3523,7 +3389,2391 @@ div#editpage-specialchars a {
     border: 1px solid #ddd;
     padding: 1px 4px
 }
-textarea#wpTextbox1 + div#editpage-specialchars,
-div.wikiEditor-ui-clear + div#editpage-specialchars {
+div.wikiEditor-ui-clear+div#editpage-specialchars,
+textarea#wpTextbox1+div#editpage-specialchars {
     border-top: none
+}
+.mw-tag-markers {
+    font-family: sans-serif;
+    font-size: 90%
+}
+.allpagesredirect>a,
+.watchlistredir>a {
+    color: #0b0
+}
+.history-size,
+.mw-whatlinkshere-tools {
+    font-size: 80%
+}
+#coordinates {
+    margin-right: 1em
+}
+#coordinates_osm {
+    font-size: 110%;
+    box-shadow: 0 0 5px #c0c0f0;
+    border-radius: 5px;
+    margin-left: 7px;
+    padding: 3px;
+    background-color: #e0e0e0
+}
+#coordinates_osm:hover {
+    box-shadow: 0 0 5px #a0a0c0;
+    background-color: #b0b0b0
+}
+.mw-body-content h3 {
+    border-bottom: dotted 1px #aaa
+}
+.mw-body-content h4,
+.mw-body-content h5,
+.mw-body-content h6 {
+    border-bottom: dotted 1px #ddd
+}
+h1 #sous_titre_h1 {
+    display: block;
+    font-size: .7em;
+    line-height: 1.3em;
+    margin: .2em 0 .1em .5em
+}
+.italique i,
+dfn {
+    font-style: normal
+}
+pre {
+    overflow-x: auto
+}
+.ns-8 pre {
+    overflow-x: visible
+}
+abbr {
+    color: inherit
+}
+abbr.abbr {
+    border-bottom: 0;
+    text-decoration: none
+}
+a abbr {
+    cursor: inherit
+}
+dfn {
+    font-weight: 700
+}
+.homonymie,
+i>dfn {
+    font-style: italic
+}
+.rcoptions {
+    clear: both;
+    margin: 0 0 2px;
+    padding: 0 .5em;
+    border: 1px solid #ddddf7;
+    border-left: 10px solid #ddddf7;
+    background-color: #fff
+}
+.rcoptions hr {
+    clear: both
+}
+fieldset.rcoptions {
+    padding-bottom: .5em
+}
+.noarticletext {
+    background: #f9f9f9;
+    margin-top: 1em;
+    padding: 5px;
+    border: 1px solid #aaa;
+    border-right: 2px solid #aaa;
+    border-bottom: 2px solid #aaa
+}
+#mw-history-search {
+    border-color: #aaa
+}
+.thumbinner {
+    min-width: 100px
+}
+#file img {
+    background: url(//upload.wikimedia.org/wikipedia/commons/5/5d/Checker-16x16.png)
+}
+.mw-toolbar-editbutton img {
+    border-top: 1px solid #eee!important;
+    border-bottom: 1px solid #eee!important
+}
+.mw-toolbar-editbutton:hover img {
+    border-top: 1px solid #000!important;
+    border-bottom: 1px solid #000!important
+}
+.ns-0 #mw-editbutton-signature {
+    display: none
+}
+#wpTextbox1[readonly],
+#wpTextbox1[readonly]+.ui-resizable>.ace_editor {
+    background: #eee
+}
+.ace_scrollbar-v:not([style*=none])~.ace_search.right {
+    margin-right: 15px
+}
+.plainlinksneverexpand a.external.autonumber:after,
+.plainlinksneverexpand a.external.text:after {
+    display: none!important
+}
+.plainlinksneverexpand a {
+    background: 0 0!important;
+    padding: 0!important
+}
+.printcssonly,
+.ve-init-target .user-draft-header {
+    display: none
+}
+#talkpageheader,
+.fieldsetlike {
+    text-align: center;
+    border: 1px solid #aaa;
+    margin: 1em 0;
+    padding: 0 0 .4em
+}
+#talkpageheader #talkpageheadertitle,
+.fieldsetlike .legendlike {
+    margin-top: -.8em
+}
+#talkpageheader #talkpageheadertitletext,
+.fieldsetlike .legendtextlike {
+    padding: 0 8px;
+    background: #fff
+}
+#talkpageheader ul,
+.fieldsetlike ul {
+    list-style-type: none;
+    margin: 0
+}
+#talkpageheader li,
+.fieldsetlike li {
+    display: inline
+}
+#talkpageheader li {
+    color: #707070
+}
+#mw-hidden-catlinks {
+    font-size: .85em
+}
+.homonymie {
+    padding-left: 2em;
+    padding-bottom: .5em;
+    margin-bottom: .5em;
+    margin-top: -.5em;
+    background: #fff;
+    border-bottom: 1px #aaa solid
+}
+.homonymie+.homonymie {
+    margin-top: -.6em;
+    margin-top: calc(-.5em - 1.05px)
+}
+li.AdQ,
+li.LdQ,
+li.PdQ,
+li.badge-featuredarticle,
+li.badge-featuredlist,
+li.badge-featuredportal {
+    list-style-image: url(//upload.wikimedia.org/wikipedia/commons/4/4c/Icone_AdQ.png)
+}
+li.BA,
+li.badge-goodarticle {
+    list-style-image: url(//upload.wikimedia.org/wikipedia/commons/8/86/Icone_BA.png)
+}
+.audio a {
+    background: url(//upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/11px-Loudspeaker.svg.png) center left no-repeat!important;
+    padding-left: 16px!important;
+    padding-right: 0!important
+}
+.ouvrage:target,
+body.action-info:target,
+ol.references>li:target,
+sup.reference:target {
+    background: #def
+}
+.indicateur-format,
+.indicateur-langue {
+    font-family: monospace;
+    font-weight: 700;
+    font-size: small;
+    font-style: normal
+}
+.colonnes>ol,
+.colonnes>p,
+.colonnes>ul {
+    margin-top: 0
+}
+.colonnes {
+    margin-top: .3em
+}
+:lang(el),
+:lang(grc) {
+    font-family: 'Arial Unicode MS', 'DejaVu Sans', Athena, Gentium, 'Palatino Linotype', 'Lucida Sans Unicode', 'Lucida Grande', Code2000, sans-serif
+}
+:lang(th) {
+    font-family: 'Segoe UI', Tahoma, sans-serif
+}
+.romain {
+    text-transform: lowercase
+}
+.texhtml {
+    font-family: "Nimbus Roman No9 L", "Times New Roman", Times, serif;
+    font-size: 118%;
+    line-height: 1;
+    -webkit-font-feature-settings: "lnum", "tnum";
+    -webkit-font-kerning: none;
+    font-feature-settings: "lnum", "tnum", "kern" 0;
+    font-kerning: none
+}
+.texhtml .texhtml {
+    font-size: 100%
+}
+img.tex.center {
+    width: auto;
+    display: block;
+    margin: 0 auto
+}
+img.tex.left {
+    display: block;
+    margin-left: 1.6em
+}
+body.ns-100 .lienClair a,
+body.ns-102 .lienClair a,
+body.ns-2 .lienClair a,
+body.ns-4 .lienClair a,
+body.ns-talk .lienClair a {
+    color: #a0a0a0
+}
+body.ns-100 .lienClair a:hover,
+body.ns-102 .lienClair a:hover,
+body.ns-2 .lienClair a:hover,
+body.ns-4 .lienClair a:hover,
+body.ns-talk .lienClair a:hover {
+    color: #a0a0a0;
+    text-decoration: underline
+}
+body.ns-100 .lienClair a:visited,
+body.ns-102 .lienClair a:visited,
+body.ns-2 .lienClair a:visited,
+body.ns-4 .lienClair a:visited,
+body.ns-talk .lienClair a:visited {
+    color: #b9b9b9
+}
+a.stub {
+    color: #390
+}
+a.stub:visited {
+    color: #360
+}
+.references small {
+    font-size: 1em!important
+}
+.cite_crochet {
+    display: none
+}
+sup.reference {
+    font-weight: 400;
+    font-style: normal
+}
+.exposant,
+.reference {
+    vertical-align: text-top;
+    position: relative;
+    font-size: .8em;
+    top: -5px
+}
+.reference-text sup {
+    vertical-align: text-top;
+    position: relative;
+    font-size: .75em;
+    top: -.1em
+}
+.bandeau-cell,
+.bandeau-icone,
+.diaporama select,
+.grosse-icone,
+td.navbox-banner,
+th.navbox-group {
+    vertical-align: middle
+}
+.reference {
+    padding-left: 1px
+}
+.infobox_v2 .reference {
+    top: -2px
+}
+small.cachelinks,
+small.cachelinks a {
+    color: #36b
+}
+.references-small.lower-alpha ol {
+    list-style-type: lower-alpha
+}
+.references-small.lower-greek ol {
+    list-style-type: lower-greek
+}
+.references-small.decimal ol,
+.references-small.lower-alpha ol ol,
+.references-small.lower-greek ol ol {
+    list-style-type: decimal
+}
+.autres-projets li,
+.treeview li {
+    list-style-type: none;
+    list-style-image: none
+}
+.references-small ol {
+    margin-top: 0
+}
+.references-small {
+    margin-top: .3em
+}
+.reference-cadre {
+    height: 25em;
+    overflow: auto;
+    padding: 3px;
+    border: 1px solid #AAA
+}
+.accueil-contenu,
+.accueil-droite,
+.hidden,
+.infobox_v3 .overflow,
+.topbanner {
+    overflow: hidden
+}
+span.need_ref,
+span.ref:hover {
+    border-bottom: 1px solid #aaa
+}
+div.need_ref {
+    border: 1px solid #aaa;
+    padding: .5em
+}
+.boite-grise,
+.boite-sans-fond {
+    border-color: #aaa
+}
+.BibList {
+    display: block
+}
+.BibTeX,
+.ISBD,
+.ISO690,
+.WikiNorme,
+.specialBib {
+    display: none
+}
+.cite_virgule {
+    padding-left: 0;
+    padding-right: 1px
+}
+div.boite-a-droite {
+    display: table;
+    clear: right;
+    float: right;
+    margin: 1em 0 1em 1em;
+    width: 20em;
+    position: relative;
+    border-style: solid;
+    border-width: 1px;
+    padding: 4px;
+    text-align: left
+}
+.boite-grise {
+    background-color: #f9f9f9
+}
+.bandeau-article,
+.bandeau-discussion,
+.bandeau-section,
+.bandeau-simple,
+.bandeau-systeme {
+    border-style: solid;
+    overflow: hidden;
+    position: relative
+}
+.bandeau-article {
+    border-width: 1px 1px 1px 10px;
+    font-size: .9em;
+    line-height: 1.25em;
+    padding: .5em 1em;
+    margin: .8em 10%
+}
+.bandeau-systeme {
+    clear: both;
+    border-width: 2px;
+    padding: .5em 1em;
+    margin: .8em 3%
+}
+.bandeau-simple {
+    clear: both;
+    border-width: 1px;
+    padding: .5em 1em;
+    margin: .8em auto
+}
+.bandeau-discussion {
+    border-width: 1px;
+    border-radius: 10px;
+    padding: .2em .5em;
+    margin: .8em 7%
+}
+div.bandeau-section {
+    display: block;
+    font-size: .95em;
+    border-width: 1px 0;
+    padding: .2em .5em .1em 0;
+    margin: .3em 0 .7em 2em
+}
+.bandeau-centrer {
+    display: table;
+    width: 100%;
+    text-align: center
+}
+.bandeau-cell {
+    display: table-cell
+}
+.bandeau-cell p:last-child {
+    margin-bottom: 0
+}
+.bandeau-niveau-grave {
+    border-color: #a04;
+    background-color: #fcc
+}
+.bandeau-niveau-modere {
+    border-color: #f82;
+    background-color: #fed
+}
+.bandeau-niveau-ebauche,
+.bandeau-niveau-information {
+    border-color: #7cf;
+    background-color: #fbfbfb
+}
+.bandeau-discussion.bandeau-niveau-information,
+.bandeau-simple.bandeau-niveau-information {
+    border-color: #a7d7f9;
+    background-color: #f5faff
+}
+.bandeau-niveau-detail,
+.bandeau-section.bandeau-niveau-information {
+    border-color: #e7e7e7;
+    background-color: #fdfdfd
+}
+.bandeau-niveau-neutre {
+    border-color: #aaa;
+    background: #f9f9f9
+}
+.bandeau {
+    text-align: left;
+    margin: 8px 10% 12px;
+    border-style: solid;
+    border-width: 1px 1px 1px 10px;
+    padding: 2px 10px
+}
+.bandeau table {
+    background-color: transparent
+}
+.bandeau-icone {
+    text-align: center;
+    width: 45px;
+    padding-right: 1em
+}
+.bandeau-titre {
+    font-size: 1.1em;
+    line-height: 1.4em
+}
+.bandeau-texte {
+    font-size: .9em;
+    line-height: 1.2em
+}
+.bandeau-problemes-multiples .bandeau-niveau-grave,
+.bandeau-problemes-multiples .bandeau-niveau-information,
+.bandeau-problemes-multiples .bandeau-niveau-modere {
+    background: 0 0!important;
+    border: none!important
+}
+.bandeau-problemes-multiples .bandeau {
+    margin: 0!important;
+    border-top: 1px solid grey!important;
+    border-bottom: 1px solid grey!important
+}
+.bandeau-problemes-multiples .NavContent {
+    background: 0 0!important;
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+    border-top: 1px solid grey!important;
+    border-bottom: 1px solid grey!important;
+    margin-left: 2em!important;
+    margin-right: 2em!important
+}
+.bandeau-ebauche-problemes-multiples .bandeau-niveau-ebauche {
+    margin-bottom: 0!important
+}
+.bandeau-ebauche-problemes-multiples .bandeau-problemes-multiples {
+    margin-top: 0!important
+}
+.bandeau-ebauche-problemes-multiples .bandeau-niveau-ebauche .bandeau-texte {
+    display: none
+}
+.bandeau-ebauche-problemes-multiples-niveau-grave .bandeau-niveau-ebauche {
+    border-color: #a04!important;
+    background-color: #fcc!important
+}
+.bandeau-ebauche-problemes-multiples-niveau-modere .bandeau-niveau-ebauche {
+    border-color: #f82!important;
+    background-color: #fed!important
+}
+.bandeau-ebauche-problemes-multiples-niveau-information .bandeau-niveau-ebauche {
+    border-color: #7cf!important;
+    background-color: #fbfbfb!important
+}
+.topbanner {
+    position: relative;
+    max-width: 1800px;
+    height: auto
+}
+.topbanner img {
+    max-width: 100%;
+    height: auto
+}
+.topbanner-box {
+    position: absolute;
+    z-index: 2;
+    margin-top: 1.5em;
+    color: #fff;
+    width: 50%;
+    min-width: 20em;
+    left: 2%;
+    text-align: left
+}
+.topbanner .name {
+    position: absolute;
+    z-index: 2;
+    margin: .6em 0 0 .4em;
+    padding: 8px 7px;
+    font-size: 2.2em;
+    background: #101010;
+    background: rgba(0, 0, 0, .5);
+    border-radius: 4px;
+    color: #fff;
+    line-height: .9em
+}
+.general,
+.loupe {
+    background-position: 2px 3px
+}
+.accessibilite,
+.archives,
+.biblio,
+.categorie,
+.commons,
+.conflit-edition,
+.en-travaux,
+.etoile-argent,
+.etoile-or,
+.extension,
+.general,
+.important,
+.incomplet,
+.incubator,
+.indentation,
+.information,
+.loupe,
+.metawiki,
+.recyclage,
+.sons,
+.sources,
+.videos,
+.wikibooks,
+.wikidata,
+.wikimedia,
+.wikinews,
+.wikipedia,
+.wikiquote,
+.wikisource,
+.wikispecies,
+.wikiversity,
+.wikivoyage,
+.wiktionary,
+.wwwmediawiki {
+    background-repeat: no-repeat;
+    line-height: 1.5em;
+    text-indent: 23px;
+    display: inline-block
+}
+.loupe {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/6/61/Searchtool.svg/15px-Searchtool.svg.png)
+}
+.general {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Nuvola_apps_download_manager2-70%25.svg/15px-Nuvola_apps_download_manager2-70%25.svg.png)
+}
+.accessibilite {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/4/44/Gnome-preferences-desktop-accessibility.svg/18px-Gnome-preferences-desktop-accessibility.svg.png);
+    background-position: 2px 0
+}
+.etoile-argent,
+.etoile-or {
+    background-position: 1px 1px
+}
+.etoile-or {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Fairytale_bookmark_gold.png/19px-Fairytale_bookmark_gold.png)
+}
+.etoile-argent {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/d/da/Fairytale_bookmark_silverstar.svg/19px-Fairytale_bookmark_silverstar.svg.png)
+}
+.categorie {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/3/34/Nuvola_apps_kpager.svg/21px-Nuvola_apps_kpager.svg.png);
+    background-position: 0 0
+}
+.biblio {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Books-aj.svg_aj_ashton_01.svg/20px-Books-aj.svg_aj_ashton_01.svg.png);
+    background-position: 2px 2px
+}
+.recyclage {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Recycle002.svg/20px-Recycle002.svg.png);
+    background-position: 1px 1px
+}
+.archives {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/9/94/Filing_cabinet_icon.svg/21px-Filing_cabinet_icon.svg.png);
+    background-position: 0 1px
+}
+.conflit-edition {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Human-emblem-important-blue-128.png/12px-Human-emblem-important-blue-128.png);
+    background-position: 0 3px;
+    text-indent: 16px;
+    line-height: 1.3em
+}
+.sons,
+.videos {
+    background-position: 1px 1px
+}
+.sons {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/4/44/Nuvola_apps_arts.png/18px-Nuvola_apps_arts.png)
+}
+.videos {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Nuvola_apps_kaboodle.svg/18px-Nuvola_apps_kaboodle.svg.png)
+}
+.incomplet {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Fairytale_waring.png/16px-Fairytale_waring.png);
+    background-position: 2px 3px
+}
+.sources {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/6/64/Question_book-4.svg/20px-Question_book-4.svg.png);
+    background-position: 1px 4px
+}
+.en-travaux,
+.important,
+.information {
+    background-position: 1px 2px
+}
+.important {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Nuvola_apps_important.svg/19px-Nuvola_apps_important.svg.png)
+}
+.en-travaux {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/8/81/Under_contruction_icon-yellow.svg/20px-Under_contruction_icon-yellow.svg.png)
+}
+.information {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Information_icon_with_gradient_background.svg/19px-Information_icon_with_gradient_background.svg.png)
+}
+.incubator {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Incubator-logo.svg/15px-Incubator-logo.svg.png);
+    background-position: 1px 1px
+}
+.extension {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/b/bb/MediaWiki-notext.svg/21px-MediaWiki-notext.svg.png);
+    background-position: 0 4px
+}
+.wikispecies {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/d/df/Wikispecies-logo.svg/17px-Wikispecies-logo.svg.png);
+    background-position: 1px 0
+}
+.wikisource {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Wikisource-logo.svg/17px-Wikisource-logo.svg.png);
+    background-position: 1px 1px
+}
+.wikipedia {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/6/63/Wikipedia-logo.png/19px-Wikipedia-logo.png);
+    background-position: 1px 0
+}
+.metawiki,
+.wikibooks {
+    background-position: 1px 1px
+}
+.wikibooks {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Wikibooks-logo.svg/19px-Wikibooks-logo.svg.png)
+}
+.metawiki {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/7/75/Wikimedia_Community_Logo.svg/18px-Wikimedia_Community_Logo.svg.png)
+}
+.wikiversity {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/9/91/Wikiversity-logo.svg/20px-Wikiversity-logo.svg.png);
+    background-position: 0 2px
+}
+.wiktionary {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Wiktionary-logo.svg/20px-Wiktionary-logo.svg.png);
+    background-position: 0 1px
+}
+.wikinews {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/2/24/Wikinews-logo.svg/20px-Wikinews-logo.svg.png);
+    background-position: 0 5px
+}
+.wikiquote {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Wikiquote-logo.svg/16px-Wikiquote-logo.svg.png);
+    background-position: 2px 1px
+}
+.commons {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Commons-logo.svg/14px-Commons-logo.svg.png);
+    background-position: 3px 0
+}
+.wikimedia {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/8/81/Wikimedia-logo.svg/20px-Wikimedia-logo.svg.png);
+    background-position: 0 0
+}
+.wikidata {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Wikidata-logo.svg/22px-Wikidata-logo.svg.png);
+    background-position: 0 5px
+}
+.wikivoyage {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Wikivoyage-Logo-v3-icon.svg/20px-Wikivoyage-Logo-v3-icon.svg.png);
+    background-position: 1px 1px
+}
+.wwwmediawiki {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/b/bb/MediaWiki-notext.svg/20px-MediaWiki-notext.svg.png);
+    background-position: 1px 3px
+}
+.grosse-icone {
+    display: table-cell;
+    padding-left: 60px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    text-indent: 0;
+    height: 48px
+}
+.diaporama .magnify,
+.mw-lag-warn-normal,
+.navboxHidden {
+    display: none
+}
+.grosse-icone.etoile-or {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Fairytale_bookmark_gold.png/40px-Fairytale_bookmark_gold.png)
+}
+.grosse-icone.etoile-argent {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/d/da/Fairytale_bookmark_silverstar.svg/40px-Fairytale_bookmark_silverstar.svg.png)
+}
+.grosse-icone.archives {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/9/94/Filing_cabinet_icon.svg/48px-Filing_cabinet_icon.svg.png)
+}
+.grosse-icone.ancienne-version {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Clock_and_warning.svg/46px-Clock_and_warning.svg.png)
+}
+.grosse-icone.maintenance {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Tools_nicu_buculei_01.svg/46px-Tools_nicu_buculei_01.svg.png)
+}
+.grosse-icone.protection-admin {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Crystal_Clear_action_lock1.png/46px-Crystal_Clear_action_lock1.png)
+}
+.grosse-icone.semi-protection {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Crystal_Clear_action_half_lock.png/46px-Crystal_Clear_action_half_lock.png)
+}
+.grosse-icone.roue-dentee {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Crystal_Clear_action_run.png/46px-Crystal_Clear_action_run.png)
+}
+.grosse-icone.conflit-edition {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/8/86/Passage_pieton_rouge.png/46px-Passage_pieton_rouge.png)
+}
+.grosse-icone.titre-protege {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/c/c4/System-lock-screen.svg/46px-System-lock-screen.svg.png)
+}
+.grosse-icone.gros-warning {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Octagon_delete.svg/46px-Octagon_delete.svg.png)
+}
+.grosse-icone.attention {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/f/f4/Ambox_content.png)
+}
+.grosse-icone.information {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/c/c8/Ambox_notice.png)
+}
+.grosse-icone.ebauche {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/5/55/Nuvola_apps_kedit.svg/46px-Nuvola_apps_kedit.svg.png)
+}
+.alerte {
+    padding: .11em;
+    background: #ffd;
+    margin-bottom: .4em;
+    font-style: italic
+}
+.grave {
+    border: 1px solid #f96
+}
+.messagebox {
+    border: 1px solid #aaa;
+    background: #f9f9f9;
+    width: 80%;
+    margin: 0 auto 1em;
+    padding: .2em;
+    text-align: justify
+}
+div.NavFrame,
+table.navbox {
+    text-align: center;
+    padding: 2px
+}
+.messagebox.standard-talk {
+    border: 1px solid #c0c090;
+    background: #f8eaba
+}
+.vectorbox {
+    width: 85%;
+    background: #f5faff;
+    border: 1px solid #a7d7f9;
+    border-radius: 10px;
+    margin: 0 auto 1em
+}
+.exemple {
+    margin: .5em;
+    padding: .5em;
+    border: 1px dashed #add8e6;
+    background: #fff
+}
+.mw-alerte {
+    width: 100%;
+    clear: both;
+    background: #faebd7;
+    border: 2px solid #ff8c00
+}
+.mw-toolbox {
+    font-size: 90%;
+    background: #f8f8f8;
+    border: 1px solid #b8b8b8;
+    padding: .25em 1em;
+    clear: both
+}
+div.NavFrame {
+    border: 1px #aaa;
+    border-collapse: collapse;
+    font-size: 95%
+}
+div.NavPic {
+    padding: 2px;
+    float: left
+}
+div.NavFrame div.NavHead {
+    font-weight: 700;
+    font-size: 100%;
+    background: #efefef
+}
+div.NavFrame div.NavContent,
+div.NavFrame div.NavContent p,
+div.NavFrame p {
+    font-size: 100%
+}
+div.NavEnd {
+    height: 0;
+    clear: both
+}
+table.navbox {
+    background: #f9f9f9;
+    border: 1px solid #aaa;
+    clear: both;
+    font-size: 89%;
+    margin: 1em 0 0;
+    width: 100%
+}
+table.navbox-subgroup {
+    background: 0 0;
+    border: 0;
+    font-size: 100%;
+    margin: -3px;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    width: calc(100% + 6px)
+}
+td.navbox-banner,
+th.navbox-group,
+th.navbox-title {
+    padding-left: 1em;
+    padding-right: 1em
+}
+.wikitable th[scope=row],
+table.navbox-subgroup td.navbox-list,
+th.navbox-group+td.navbox-list {
+    text-align: left
+}
+th.navbox-title {
+    background: #ccf
+}
+th.navbox-group {
+    width: 150px
+}
+td.navbox-even {
+    background: #f0f0ff
+}
+table.navbox-subgroup td.navbox-even {
+    background: 0 0
+}
+td.navbox-banner {
+    background: #ddf
+}
+.treeview li,
+.treeview ul {
+    padding: 0;
+    margin: 0
+}
+div.navbox-container {
+    border: 1px solid #aaa;
+    margin-top: 1em
+}
+div.navbox-container table.navbox {
+    border: 0;
+    margin: 0
+}
+.NavToggle,
+.navboxToggle {
+    font-size: 90%;
+    font-weight: 400;
+    float: right!important;
+    min-width: 6em
+}
+.diaporamaControl img {
+    background-color: #fff;
+    border: 1px solid #ddd
+}
+.diaporamaControl .ScrollBar {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Round_Edge.png/5px-Round_Edge.png);
+    background-position: top;
+    background-repeat: repeat-x
+}
+.diaporamaControl .ScrollBarContainer {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Round_Edge_bis.png/5px-Round_Edge_bis.png);
+    background-position: top;
+    background-repeat: repeat-x
+}
+.diaporama select {
+    font-size: 12px;
+    margin-left: .5em
+}
+table.gauche,
+table.left {
+    float: left;
+    margin: 0 1em 1em 0
+}
+table.droite,
+table.right {
+    float: right;
+    margin: 0 0 1em 1em
+}
+table.center,
+table.centre,
+table.wikitable[align=center] {
+    margin: 1em auto
+}
+table.nocellpadding>*>tr>td,
+table.nocellpadding>*>tr>th {
+    padding: 0
+}
+.alternance,
+.alternance2 {
+    border-collapse: collapse
+}
+table.alternance2>*>tr>th,
+table.alternance>*>tr>th {
+    background: #e6e6e6
+}
+.alternance th[scope=row],
+.alternance tr {
+    background: #fcfcfc
+}
+.alternance.sortable tr:nth-child(even),
+.alternance.sortable tr:nth-child(even) th[scope=row],
+.alternance2 th[scope=row],
+.alternance2 tr,
+.alternance:not(.sortable) tr:nth-child(odd),
+.alternance:not(.sortable) tr:nth-child(odd) th[scope=row] {
+    background: #eee
+}
+.alternance2 tr:nth-child(odd),
+.alternance2 tr:nth-child(odd) th[scope=row] {
+    background: #fcfcfc
+}
+table.titre-en-couleur>*>tr>th {
+    background: 0 0
+}
+.liste-horizontale li,
+.liste-horizontale ol,
+.liste-horizontale ul {
+    margin-left: 0;
+    display: inline;
+    white-space: nowrap
+}
+.liste-horizontale li:after {
+    content: " "
+}
+.liste-horizontale li+li:before {
+    white-space: normal;
+    content: "· ";
+    font-weight: 700
+}
+.liste-horizontale li li:first-child:before {
+    white-space: normal;
+    content: " ("
+}
+.liste-horizontale li ol:after,
+.liste-horizontale li ul:after {
+    content: ")";
+    margin-left: -.28em
+}
+.liste-horizontale ol>li:first-child:before {
+    content: "1.\202F"
+}
+.liste-horizontale li ol>li:first-child:before {
+    content: " (1.\202F"
+}
+.liste-horizontale ol>li+li:before {
+    content: "· " counter(listitem) ".\202F";
+    font-weight: 400
+}
+.liste-simple ul {
+    line-height: inherit;
+    list-style: none;
+    margin: 0
+}
+.liste-simple ul li {
+    margin-bottom: 0
+}
+.treeview li li {
+    background: url(//upload.wikimedia.org/wikipedia/commons/f/f2/Treeview-grey-line.png) 0 -2981px no-repeat;
+    padding-left: 20px;
+    text-indent: .3em
+}
+.treeview li li.lastline {
+    background-position: 0 -5971px
+}
+.treeview li.emptyline>ul {
+    margin-left: -1px
+}
+.treeview li.emptyline>ul>li:first-child {
+    background-position: 0 9px
+}
+.mw-templatedata-doc-desc+p,
+.mw-templatedata-doc-param-name code:first-of-type {
+    font-weight: 700
+}
+.mw-templatedata-doc-params dl {
+    font-size: 85%;
+    margin: .5em 1em
+}
+.mw-templatedata-doc-params dt {
+    float: left;
+    clear: both;
+    font-weight: 400;
+    font-style: italic
+}
+.mw-templatedata-doc-params dt::after {
+    content: "\a0:\a0"
+}
+.mw-templatedata-doc-params dd {
+    float: left;
+    margin: 0
+}
+.mw-templatedata-doc-muted {
+    color: grey
+}
+#bandeau-portail {
+    border: 1px solid #aaa;
+    background-color: #f9f9f9;
+    text-align: center;
+    margin-top: 1em
+}
+#bandeau-portail,
+#liste-portail {
+    padding: 4px;
+    margin-left: 0;
+    clear: both
+}
+#bandeau-portail li,
+#liste-portail li {
+    display: inline
+}
+.bandeau-portail-element {
+    white-space: nowrap;
+    margin: auto 1.5em
+}
+.bandeau-portail-icone {
+    margin-right: .5em
+}
+.bandeau-portail-texte {
+    font-weight: 700
+}
+.portail-gauche {
+    float: left
+}
+.portail-droite {
+    float: right
+}
+.portail-gauche-inner {
+    padding-right: 1rem
+}
+@media (max-width: 981px) {
+    .portail-droite,
+    .portail-gauche {
+        float: none;
+        width: auto!important
+    }
+    .portail-gauche-inner {
+        padding-right: 0
+    }
+}
+.accueil-contenu {
+    margin: .4em -1% .4em 0;
+    display: flex;
+    flex-flow: wrap
+}
+.accueil-droite,
+.accueil-gauche {
+    display: flex;
+    flex-flow: wrap;
+    align-content: flex-start;
+    margin: .4em 1% .4em 0;
+    border: 1px solid #a7d7f9;
+    border-radius: 1em
+}
+.accueil-cadre .mw-headline-number,
+body.page-Wikipédia_Accueil_principal .mw-headline-number {
+    display: none
+}
+.accueil-droite {
+    background: #f5faff;
+    flex: 21em
+}
+.accueil-gauche {
+    flex: 2 35em;
+    float: left;
+    width: 64%
+}
+.accueil-cadre {
+    padding: 1.2em
+}
+body.action-view.page-Wikipédia_Accueil_principal #firstHeading {
+    position: absolute;
+    top: -5000px
+}
+#interwiki-listecomplete {
+    font-weight: 700
+}
+#accueil_2017_en-tete {
+    background: linear-gradient(to bottom, #fff, #e8f2f8);
+    border-bottom: solid 1px #a8d7fc
+}
+#accueil_2017_bandeau {
+    background: url(https://upload.wikimedia.org/wikipedia/commons/a/aa/Wikipedia-logo-v2-o50.svg) -110px -15px no-repeat;
+    background-size: 300px 300px;
+    padding-bottom: 1rem
+}
+#accueil_2017_bandeau .bloc-titre {
+    display: inline;
+    display: inline-block;
+    margin: auto auto auto 14rem;
+    text-align: left;
+    line-height: 1.6;
+    color: #457
+}
+#accueil_2017_bandeau .sous-titre {
+    margin: 0;
+    padding: 0;
+    font-size: 95%;
+    font-family: Sans-serif
+}
+#accueil_2017_bandeau h2.titre-wikipedia {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 200%;
+    font-weight: 700;
+    color: #457;
+    font-family: 'Open Sans', Sans-serif
+}
+.accueil_2017_cadre {
+    box-shadow: 0 0 .3rem #999;
+    border-radius: .2rem;
+    padding: 1.2rem;
+    margin: 1rem 0 1.6rem
+}
+#accueil-pied .accueil_2017_cadre {
+    margin-top: 0
+}
+.accueil_2017_titres {
+    letter-spacing: .01em;
+    display: block;
+    border-bottom: solid .2rem #bdd8fb;
+    margin: -.4rem 0 .5rem!important
+}
+.accueil_2017_pied {
+    padding: 1.3em 0 0;
+    font-size: 85%;
+    text-align: right
+}
+.globegris {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/1/10/Wikipedia-logo-v2-200px-transparent.png);
+    background-repeat: no-repeat;
+    background-position: -40px -15px
+}
+.assistant {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/6/67/Nuvola_apps_khelpcenter_25%25.png)
+}
+.headergris {
+    background: url(//upload.wikimedia.org/wikipedia/commons/1/1b/Wikibar2.png) right no-repeat #f0f0f0;
+    margin: 0;
+    font-size: 120%;
+    font-weight: 700;
+    border: 1px solid #a3b0bf;
+    text-align: left;
+    color: #000;
+    padding: .15em .4em
+}
+.infobox_v2 .entete,
+.infobox_v2 .media {
+    font-weight: bolder;
+    vertical-align: middle
+}
+.cadregris {
+    border: 1px solid #aaa;
+    background: #fcfcfc;
+    vertical-align: top;
+    padding: 7px;
+    margin-bottom: .6em
+}
+.accueil_cadre_lien {
+    text-align: right;
+    margin-right: .5em;
+    font-size: xx-small
+}
+.infobox_v2,
+div.infobox_v3 {
+    border: 1px solid #aaa;
+    clear: right;
+    float: right;
+    margin: 0 0 .5em 1em
+}
+.tablelignesferroviaires td {
+    white-space: nowrap
+}
+.infobox_v2 {
+    background: #f9f9f9;
+    color: #000;
+    font-size: 90%;
+    line-height: 1.2em;
+    width: 294px;
+    border-spacing: 5px
+}
+.infobox_v2 th {
+    vertical-align: super;
+    text-align: left
+}
+.infobox_v2 .entete {
+    height: 43px;
+    text-align: center;
+    font-size: 140%;
+    line-height: 1.1em;
+    color: #000
+}
+.infobox_v2 .media {
+    height: 35px;
+    text-align: center;
+    color: #000
+}
+.entete {
+    background-position: right center;
+    background-repeat: no-repeat
+}
+.entete.aerostat {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/7/7e/Picto_infobox_aerostat.png)
+}
+.entete.aikido {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Aikido_pictogram.svg/40px-Aikido_pictogram.svg.png)
+}
+.entete.alpinisme {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/d/df/Picto_infobox_alpinisme.png)
+}
+.entete.alpinisme-escalade {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/f/f4/Picto_infobox_alpinisme-escalade.png)
+}
+.entete.arbitre {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Referee_football_pictogram.svg/35px-Referee_football_pictogram.svg.png)
+}
+.entete.arc {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Archery_pictogram.svg/35px-Archery_pictogram.svg.png)
+}
+.entete.archives2 {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/d/d6/Picto_infobox_archives.png)
+}
+.entete.artiste {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/f/f3/Picto_infobox_artiste.png)
+}
+.entete.artsmartiauxjap {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/8/81/Picto_infobox_samourai.png)
+}
+.entete.association {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Collaboration_logo_infobox.svg/50px-Collaboration_logo_infobox.svg.png)
+}
+.entete.athletisme {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Athletics_pictogram.svg/40px-Athletics_pictogram.svg.png)
+}
+.entete.audio {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Gnome-speakernotes.png/35px-Gnome-speakernotes.png)
+}
+.entete.auteur {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/1/1e/Picto_infobox_auteur.png)
+}
+.entete.aviron {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/5/57/Rowing_pictogram.svg/35px-Rowing_pictogram.svg.png)
+}
+.entete.badminton {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/9/90/Badminton_pictogram.svg/35px-Badminton_pictogram.svg.png)
+}
+.entete.baseball {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Baseball_pictogram.svg/35px-Baseball_pictogram.svg.png)
+}
+.entete.basket-ball {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/f/f4/Picto_Infobox_Basketball.png)
+}
+.entete.bd {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/2/2c/Picto_infobox_comicballoon.png)
+}
+.entete.biathlon {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/0/00/Biathlon_pictogram.svg/40px-Biathlon_pictogram.svg.png)
+}
+.entete.biere {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/0/04/Picto_infobox_beer.png)
+}
+.entete.boxe {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Boxing_pictogram.svg/35px-Boxing_pictogram.svg.png)
+}
+.entete.calendrier {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/4/4a/Almanacco.png)
+}
+.entete.canada {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/6/6a/Picto_infobox_Canada.png)
+}
+.entete.cardinal {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/0/03/Picto_infobox_cardinal.png)
+}
+.entete.catch {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/7/79/Picto_infobox_catch.png)
+}
+.entete.chateau {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/5/5c/Picto_infobox_chateau.png)
+}
+.entete.chimie {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/c/ce/Picto_infobox_chemistry_HUN.png)
+}
+.entete.cinema {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/e/ea/Picto_infobox_cinema.png)
+}
+.entete.communication {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/a/a2/Picto_infobox_antenna.png)
+}
+.entete.cyclisme {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/8/86/Cycling_%28road%29_pictogram.svg/45px-Cycling_%28road%29_pictogram.svg.png)
+}
+.entete.deportation {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/e/e0/Picto_Infobox_deportation.png)
+}
+.entete.diplomatie {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/e/e0/Picto_infobox_ambassade.png)
+}
+.entete.disney {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/d/d3/Picto_infobox_Disney.png)
+}
+.entete.drone-civil {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/c/ce/Picto_infobox_civil_drone.png)
+}
+.entete.egypte-antique {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/c/cc/Picto_infobox_ancient_Egypt.png)
+}
+.entete.equitation {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/2/24/Equestrian_pictogram.svg/35px-Equestrian_pictogram.svg.png)
+}
+.entete.entreprise {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/1/19/Factory_black.png/40px-Factory_black.png)
+}
+.entete.entreprise-blanc {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Factory_white.png/40px-Factory_white.png)
+}
+.entete.escalade {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/e/e1/Picto_infobox_escalade.png)
+}
+.entete.escrime {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/0/02/Fencing_pictogram.svg/35px-Fencing_pictogram.svg.png)
+}
+.entete.espagne {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/1/11/Picto_Infobox_Coat_of_Arms_of_Spain.png)
+}
+.entete.eveque {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/b/b3/Picto_infobox_bishop.png)
+}
+.entete.floorball {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Floorball_pictogram.svg/35px-Floorball_pictogram.svg.png)
+}
+.entete.fondeur {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Cross_country_skiing_pictogram.svg/40px-Cross_country_skiing_pictogram.svg.png)
+}
+.entete.football {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/f/f8/Infobox_Football_pictogram.png)
+}
+.entete.footballblack {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/8/86/Picto_infobox_fotbal_2.png)
+}
+.entete.futsal {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Futsal_pictogram.svg/35px-Futsal_pictogram.svg.png)
+}
+.entete.golf {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Golf_pictogram.svg/35px-Golf_pictogram.svg.png)
+}
+.entete.grappe {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/6/66/Picto_info_grape.png)
+}
+.entete.gymnastique {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/1/12/Gymnastics_%28artistic%29_pictogram.svg/35px-Gymnastics_%28artistic%29_pictogram.svg.png)
+}
+.entete.handball {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/3/37/Handball_pictogram_white.svg/35px-Handball_pictogram_white.svg.png)
+}
+.entete.handballblack {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/5/52/Handball_pictogram.svg/35px-Handball_pictogram.svg.png)
+}
+.entete.helicoptere {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/f/fa/Picto_infobox_helicopter.png)
+}
+.entete.hockey {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/e/ee/Picto_Infobox_Ice_hockey.png)
+}
+.entete.hockey-sur-gazon {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Field_hockey_pictogram.svg/35px-Field_hockey_pictogram.svg.png)
+}
+.entete.hospitaliers {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/1/1e/Picto_infobox_Hospitaliers.png)
+}
+.entete.humain {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/8/82/Picto_infobox_manwoman.png)
+}
+.entete.informatique {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/a/ae/Picto-infoboxinfo.png)
+}
+.entete.israel-judaisme {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/a/a5/Picto_infobox_israel-judaisme.png)
+}
+.entete.jeu {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/9/90/Picto_infobox_Game.png)
+}
+.entete.jeu-role {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/d/d8/Picto_infobox_Jeu_de_rôle.png)
+}
+.entete.jeuvideo {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/2/2d/Picto_infobox_gamepad.png)
+}
+.entete.judo {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Judo_pictogram.svg/40px-Judo_pictogram.svg.png)
+}
+.entete.karate {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Karate_pictogram.svg/40px-Karate_pictogram.svg.png)
+}
+.entete.kayak {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Canoeing_%28flatwater%29_pictogram.svg/35px-Canoeing_%28flatwater%29_pictogram.svg.png)
+}
+.entete.kickboxing {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Kickboxing_pictogram.svg/40px-Kickboxing_pictogram.svg.png)
+}
+.entete.lutte {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/1/12/Wrestling_pictogram.svg/40px-Wrestling_pictogram.svg.png)
+}
+.entete.macintosh {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/2/20/Picto_infobox_Macintosh.png)
+}
+.entete.map {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/7/7a/Picto_infobox_map.png)
+}
+.entete.medecine {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/2/23/Picto_infobox_med.png)
+}
+.entete.mets {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/a/aa/Picto_infobox_mets.png)
+}
+.entete.militaire {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/0/03/Picto_infobox_military.png)
+}
+.entete.montreal-metro {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/b/ba/Picto_infobox_Mtl_metro.png)
+}
+.entete.montreal-train {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/9/99/Picto_infobox_Mtl_train.png)
+}
+.entete.moteur-avion {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/9/9c/Picto_Infobox_moteur_d%27avion.png)
+}
+.entete.musee {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/a/ac/Infobox_museum_pictogram.png)
+}
+.entete.musique {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/6/60/Picto_infobox_music.png)
+}
+.entete.natation {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Swimming_pictogram_white.png/35px-Swimming_pictogram_white.png)
+}
+.entete.oenologie {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/7/73/Icone_oenobox.png)
+}
+.entete.omnisports {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Sport3_icone.svg/35px-Sport3_icone.svg.png)
+}
+.entete.papyrus {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/1/1b/Picto_infobox_papyrus.png)
+}
+.entete.paralympique {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/5/5e/Picto_infobox_Paralympics.png)
+}
+.entete.persofiction {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/3/37/Picto_infobox_masks.png)
+}
+.entete.petrole {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/b/ba/Picto_Infobox_Oil.png)
+}
+.entete.planeur {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/5/54/Picto_infobox_planeur.png)
+}
+.entete.plateforme {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/5/5d/Picto_Infobox_Oil_Platform.png)
+}
+.entete.poker {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Crystal_Clear_app_Cardgame-3.svg/50px-Crystal_Clear_app_Cardgame-3.svg.png)
+}
+.entete.presse {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/2/23/Picto_infobox_journal.png)
+}
+.entete.pretendant {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/5/5f/Picto_infobox_pr%C3%A9tendant_%C3%A0_un_tr%C3%B4ne.png)
+}
+.entete.projet {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/c/cb/Picto_infobox_tools.png)
+}
+.entete.psychologie {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/7/77/Picto_infobox_psycho.png)
+}
+.entete.quebec {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/2/21/Picto_infobox_Quebec.png)
+}
+.entete.recherche {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/c/c1/Picto_infobox_detective.png)
+}
+.entete.rinkhockey {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Roller_hockey_pictogram.svg/35px-Roller_hockey_pictogram.svg.png)
+}
+.entete.rome-antique {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/3/3c/Picto_infobox_Roman_military_banner.png)
+}
+.entete.route {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/e/e7/Infobox_road_pictogram.png)
+}
+.entete.rugby {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/0/06/Picto_Infobox_Rugby.png)
+}
+.entete.rugbyblack {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Rugby_union_pictogram.svg/35px-Rugby_union_pictogram.svg.png)
+}
+.entete.sautski {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Ski_jumping_pictogram.svg/40px-Ski_jumping_pictogram.svg.png)
+}
+.entete.science-fiction {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/e/ed/Picto_infobox_fliyingsaucer.png)
+}
+.entete.ski-alpin {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Alpine_skiing_pictogram.svg/40px-Alpine_skiing_pictogram.svg.png)
+}
+.entete.sport {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/8/8e/Picto_infobox_Olympic.png)
+}
+.entete.sport-automobile {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/a/af/Picto_infobox_sport_auto.png)
+}
+.entete.squash {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/d/da/Squash_pictogram.svg/35px-Squash_pictogram.svg.png)
+}
+.entete.surf {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Surfing_pictogram.svg/35px-Surfing_pictogram.svg.png)
+}
+.entete.taekwondo {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Taekwondo_pictogram.svg/40px-Taekwondo_pictogram.svg.png)
+}
+.entete.television {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/a/a6/Picto_infobox_TV-T%26PC.png)
+}
+.entete.tennis {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tennis_pictogram.svg/35px-Tennis_pictogram.svg.png)
+}
+.entete.tennis-de-table {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Table_tennis_pictogram_white.svg/40px-Table_tennis_pictogram_white.svg.png)
+}
+.entete.tennis-de-tableblack {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/8/85/Table_tennis_pictogram.svg/35px-Table_tennis_pictogram.svg.png)
+}
+.entete.timbre {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/b/b3/Picto_infobox_Stamps.png)
+}
+.entete.train {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/4/44/Picto_infobox_train.png)
+}
+.entete.triathlon {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Triathlon_pictogram.svg/40px-Triathlon_pictogram.svg.png)
+}
+.entete.ultimate {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Ultimate_pictogram.svg/70px-Ultimate_pictogram.svg.png)
+}
+.entete.union-europeenne {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/c/c0/Picto_Infobox_Europe.png)
+}
+.entete.universite {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/4/42/Picto_infobox_book.png)
+}
+.entete.video {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/2/20/Tango-video-x-generic.png/35px-Tango-video-x-generic.png)
+}
+.entete.voile {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Sailing_pictogram.svg/40px-Sailing_pictogram.svg.png)
+}
+.entete.volleyball {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Volleyball_%28indoor%29_pictogram.svg/35px-Volleyball_%28indoor%29_pictogram.svg.png)
+}
+.entete.water-polo {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Water_polo_pictogram.svg/40px-Water_polo_pictogram.svg.png)
+}
+.entete.snooker {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Cue_sports_pictogram.svg/40px-Cue_sports_pictogram.svg.png)
+}
+.media.audio {
+    background: url(//upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Gnome-speakernotes.png/35px-Gnome-speakernotes.png) left top no-repeat
+}
+.media.video {
+    background: url(//upload.wikimedia.org/wikipedia/commons/thumb/2/20/Tango-video-x-generic.png/35px-Tango-video-x-generic.png) left top no-repeat
+}
+.img_toogle ul {
+    text-align: center;
+    list-style: none!important
+}
+div.infobox_v3 {
+    padding: 5px;
+    width: 25em;
+    background: #f9f9f9;
+    font-size: .9em;
+    line-height: 1.4;
+    max-width: 325px;
+    word-wrap: break-word
+}
+.infobox_v3 .entete {
+    display: table;
+    height: 45px;
+    width: 100%;
+    font-weight: 700;
+    text-align: center;
+    font-size: 1.4em;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    background-color: #dfedff
+}
+.infobox_v3 .entete>div {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 3px
+}
+.infobox_v3:not(.large) .entete.icon>div {
+    padding: 3px 48px
+}
+.infobox_v3 .images {
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center
+}
+.infobox_v3 .images a {
+    max-width: 100%;
+    flex: 0 0 auto
+}
+.infobox_v3 .deux-images a {
+    max-width: 48%
+}
+.infobox_v3 .images img {
+    max-width: 100%;
+    height: auto
+}
+.infobox_v3 .legend {
+    font-size: .9em;
+    text-align: center;
+    margin: 5px 0 8px
+}
+.infobox_v3 table {
+    width: 100%;
+    margin: 5px 0;
+    table-layout: fixed;
+    border-collapse: collapse
+}
+.infobox_v3 th[scope=col] {
+    text-align: center;
+    word-wrap: normal
+}
+.infobox_v3 th[scope=row] {
+    text-align: left;
+    padding-right: 10px;
+    width: 8em;
+    max-width: 140px;
+    word-wrap: normal
+}
+.infobox_v3 td,
+.infobox_v3 th[scope=row] {
+    padding-top: 4px;
+    vertical-align: super
+}
+.infobox_v3 th[scope=row].middle {
+    vertical-align: middle
+}
+.infobox_v3.bordered td,
+.infobox_v3.bordered th[scope=row] {
+    padding-bottom: 4px;
+    border-top: 1px solid #dfedff
+}
+.infobox_v3.bordered caption.bordered {
+    margin: 0 0 -1px
+}
+.infobox_v3 tr.left td {
+    text-align: left
+}
+.infobox_v3 tr.vborder td {
+    border-left: 1px dotted #aaa
+}
+.infobox_v3 tr.vborder td:first-child {
+    border-left: none
+}
+.infobox_v3 td.data {
+    text-align: center
+}
+.infobox_v3 tr:first-child ul:first-child {
+    margin-top: 0
+}
+.infobox_v3 caption,
+.infobox_v3 p.bloc {
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.1;
+    margin: 0 0 5px;
+    padding: 4px;
+    background: #dfedff
+}
+.aa-faux-h2,
+.aa-faux-h3,
+.taxobox_v3 th {
+    font-weight: 400
+}
+.infobox_v3 p.bloc {
+    margin: 5px 0
+}
+.infobox_v3 caption.bordered,
+.infobox_v3 p.bordered {
+    border-top: 1px solid #dfedff;
+    border-bottom: 1px solid #dfedff;
+    background: 0 0
+}
+.infobox_v3 .bordered.nav,
+.infobox_v3 .bordered.navbar {
+    padding-top: 4px;
+    border-bottom: 0
+}
+.infobox_v3 caption.hidden {
+    margin: 0!important;
+    padding: 0!important
+}
+.infobox_v3 .hr {
+    font-size: 1px;
+    line-height: 1px;
+    margin: 5px 0;
+    background-color: #dfedff
+}
+.infobox_v3 .hr.collapse {
+    margin: 5px 0 -8px
+}
+.infobox_v3 .navbar {
+    text-align: right;
+    font-size: .8em;
+    line-height: 1.1;
+    margin: 8px 0 0
+}
+.infobox_v3 .navbar .plainlinks {
+    float: left
+}
+.infobox_v3 .prev a,
+.infobox_v3 .prev_bloc {
+    background: url(//upload.wikimedia.org/wikipedia/commons/thumb/4/49/ArrowLeftNavbox.svg/12px-ArrowLeftNavbox.svg.png) left center no-repeat;
+    float: left;
+    max-width: 40%;
+    padding: 0 0 0 18px;
+    text-align: left
+}
+.infobox_v3 .next a,
+.infobox_v3 .next_bloc {
+    background: url(//upload.wikimedia.org/wikipedia/commons/thumb/1/10/ArrowRightNavbox.svg/12px-ArrowRightNavbox.svg.png) right center no-repeat;
+    float: right;
+    max-width: 40%;
+    padding: 0 18px 0 0;
+    text-align: right
+}
+.infobox_v3 table.maillot-equipe td {
+    padding: 0
+}
+.infobox_v3 table.maillot-equipe {
+    table-layout: auto
+}
+.taxobox_v3 {
+    font-size: .99em!important;
+    padding: 1px
+}
+.taxobox_v3 caption,
+.taxobox_v3 p.bloc,
+div.taxobox_v3 .entete {
+    font-style: normal
+}
+div.taxobox_v3.bordered td,
+div.taxobox_v3.bordered th[scope=row] {
+    padding-bottom: 4px;
+    border-top: 1px solid #ededed
+}
+div.taxobox_v3.animal .entete {
+    background-color: #ffa07a
+}
+.taxobox_v3.animal caption,
+.taxobox_v3.animal p.bloc {
+    background-color: Bisque
+}
+div.taxobox_v3.plante .entete {
+    background-color: #90ee90
+}
+.taxobox_v3.plante caption,
+.taxobox_v3.plante p.bloc {
+    background-color: #cfc
+}
+div.taxobox_v3.champignon .entete {
+    background-color: #87ceeb
+}
+.taxobox_v3.champignon caption,
+.taxobox_v3.champignon p.bloc {
+    background-color: #b0e0e6
+}
+div.taxobox_v3.test .entete {
+    background-color: #50a0a0
+}
+.taxobox_v3.test caption,
+.taxobox_v3.test p.bloc {
+    background-color: #70c0c0
+}
+div.taxobox_v3.algue .entete {
+    background-color: #66cdaa
+}
+.taxobox_v3.algue caption,
+.taxobox_v3.algue p.bloc {
+    background-color: #bfffe6
+}
+div.taxobox_v3.archaea .entete {
+    background-color: #a9a9a9
+}
+.taxobox_v3.archaea caption,
+.taxobox_v3.archaea p.bloc {
+    background-color: #d3d3d3
+}
+div.taxobox_v3.protiste .entete {
+    background-color: khaki
+}
+.taxobox_v3.protiste caption,
+.taxobox_v3.protiste p.bloc {
+    background-color: #eee8aa
+}
+div.taxobox_v3.virus .entete {
+    background-color: #d1d1f9
+}
+.taxobox_v3.virus caption,
+.taxobox_v3.virus p.bloc {
+    background-color: #e6e6fa
+}
+.taxobox_v3.neutre caption,
+.taxobox_v3.neutre p.bloc,
+div.taxobox_v3.neutre .entete {
+    background-color: #eee
+}
+div.taxobox_v3.bacterie .entete,
+div.taxobox_v3.eucaryote .entete,
+div.taxobox_v3.procaryote .entete {
+    background-color: #d3d3d3
+}
+.taxobox_v3.bacterie caption,
+.taxobox_v3.bacterie p.bloc,
+.taxobox_v3.eucaryote caption,
+.taxobox_v3.eucaryote p.bloc,
+.taxobox_v3.procaryote caption,
+.taxobox_v3.procaryote p.bloc {
+    background-color: #e6e6e6
+}
+div.taxobox_v3 .taxobox_classification {
+    font-style: italic
+}
+div.taxobox_v3 .taxobox_classification .rnormal,
+div.taxobox_v3 th[scope=row],
+div.taxobox_v3.zoologie .taxobox_classification .normal {
+    font-style: normal
+}
+.taxoalternance.wikitable th[scope=row],
+table.taxoalternance tr {
+    background: #fff
+}
+.taxoalternance.wikitable tr:nth-child(odd) th[scope=row],
+table.taxoalternance tr:nth-child(odd) {
+    background: #f5f5f5
+}
+.degrade,
+.degrade_rev {
+    background-repeat: repeat-x
+}
+.degrade,
+.degrade_double,
+.degrade_rev {
+    background-position: top
+}
+.degrade {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/f/fb/Gradient_43px.png);
+    background-size: 100% 100%
+}
+.degrade_rev {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/6/61/Gradient_reversed_43px.png)
+}
+.degrade_double {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/b/ba/Double_Gradient_60px_V.png);
+    background-repeat: repeat
+}
+.hidden {
+    position: absolute;
+    left: 0;
+    top: -5000px;
+    width: 1px;
+    height: 1px
+}
+caption.hidden {
+    position: static;
+    text-indent: -5000px
+}
+.img_toogle div,
+.img_toogle table,
+.img_toogle ul {
+    margin: 0 auto!important
+}
+.img_toogle .a_toogle {
+    display: block;
+    text-align: center!important;
+    font-size: .95em
+}
+.toc_niveau_1 ul ul,
+.toc_niveau_2 ul ul ul,
+.toc_niveau_3 ul ul ul ul,
+.toc_niveau_4 ul ul ul ul ul,
+.toc_niveau_5 ul ul ul ul ul ul,
+.ve-ui-mwSaveDialog .bandeau-icone {
+    display: none
+}
+.img_toogle .geobox {
+    position: relative
+}
+.img_toogle .geobox+.geobox {
+    border-top: 5px solid #aaa
+}
+.img_toogle .geopoint {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    font-size: 1px;
+    border: 1px solid #000;
+    background: red
+}
+ul.gallery {
+    margin: 2px auto;
+    text-align: center
+}
+.gallerytext {
+    text-align: left;
+    font-size: 89%
+}
+.mw-gallery-slideshow-caption .gallerytext {
+    text-align: center
+}
+.autres-projets ul {
+    margin: 0;
+    padding: 0
+}
+.autres-projets li {
+    margin: .2em 0;
+    text-indent: 0;
+    padding-left: 24px;
+    min-height: 20px;
+    text-align: left
+}
+.autres-projets .titre {
+    text-align: center;
+    margin: .2em 0
+}
+.autres-projets li a {
+    font-style: italic
+}
+.mw-textarea-protected {
+    border: 2px solid red;
+    color: navy
+}
+.transborder {
+    border: solid transparent
+}
+.mw-abusefilter-diff-context,
+.mw-abusefilter-diff-multiline td {
+    word-wrap: break-word;
+    max-width: 40em
+}
+.communes th[scope=col] {
+    background-color: #dfd
+}
+.localites th[scope=col] {
+    background-color: #ffb
+}
+.intercommunalites th[scope=col] {
+    background-color: #ffe2bf
+}
+.cantons th[scope=col] {
+    background-color: #ece5ca
+}
+.arrondissements th[scope=col] {
+    background-color: #e1e1e1
+}
+.departements th[scope=col] {
+    background-color: #f6f3dd
+}
+.regions th[scope=col] {
+    background-color: #bbdefd
+}
+.ve-ui-mwSaveDialog #cpwarn {
+    background: 0 0;
+    color: #111;
+    padding: 3px
+}
+.ve-ui-mwSaveDialog #avertissement-filtre {
+    background: 0 0;
+    border: none;
+    margin: 0;
+    padding: 0
+}
+.ve-ui-mwSaveDialog .grosse-icone {
+    background: 0 0;
+    padding: 0
+}
+#aa-bloc-tete {
+    display: table;
+    width: 100%
+}
+#aa-bloc-droite,
+#aa-bloc-gauche {
+    display: table-cell;
+    vertical-align: middle
+}
+#aa-bloc-droite {
+    width: 30%
+}
+#aa-bloc-dessous {
+    padding: 5px 10px
+}
+#aa-bloc-tete h2 {
+    margin-top: 4pt
+}
+.aa-fond-gris {
+    background-color: #f6f6f6;
+    padding: 10px;
+    font-size: 1.1em
+}
+.aa-fond-avertissement,
+.aa-fond-blanc {
+    background-color: #fff;
+    padding: 10px
+}
+.aa-filet-gris {
+    border: 1px solid #ccc;
+    border-left-width: 6px
+}
+.aa-fond-avertissement {
+    display: block;
+    border-bottom: 1px solid #c00
+}
+.aa-titre-bleu {
+    color: #36b;
+    border: none
+}
+.aa-titre-rouge {
+    color: #c00;
+    border: none
+}
+.aa-titre-vert {
+    color: #008769;
+    border: none
+}
+.aa-faux-h2 {
+    line-height: 1.3;
+    font-size: 1.5em;
+    font-family: "Linux Libertine", Georgia, Times, serif
+}
+.aa-faux-h3 {
+    font-size: 1.17em
+}
+.aa-en-tete-aide-largeur {
+    max-width: 1000px
+}
+.aa-en-tete-aide-droite {
+    width: 140px;
+    float: right;
+    background: #fff;
+    padding: 6px;
+    margin-left: 20px;
+    font-size: .9em
+}
+.aa-en-tete-aide-ariane {
+    font-size: .9em;
+    display: block;
+    margin: 0 0 5px 10px;
+    padding: 5px 5px 5px 0
+}
+.client-js .template-noscript,
+body.action-view.page-Wikipédia_Accueil_principal #contentSub {
+    display: none
+}
+.aa-en-tete-aide-chapo {
+    font-size: 1.2em;
+    margin: 10px 166px 10px 10px
+}
+.aa-en-tete-aide-petit {
+    font-size: .8em
+}
+.aa-couleur-aide {
+    color: #ff5d00
+}
+.aa-couleur-niveau-avance {
+    padding: 3px;
+    color: #fff;
+    background: #347bff
+}
+.aa-couleur-niveau-expert {
+    padding: 3px;
+    color: #fff;
+    background: #d11813
+}
+.aa-couleur-niveau-debutant {
+    padding: 3px;
+    color: #fff;
+    background: #00af89
+}
+.aa-en-tete-aide-statut {
+    background: #ffe7db;
+    padding: 3px
+}
+ol.references {
+    font-size: 85%
+}
+.ns-talk .mw-body-content dd {
+    margin: 0;
+    padding: 0
+}
+.ns-talk .mw-body-content dl {
+    border-top: solid 1px #a7d7f9;
+    border-left: solid 1px #a7d7f9;
+    padding-top: .5em;
+    padding-left: .5em;
+    margin-left: 1em
+}
+.ns-talk .mw-body-content dl,
+.ns-talk .mw-body-content dl dl dl,
+.ns-talk .mw-body-content dl dl dl dl dl,
+.ns-talk .mw-body-content dl dl dl dl dl dl dl,
+.ns-talk .mw-body-content dl dl dl dl dl dl dl dl dl,
+.ns-talk .mw-body-content dl dl dl dl dl dl dl dl dl dl dl,
+.ns-talk .mw-body-content dl dl dl dl dl dl dl dl dl dl dl dl dl {
+    background: #f5faff
+}
+.ns-talk .mw-body-content dl dl,
+.ns-talk .mw-body-content dl dl dl dl,
+.ns-talk .mw-body-content dl dl dl dl dl dl,
+.ns-talk .mw-body-content dl dl dl dl dl dl dl dl,
+.ns-talk .mw-body-content dl dl dl dl dl dl dl dl dl dl,
+.ns-talk .mw-body-content dl dl dl dl dl dl dl dl dl dl dl dl,
+.ns-talk .mw-body-content dl dl dl dl dl dl dl dl dl dl dl dl dl dl {
+    background: #fff
+}
+#bodyContent a.external[href^="https://"],
+.link-https {
+    background: url(//upload.wikimedia.org/wikipedia/commons/0/00/Lock_icon_blue.gif) center right no-repeat;
+    padding-right: 16px
+}
+li.wb-otherproject-link {
+    background-repeat: no-repeat;
+    background-position: left center
+}
+div.portal#p-wikibase-otherprojects div.body ul li.wb-otherproject-link {
+    position: relative;
+    left: -18px;
+    padding-left: 18px
+}
+li.wb-otherproject-commons {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Commons-logo.svg/14px-Commons-logo.svg.png)
+}
+li.wb-otherproject-wiktionary {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Wiktionary_small.svg/16px-Wiktionary_small.svg.png)
+}
+li.wb-otherproject-wikibooks {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Wikibooks-logo.svg/16px-Wikibooks-logo.svg.png)
+}
+li.wb-otherproject-wikiquote {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Wikiquote-logo.svg/15px-Wikiquote-logo.svg.png)
+}
+li.wb-otherproject-wikisource {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Wikisource-logo.svg/15px-Wikisource-logo.svg.png)
+}
+li.wb-otherproject-wikinews {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Wikinews_waves_Left.png/15px-Wikinews_waves_Left.png)
+}
+li.wb-otherproject-species,
+li.wb-otherproject-wikispecies {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/d/df/Wikispecies-logo.svg/15px-Wikispecies-logo.svg.png)
+}
+li.wb-otherproject-wikivoyage {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Wikivoyage-logo.svg/15px-Wikivoyage-logo.svg.png)
+}
+li.wb-otherproject-wikiversity {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/9/91/Wikiversity-logo.svg/15px-Wikiversity-logo.svg.png)
+}
+li.wb-otherproject-wikidata {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Wikidata-logo.svg/15px-Wikidata-logo.svg.png)
+}
+li.wb-otherproject-meta {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/7/75/Wikimedia_Community_Logo.svg/15px-Wikimedia_Community_Logo.svg.png)
+}
+li.wb-otherproject-incubator {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Incubator-logo.svg/15px-Incubator-logo.svg.png)
+}
+li.wb-otherproject-mediawiki {
+    background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Mediawiki-logo.png/15px-Mediawiki-logo.png)
+}
+.mw-dismissable-notice-body {
+    margin: 0!important
+}
+@media print {
+    #footer li,
+    #footer ul {
+        padding-left: 0
+    }
+    #footer li,
+    .toc li {
+        list-style-type: none
+    }
+    .printcssonly {
+        display: inline
+    }
+    div.printcssonly,
+    p.printcssonly {
+        display: block
+    }
+    table.printcssonly {
+        display: table
+    }
+    #siteSub,
+    .bandeau,
+    .bandeau-article,
+    .bandeau-portail,
+    .homonymie,
+    .navigation-only,
+    div.bandeau-section {
+        display: none
+    }
+    .mw-indicator {
+        display: none!important
+    }
+    .NavContent {
+        display: block!important
+    }
+    .NavToggle {
+        display: none!important
+    }
+    #contentSub,
+    .cachelinks,
+    .catlinks {
+        display: none
+    }
+    #footer {
+        border: none
+    }
+    .printfooter {
+        margin-top: 3.5em
+    }
+    .toc {
+        border: none!important;
+        page-break-inside: avoid
+    }
+    ul {
+        padding-left: .8em
+    }
+    .content p {
+        orphans: 4;
+        widows: 4
+    }
+    h2,
+    h3,
+    h4,
+    h5 {
+        page-break-after: avoid
+    }
+    h2:first-child,
+    h3:first-child,
+    h4:first-child,
+    h5:first-child {
+        page-break-before: avoid
+    }
+    .references-small {
+        -moz-column-count: 1!important;
+        -webkit-column-count: 1!important;
+        column-count: 1!important;
+        word-wrap: break-word
+    }
+    .reference-cadre {
+        height: auto;
+        border: none
+    }
+    ul.gallery {
+        display: block;
+        word-wrap: break-word
+    }
+    li.gallerybox {
+        vertical-align: top;
+        margin: 2px;
+        display: inline-block
+    }
+    li.gallerycaption {
+        font-weight: 700;
+        text-align: center;
+        display: block
+    }
+    li.gallerybox div.thumb {
+        border: 1px solid #ccc
+    }
+    div.gallerytext {
+        font-size: 89%;
+        padding: 2px 4px
+    }
+    div.gallerytext p {
+        margin: 0!important
+    }
+}
+ul.gallery, li.gallerybox {
+    zoom: 1;
+}
+li.gallerybox {
+    vertical-align: top;
+    display: -moz-inline-box;
+    display: inline-block;
 }

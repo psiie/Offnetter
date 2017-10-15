@@ -61,7 +61,7 @@ function modifyHtml(zimList) {
         return `<link rel="stylesheet" href="index.css" /> ${m}`;
       });
 
-      newHtml = newHtml.replace(/<a.+?href="([^\s]*?)".*?>(.*?)<\/\s?a>/g, (m, a, b) => {
+      newHtml = newHtml.replace(/<a\s+?href="([^\s]*?)".*?>(.*?)<\/\s?a>/g, (m, a, b) => {
         // dont touch anything if an anchor
         if (a[0] === "#") return m;
         // Shorten to a relative path and add .html
