@@ -90,12 +90,31 @@ function modifyHtml(zimList) {
     });
   }
 
+  // -- process queue setup -- //
   const zimListArr = Object.keys(zimList);
   const queue = async.queue(cleanSingleFile, 1); // Can only be 1 concurrency here
-  queue.push(zimListArr);
-  queue.drain = () => {
-    console.log("\nAll html files modified");
-  };
+  queue.drain = () => console.log("\nAll html files modified");
+
+  // -- Payload Chunking -- //
+  /* Due to the queue size having an upper bounds of ~1.2M, we chunk the
+  incoming array into bite-sized pieces. This way we continually feed the queue.
+  
+  If the incoming array is below the specified chunk size (50k default) then
+  just add them all in one go. No need for this nonsense. */
+  const chunk = 500 * 1000; // 500k
+  const largePayloadChunker = () => {
+    console.log('Article list greater than 500k. Chunking... ETA will extend at intervals');
+    let intervalId;
+    const pushEnd = () => queue.push(zimListArr.splice(zimListArr.length - chunk - 1, chunk));
+    const checkQueueReady = () => {
+      if (zimListArr.length === 0) clearInterval(intervalId);
+      else if (queue.length() < 10000) pushEnd();
+    }
+    pushEnd(); // push initial chunk onto array (else checkQueueReady() will quit early)
+    intervalId = setInterval(checkQueueReady, 1000);
+  }
+  if (zimListArr.length > chunk) largePayloadChunker();
+  else queue.push(zimListArr);
 }
 
 // --- Init --- //
@@ -112,6 +131,8 @@ fs.readdir(PROCESSED_WIKI_DL, (err, alreadyProcessedFiles) => {
     console.log("Fatal. Cannot read PROCESSED_WIKI_DL directory");
     return;
   }
+  /* We load the list of files into a hashmap. Javascript doesn't have hashmaps
+  per-say so we use objects instead. This requires filters/map */
   if (!alreadyProcessedFiles) alreadyProcessedFiles = [];
   let optimAlreadyProcessedFiles = {};
   alreadyProcessedFiles
@@ -124,13 +145,14 @@ fs.readdir(PROCESSED_WIKI_DL, (err, alreadyProcessedFiles) => {
     console.log("filtering and optimizing list to save time later");
     let optimizedZimList = {};
     zimList.forEach((item, idx) => {
+      // boilerplate single-line-console-logging
       process.stdout.clearLine();
       process.stdout.cursorTo(0);
       process.stdout.write(`  ┗ ${idx}/${zimList.length}`);
       if (!optimAlreadyProcessedFiles[item]) optimizedZimList[item] = 1;
     });
 
-    console.log("Wiki List Loaded. Starting article processing");
+    console.log("\nWiki List Loaded. Starting article processing", optimizedZimList.length);
     modifyHtml(optimizedZimList);
   });
 });

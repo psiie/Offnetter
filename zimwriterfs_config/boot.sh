@@ -1,7 +1,7 @@
 #!/bin/bash
 zimwriterfs \
---title="Wikipedia en español" \
---description="7GB de Wikipedia" \
+--title="Wikipédia" \
+--description="L'encyclopédie libre" \
 --creator="Wikipedia Foundation" \
 --publisher="Reno McKenzie" \
 --tags="IIAB;Wikipedia;Interactive" \
