@@ -6,6 +6,9 @@ const { loadListFile, cleanUrl, getFilename, prependUrl } = require("./_helper")
 const { WIKI_LIST, CONCURRENT_CONNECTIONS, SAVE_PATH, WIKI_DL } = require("./config");
 
 function massDownloadImages(imageSources) {
+  const startTime = Date.now() / 1000;
+  const totalCount = Object.keys(imageSources).length;
+
   function processImage(url, callback) {
     logCounter++;
     let dlUrl = cleanUrl(url);
@@ -16,7 +19,9 @@ function massDownloadImages(imageSources) {
     try {
       filename = decodeURI(filename);
     } catch (e) {
-      console.log("Malformed URL. Skipping image", url);
+      process.stdout.clearLine();
+      process.stdout.cursorTo(0);
+      process.stdout.write("Malformed URL. Skipping image", url);
       return;
     }
 
@@ -32,14 +37,23 @@ function massDownloadImages(imageSources) {
   }
 
   function downloadImage(url, filename, saveLocation, callback) {
-    console.log(`${logCounter}/${imageList.length} | downloading ${filename}`);
+    const timeDiff = Date.now() / 1000 - startTime;
+    const timePer = timeDiff / logCounter;
+    const timeRemaining = (totalCount - logCounter) * timePer;
+    const hoursRemaining = parseInt(timeRemaining / 60 / 60);
+    const minutesRemaining = parseInt(timeRemaining / 60 % 60);
+    process.stdout.clearLine();
+    process.stdout.cursorTo(0);
+    process.stdout.write(`  ┗ ${hoursRemaining}:${minutesRemaining} | ${logCounter}/${imageList.length} | downloading ${filename.slice(0, 60)}`);
+    
     download(url).then(data => fs.writeFile(saveLocation, data, callback)).catch(err => {
       // Push image back on the queue if it is a 429 (too many requests)
       if (err.statusCode === 429) {
-        console.log("pushing", filename, "back on the queue");
+        console.log("\npushing", filename, "back on the queue");
         queue.push(url);
+      } else {
+        console.log("\n", err.statusCode, filename);
       }
-      console.log("   ", err.statusCode, filename);
 
       // Write error out to file
       const ERR_FILE = path.join(__dirname, "missing_images.txt");
@@ -62,9 +76,18 @@ function massDownloadImages(imageSources) {
 function gatherImageList(zimList) {
   const imageSources = {};
   let logCounter = 0;
+  const startTime = Date.now() / 1000;
+  const totalCount = zimList.length;
 
   function processHtmlFile(filename, callback) {
-    console.log(`${logCounter}/${zimList.length} | processing html ${filename}`);
+    const timeDiff = Date.now() / 1000 - startTime;
+    const timePer = timeDiff / logCounter;
+    const timeRemaining = (totalCount - logCounter) * timePer;
+    const hoursRemaining = parseInt(timeRemaining / 60 / 60);
+    const minutesRemaining = parseInt(timeRemaining / 60 % 60);
+    process.stdout.clearLine();
+    process.stdout.cursorTo(0);
+    process.stdout.write(`  ┗ ${hoursRemaining}:${minutesRemaining} | ${logCounter}/${zimList.length} | processing html ${filename.slice(0, 50)}`);
     /* Load HTML from file, use Cheerio (like jQuery) to find all
     image tags. Take the src and add it to the master list of imageSources */
     const htmlFilePath = path.join(WIKI_DL, filename + ".html");
@@ -85,7 +108,7 @@ function gatherImageList(zimList) {
   const fileQueue = async.queue(processHtmlFile, CONCURRENT_CONNECTIONS);
   fileQueue.push(zimList);
   fileQueue.drain = () => {
-    console.log("All html files parsed for images");
+    console.log("\nAll html files parsed for images");
     massDownloadImages(imageSources);
   };
 }
