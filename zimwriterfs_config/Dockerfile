@@ -52,6 +52,6 @@ RUN cd openzim/zimwriterfs && make all install
 RUN rm -rf openzim
 
 # Boot commands
-RUN echo "Cache Bust 18"
+RUN echo "Cache Bust 19"
 ADD boot.sh /boot.sh
 CMD /boot.sh

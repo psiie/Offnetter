@@ -5,7 +5,7 @@ zimwriterfs \
 --creator="Wikipedia Foundation" \
 --publisher="Reno McKenzie" \
 --tags="IIAB;Wikipedia;Interactive" \
---language="en" \
+--language="fr" \
 --welcome="index.html" \
 --favicon="favicon.ico" \
 --withFullTextIndex \
