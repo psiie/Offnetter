@@ -1,9 +1,9 @@
-const WIKI_LIST = 'frwiki-all.txt';
+const WIKI_LIST = 'frwiki-1gb.txt';
 let MEDIA_WIKI = "https://fr.wikipedia.org/wiki/";
 let CONCURRENT_CONNECTIONS = 8;
 // -------------------------------------------------------------------------- //
 const path = require("path");
-const LOG_MISSING = false;
+const LOG_MISSING = true;
 const WIKI_DL = path.join(__dirname, "raw_wiki_articles");
 const SAVE_PATH = path.join(WIKI_DL, "images");
 const RELATIVE_SAVE_PATH = "images/";

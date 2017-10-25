@@ -3,7 +3,7 @@ const path = require("path");
 const download = require("download");
 const fs = require("graceful-fs");
 const { loadListFile, cleanUrl, getFilename, prependUrl } = require("./_helper");
-const { WIKI_LIST, CONCURRENT_CONNECTIONS, SAVE_PATH, WIKI_DL } = require("./config");
+const { WIKI_LIST, CONCURRENT_CONNECTIONS, SAVE_PATH, WIKI_DL, LOG_MISSING } = require("./config");
 
 function massDownloadImages(imageSources) {
   const startTime = Date.now() / 1000;
@@ -44,23 +44,25 @@ function massDownloadImages(imageSources) {
     const minutesRemaining = parseInt(timeRemaining / 60 % 60);
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
-    process.stdout.write(`  ┗ ${hoursRemaining}:${minutesRemaining} | ${logCounter}/${imageList.length} | downloading ${filename.slice(0, 60)}`);
+    process.stdout.write(`  ┗ ${hoursRemaining}:${minutesRemaining} | ${logCounter}/${imageList.length} | downloading ${filename.slice(0, 40)}`);
     
     download(url).then(data => fs.writeFile(saveLocation, data, callback)).catch(err => {
       // Push image back on the queue if it is a 429 (too many requests)
       if (err.statusCode === 429) {
-        console.log("\npushing", filename, "back on the queue");
+        console.log("\n429. pushing", filename, "back on the queue");
         queue.push(url);
       } else {
         console.log("\n", err.statusCode, filename);
       }
 
       // Write error out to file
-      const ERR_FILE = path.join(__dirname, "missing_images.txt");
-      fs.appendFile(ERR_FILE, `${err.statusCode} ${url}\n`, err => {
-        if (err) console.log("problems appending to error file", err);
-        callback();
-      });
+      if (LOG_MISING && err.statusCode !== 429) {
+        const ERR_FILE = path.join(__dirname, "missing_images.txt");
+        fs.appendFile(ERR_FILE, `${err.statusCode} ${url}\n`, err => {
+          if (err) console.log("problems appending to error file", err);
+          callback();
+        });
+      }
     });
   }
 
@@ -87,7 +89,7 @@ function gatherImageList(zimList) {
     const minutesRemaining = parseInt(timeRemaining / 60 % 60);
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
-    process.stdout.write(`  ┗ ${hoursRemaining}:${minutesRemaining} | ${logCounter}/${zimList.length} | processing html ${filename.slice(0, 50)}`);
+    process.stdout.write(`  ┗ ${hoursRemaining}:${minutesRemaining} | ${logCounter}/${zimList.length} | processing html ${filename.slice(0, 40)}`);
     /* Load HTML from file, use Cheerio (like jQuery) to find all
     image tags. Take the src and add it to the master list of imageSources */
     const htmlFilePath = path.join(WIKI_DL, filename + ".html");

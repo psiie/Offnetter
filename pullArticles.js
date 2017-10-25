@@ -21,14 +21,27 @@ setInterval(() => {
 }, 5 * 60 * 1000);
 
 function downloadWikiArticles(articleListArr) {
+  const startTime = Date.now() / 1000;
+
   function processArticle(article, callback) {
     /* Check for file access. If the process returns an error, this means
     the file doesn't exist. So lets download the article! Otherwise, skip */
     logCounter++;
     const filePath = path.join(WIKI_DL, article + ".html");
     fs.access(filePath, fs.constants.R_OK, err => {
-      if (err) console.log(`${logCounter}/${articleListArr.length} | downloading ${article}`);
-      else console.log("skipping", article);
+      const timeDiff = Date.now() / 1000 - startTime;
+      const timePer = timeDiff / logCounter;
+      const timeRemaining = (articleListArr.length - logCounter) * timePer;
+      const hoursRemaining = parseInt(timeRemaining / 60 / 60);
+      const minutesRemaining = parseInt(timeRemaining / 60 % 60);
+      process.stdout.clearLine();
+      process.stdout.cursorTo(0);
+      process.stdout.write(
+        err
+          ? `  ┗ ${hoursRemaining}:${minutesRemaining} | ${logCounter}/${articleListArr.length} | downloading ${article.slice(0,40)}`
+          : `  ┗ ${hoursRemaining}:${minutesRemaining} | skipping ${article.slice(0,40)}`
+      );
+
       err ? getArticle(article, callback) : callback();
     });
   }
@@ -40,14 +53,13 @@ function downloadWikiArticles(articleListArr) {
     download(url).then(html => fs.writeFile(filePath, html, callback)).catch(err => {
       // Push article back on the queue if it is a 429 (too many requests)
       if (err.statusCode === 429) {
-        console.log("pushing", article, "back on the queue");
+        console.log("\n429 pushing", article, "back on the queue. Delaying myself...");
         if (delay429 < 3) delay429 += 1;
         queue.push(article);
       }
-      console.log("   ", err.statusCode, article);
 
       // Write error out to file
-      if (LOG_MISSING) {
+      if (LOG_MISSING && err.statusCode !== 429) {
         const ERR_FILE = path.join(__dirname, "missing_articles.txt");
         fs.appendFile(ERR_FILE, `${err.statusCode} ${article}\n`, err => {
           if (err) console.log("problems appending to error file", err);
