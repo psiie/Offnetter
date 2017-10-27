@@ -21,7 +21,8 @@ function massDownloadImages(imageSources) {
     } catch (e) {
       process.stdout.clearLine();
       process.stdout.cursorTo(0);
-      process.stdout.write("Malformed URL. Skipping image", url);
+      process.stdout.write("Malformed URL. Skipping image");
+      callback();
       return;
     }
 
@@ -30,7 +31,9 @@ function massDownloadImages(imageSources) {
       if (doesntExist) {
         downloadImage(dlUrl, filename, saveLocation, callback);
       } else {
-        console.log("skipping", filename);
+        process.stdout.clearLine();
+        process.stdout.cursorTo(0);
+        process.stdout.write(`  ┗ skipping ${filename.slice(0,20)}`);
         callback();
       }
     });
@@ -49,14 +52,10 @@ function massDownloadImages(imageSources) {
     download(url).then(data => fs.writeFile(saveLocation, data, callback)).catch(err => {
       // Push image back on the queue if it is a 429 (too many requests)
       if (err.statusCode === 429) {
-        console.log("\n429. pushing", filename, "back on the queue");
+        console.log("\n429. pushing", filename, "back on the queue. Delaying myself.");
         queue.push(url);
-      } else {
-        console.log("\n", err.statusCode, filename);
-      }
-
-      // Write error out to file
-      if (LOG_MISING && err.statusCode !== 429) {
+      } else if (LOG_MISSING) {
+        // Write error out to file
         const ERR_FILE = path.join(__dirname, "missing_images.txt");
         fs.appendFile(ERR_FILE, `${err.statusCode} ${url}\n`, err => {
           if (err) console.log("problems appending to error file", err);
@@ -71,7 +70,7 @@ function massDownloadImages(imageSources) {
   const queue = async.queue(processImage, CONCURRENT_CONNECTIONS);
   queue.push(imageList);
   queue.drain = () => {
-    console.log("All Images Downloaded");
+    console.log("\nAll Images Downloaded");
   };
 }
 

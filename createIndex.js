@@ -23,14 +23,16 @@ function generateIndex(indexList) {
 
   // create a entry for each item in the list
   indexList.forEach(item => {
-    console.log(`${logCounter}/${indexList.length} | Processing ${item}`);
+    process.stdout.clearLine();
+    process.stdout.cursorTo(0);
+    process.stdout.write(`  ┗ ${logCounter}/${indexList.length} | Processing ${item}`);
     logCounter++;
     const sanitized = item.replace(/"/g, "%22");
     fs.appendFileSync(indexPagePath, `"${sanitized}",`);
   });
 
   fs.appendFileSync(indexPagePath, foot);
-  console.log('Done');
+  console.log('Done creating index');
 }
 
 console.log('Loading list of processed files');
@@ -44,7 +46,9 @@ fs.readdir(PROCESSED_WIKI_DL, (err, files) => {
   fileList = fileList.filter(file => !/index/.test(file));
 
   // Removes duplicates like "Acre" and "Acre_"
-  console.log('Removing duplicates');
+  process.stdout.clearLine();
+  process.stdout.cursorTo(0);
+  process.stdout.write('Removing duplicates');
   const dupRemover = {};
   fileList.forEach(file => {
     if (file[file.length - 1] === '_') dupRemover[file.slice(0, -1)] = 1;
