@@ -58,7 +58,7 @@ function testPage(page, callback) {
       filePath = filePath.replace("../", "/"); // remove leading ..
       filePath = kiwixServer + filePath;
       request(filePath, (err, data) => {
-        if (err) console.log('1 err', err);
+        if (err) return;
         else if (data && data.statusCode >= 400) {
           status404++;
           images404.push(filePath);
@@ -81,9 +81,9 @@ function isImageFoundLocally(imgList) {
   imgList.forEach(file => {
     console.log(path.join(dir, file.split('/').reverse()[0]));
   });
-  // const existingImgs = imgList.filter(file => fs.existsSync(path.join(dir, file.split('/').reverse()[0])));
-  // console.log(`${existingImgs.length} Missing images found on HDD but not in zim`);
-  // fs.writeFileSync(path.join(__dirname, 'results/404_FoundOnHDD.txt'), existingImgs, 'utf8');
+  const existingImgs = imgList.filter(file => fs.existsSync(path.join(dir, file.split('/').reverse()[0])));
+  console.log(`${existingImgs.length} Missing images found on HDD but not in zim`);
+  fs.writeFileSync(path.join(__dirname, 'results/404_FoundOnHDD.txt'), existingImgs, 'utf8');
 }
 
 const queue = async.queue(testPage, 1);
