@@ -44,7 +44,7 @@ function modifyHtml(zimList) {
         process.stdout.clearLine();
         process.stdout.cursorTo(0);
         process.stdout.write(
-          `  ┗ ${hoursRemaining}:${minutesRemaining} | ${logCounter}/${totalCount} | Processing ${file.slice(0, 60)}`
+          `  ┗ ${hoursRemaining}:${minutesRemaining} | ${logCounter}/${totalCount} | Processing ${file.slice(0, 40)}`
         );
       }
 
@@ -76,6 +76,7 @@ function modifyHtml(zimList) {
         if (newLink.length > 32 && newLink.split(".").length === 1) {
           newLink += ".svg";
         }
+        if (/%/.test(newLink)) newLink = decodeURI(newLink).replace(/%/g, '');
         return `img src="images/${newLink}" onerror="this.style.display='none'"`;
       });
 

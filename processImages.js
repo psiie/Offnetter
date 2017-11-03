@@ -16,6 +16,14 @@ const {
 } = require("./config");
 const exportPath = path.join(PROCESSED_WIKI_DL, RELATIVE_SAVE_PATH);
 
+/* -- NOTE --
+  image names with % in them are a real problem. decodeURI and encodeURI are not
+  the solution unforutnately. Consider renaming all filenames to ascii and avoid
+  %'s in them.
+*/
+
+// TODO: copyUnconvertables needs a timer
+
 function getImageFiles() {
   /* Load both current image directory and destination. Compare
   and remove images that have already been converted */
@@ -39,7 +47,8 @@ function copyUnconvertables(fileArr, imagesArr) {
   function copy(file, callback) {
     const isSVG = file.length > 32 && file.split(".").length === 1;
     const input = path.join(SAVE_PATH, file);
-    let output = path.join(exportPath, file);
+    const outputFileFix = /%/.test(file) ? decodeURI(file).replace(/%/, '') : file;
+    let output = path.join(exportPath, outputFileFix);
     if (isSVG) output += ".svg";
     fse.copy(input, output, err => {
       if (err) console.log("Error copying", file);
@@ -73,7 +82,8 @@ function convertListOfImages(imagesArr) {
     logCounter++;
 
     const imagePath = path.join(SAVE_PATH, image);
-    const exportImagePath = path.join(exportPath, image);
+    const exportImageFix = /%/.test(image) ? decodeURI(image).replace(/%/, '') : image;
+    const exportImagePath = path.join(exportPath, exportImageFix);
     const ext = image.split(".").slice(-1)[0];
 
     // Convert image. If PNG, don't gaussian
@@ -89,7 +99,7 @@ function convertListOfImages(imagesArr) {
     convertion.write(exportImagePath, err => {
       process.stdout.clearLine();
       process.stdout.cursorTo(0);
-      if (err) console.log("Error writing", image);
+      if (err) console.log("Error writing", image, err);
       callback();
     });
   }
