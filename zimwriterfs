@@ -1,2 +1,3 @@
 #!/bin/bash
+docker pull darkenvy/zimwriterfs
 time sudo docker run -it -v $(pwd)/processed_wiki_articles:/input -v $(pwd)/output:/output darkenvy/zimwriterfs zimwriterfs "$@"
