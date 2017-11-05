@@ -76,7 +76,7 @@ function modifyHtml(zimList) {
         if (newLink.length > 32 && newLink.split(".").length === 1) {
           newLink += ".svg";
         }
-        if (/%/.test(newLink)) newLink = decodeURI(newLink).replace(/%/g, '');
+        newLink = decodeURIComponent(newLink);
         return `img src="images/${newLink}" onerror="this.style.display='none'"`;
       });
 

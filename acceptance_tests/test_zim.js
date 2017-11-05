@@ -65,11 +65,6 @@ function testPage(page, callback) {
       // Add to queue
       imagesToCheck[filePath] = 1;
     };
-
-    // const linksInPage = Array.prototype.concat(
-      //   data.body.match(/svg.+src="(.+?)"/g) || [], 
-      //   data.body.match(/img.+src="(.+?)"/g) || []
-      // );
       
     const linksInPage = data.body.match(/(?=(?:svg)|(?:img)).+src="(.+?)"/g) || [];
     linksInPage.forEach(link => {

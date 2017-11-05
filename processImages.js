@@ -47,8 +47,7 @@ function copyUnconvertables(fileArr, imagesArr) {
   function copy(file, callback) {
     const isSVG = file.length > 32 && file.split(".").length === 1;
     const input = path.join(SAVE_PATH, file);
-    const outputFileFix = /%/.test(file) ? decodeURI(file).replace(/%/, '') : file;
-    let output = path.join(exportPath, outputFileFix);
+    let output = path.join(exportPath, decodeURIComponent(file));
     if (isSVG) output += ".svg";
     fse.copy(input, output, err => {
       if (err) console.log("Error copying", file);
@@ -82,8 +81,7 @@ function convertListOfImages(imagesArr) {
     logCounter++;
 
     const imagePath = path.join(SAVE_PATH, image);
-    const exportImageFix = /%/.test(image) ? decodeURI(image).replace(/%/, '') : image;
-    const exportImagePath = path.join(exportPath, exportImageFix);
+    const exportImagePath = path.join(exportPath, decodeURIComponent(image));
     const ext = image.split(".").slice(-1)[0];
 
     // Convert image. If PNG, don't gaussian

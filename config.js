@@ -1,4 +1,4 @@
-const WIKI_LIST = 'frwiki-test.txt';
+const WIKI_LIST = 'frwiki-test-single.txt';
 let MEDIA_WIKI = "https://fr.wikipedia.org/wiki/";
 let CONCURRENT_CONNECTIONS = 8;
 // -------------------------------------------------------------------------- //
