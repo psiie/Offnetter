@@ -14,10 +14,15 @@ const {
   WIKI_DL
 } = require("./config");
 
+// ---------- Phase 2 ---------- //
 function modifyHtml(zimList) {
+  let logCounter = 0;
   const startTime = Date.now() / 1000;
   const totalCount = Object.keys(zimList).length;
+
+  // ---------- Phase 3 ---------- //
   function cleanSingleFile(file, callback) {
+    // ---------- Phase 5 ---------- //
     const saveFile = (filename, html, callback) => {
       const filePath = path.join(PROCESSED_WIKI_DL, filename + ".html");
       fs.writeFile(filePath, html, "utf8", err => {
@@ -28,6 +33,7 @@ function modifyHtml(zimList) {
 
     logCounter++;
     const filePath = path.join(WIKI_DL, file + ".html");
+    // ---------- Phase 4 ---------- //
     fs.readFile(filePath, "utf8", (err, html) => {
       const timeDiff = Date.now() / 1000 - startTime;
       const timePer = timeDiff / logCounter;
@@ -118,35 +124,25 @@ function modifyHtml(zimList) {
   else queue.push(zimListArr);
 }
 
-// --- Init --- //
-
-/* Examine the output folder and remove that from the list of
-html files to process. This is resuming progress. Because Javascript
-doesn't have hashes like Ruby, this looks more complicated than it is. We
-use Objects like we would Arrays. This increases speed using BinarySearchTrees */
-let logCounter = 0;
-
+// ---------- Phase 1 ---------- //
 console.log("Reading directory of already processed html");
 fs.readdir(PROCESSED_WIKI_DL, (err, alreadyProcessedFiles) => {
-  if (err) {
-    console.log("Fatal. Cannot read PROCESSED_WIKI_DL directory");
-    return;
-  }
+  if (err) { console.log("Fatal. Cannot read PROCESSED_WIKI_DL directory"); return; }
+  if (!alreadyProcessedFiles) alreadyProcessedFiles = [];
   /* We load the list of files into a hashmap. Javascript doesn't have hashmaps
   per-say so we use objects instead. This requires filters/map */
-  if (!alreadyProcessedFiles) alreadyProcessedFiles = [];
   let optimAlreadyProcessedFiles = {};
   alreadyProcessedFiles
     .filter(file => file.split(".").slice(-1)[0] === "html")
     .map(file => file.split(".").slice(0, -1)[0])
     .forEach(file => optimAlreadyProcessedFiles[file] = 1);
+  
   console.log("Loading the 'wiki_list.lst'");
 
   loadListFile(WIKI_LIST).then(zimList => {
     console.log("filtering and optimizing list to save time later");
     let optimizedZimList = {};
     zimList.forEach((item, idx) => {
-      // boilerplate single-line-console-logging
       process.stdout.clearLine();
       process.stdout.cursorTo(0);
       process.stdout.write(`  ┗ ${idx}/${zimList.length}`);

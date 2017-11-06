@@ -9,7 +9,6 @@ function loadListFile(filename) {
         path.join(__dirname, "selections", filename)
       )
     });
-
     lineReader.on("line", line => wikiList.push(line));
     lineReader.on("close", () => resolve(wikiList));
   });
@@ -26,7 +25,6 @@ const cleanListOfLinks = linkArr => {
     else if (/action=edit/g.test(url)) return false;
     else if (/^\/\//.test(url)) return false;
     return true;
-    // else if (/File:/g.test(url)) return false; // Removes potential pictures see: https://en.wikipedia.org/wiki/ASCII
   });
   linkList = linkList.map(url => decodeURI(url));
   linkList = linkList.map(url => url.replace(/^\/wiki\//, ""));
@@ -37,8 +35,7 @@ const cleanListOfLinks = linkArr => {
 const getFilename = url => decodeURI(url.split("/").slice(-1)[0]);
 const cleanUrl = url => {
   let newUrl = url;
-  while (newUrl[0] === "/")
-    newUrl = newUrl.slice(1);
+  while (newUrl[0] === "/") newUrl = newUrl.slice(1);
   return newUrl;
 };
 const prependUrl = url => {

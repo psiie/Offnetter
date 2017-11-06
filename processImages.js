@@ -16,33 +16,51 @@ const {
 } = require("./config");
 const exportPath = path.join(PROCESSED_WIKI_DL, RELATIVE_SAVE_PATH);
 
-/* -- NOTE --
-  image names with % in them are a real problem. decodeURI and encodeURI are not
-  the solution unforutnately. Consider renaming all filenames to ascii and avoid
-  %'s in them.
-*/
-
 // TODO: copyUnconvertables needs a timer
 
-function getImageFiles() {
-  /* Load both current image directory and destination. Compare
-  and remove images that have already been converted */
-  const unConvertables = {};
-  const alreadyConvertedImg = {};
-  fs.readdirSync(exportPath).forEach(file => alreadyConvertedImg[file] = 1);
+// ---------- Phase 4 ---------- //
+function convertListOfImages(imagesArr) {
+  const startTime = Date.now() / 1000;
+  function convert(image, callback) {
+    const timeDiff = Date.now() / 1000 - startTime;
+    const timePer = timeDiff / logCounter;
+    const timeRemaining = (imagesArr.length - logCounter) * timePer;
+    const hoursRemaining = parseInt(timeRemaining / 60 / 60);
+    const minutesRemaining = parseInt(timeRemaining / 60 % 60);
 
-  let images = fs.readdirSync(SAVE_PATH);
-  images = images.filter(file => !alreadyConvertedImg[file]);
-  images = images.filter(file => {
-    const convertable = IMAGE_EXTENSIONS[file.split(".").slice(-1)[0]];
-    if (!convertable) unConvertables[file] = 1; // mostly SVGs
-    return convertable;
-  });
+    const truncFilename = image.length > 54 ? image.slice(0, 50) + "..." + image.split(".").slice(-1) : image;
+    process.stdout.clearLine();
+    process.stdout.cursorTo(0);
+    process.stdout.write(`  ┗ ${hoursRemaining}:${minutesRemaining} | ${logCounter}/${imagesArr.length} | ${truncFilename}`);
+    logCounter++;
 
-  console.log(`Starting convertion of ${images.length} images`);
-  copyUnconvertables(unConvertables, images); // images is passed through
+    const imagePath = path.join(SAVE_PATH, image);
+    const exportImagePath = path.join(exportPath, decodeURIComponent(image));
+    const ext = image.split(".").slice(-1)[0];
+
+    let convertion = gm(imagePath) //
+      .noProfile() //
+      .strip() //
+      .interlace("Plane") //
+      .colorspace("RGB"); //
+    // .colors(64); // Can corrupt some images
+    convertion.quality(50);
+
+    convertion.write(exportImagePath, err => {
+      process.stdout.clearLine();
+      process.stdout.cursorTo(0);
+      if (err) console.log("Error writing", image, err);
+      callback();
+    });
+  }
+
+  let logCounter = 0;
+  const queue = async.queue(convert, CONCURRENT_CONNECTIONS);
+  queue.push(imagesArr);
+  queue.drain = () => console.log("\nAll image files converted");
 }
 
+// ---------- Phase 3 ---------- //
 function copyUnconvertables(fileArr, imagesArr) {
   function copy(file, callback) {
     const isSVG = file.length > 32 && file.split(".").length === 1;
@@ -63,54 +81,26 @@ function copyUnconvertables(fileArr, imagesArr) {
   };
 }
 
-function convertListOfImages(imagesArr) {
-  const startTime = Date.now() / 1000;
-  function convert(image, callback) {
-    const timeDiff = Date.now() / 1000 - startTime;
-    const timePer = timeDiff / logCounter;
-    const timeRemaining = (imagesArr.length - logCounter) * timePer;
-    const hoursRemaining = parseInt(timeRemaining / 60 / 60);
-    const minutesRemaining = parseInt(timeRemaining / 60 % 60);
+// ---------- Phase 2 ---------- //
+function getImageFiles() {
+  /* Load both current image directory and destination. Compare
+  and remove images that have already been converted */
+  const unConvertables = {};
+  const alreadyConvertedImg = {};
+  fs.readdirSync(exportPath).forEach(file => alreadyConvertedImg[file] = 1);
 
-    const truncFilename = image.length > 54 ? image.slice(0, 50) + "..." + image.split(".").slice(-1) : image;
-    process.stdout.clearLine();
-    process.stdout.cursorTo(0);
-    process.stdout.write(
-      `  ┗ ${hoursRemaining}:${minutesRemaining} | ${logCounter}/${imagesArr.length} | ${truncFilename}`
-    );
-    logCounter++;
+  let images = fs.readdirSync(SAVE_PATH);
+  images = images.filter(file => !alreadyConvertedImg[file]);
+  images = images.filter(file => {
+    const convertable = IMAGE_EXTENSIONS[file.split(".").slice(-1)[0]];
+    if (!convertable) unConvertables[file] = 1; // mostly SVGs
+    return convertable;
+  });
 
-    const imagePath = path.join(SAVE_PATH, image);
-    const exportImagePath = path.join(exportPath, decodeURIComponent(image));
-    const ext = image.split(".").slice(-1)[0];
-
-    // Convert image. If PNG, don't gaussian
-    let convertion = gm(imagePath) //
-      .noProfile() //
-      .strip() //
-      .interlace("Plane") //
-      .colorspace("RGB"); //
-    // .colors(64); // Can corrupt some images
-    // if (ext !== "png") convertion.gaussian(0.001);
-    convertion.quality(50);
-
-    convertion.write(exportImagePath, err => {
-      process.stdout.clearLine();
-      process.stdout.cursorTo(0);
-      if (err) console.log("Error writing", image, err);
-      callback();
-    });
-  }
-
-  let logCounter = 0;
-  const queue = async.queue(convert, CONCURRENT_CONNECTIONS);
-  queue.push(imagesArr);
-  queue.drain = () => {
-    console.log("\nAll image files converted");
-  };
+  console.log(`Starting convertion of ${images.length} images`);
+  copyUnconvertables(unConvertables, images); // images is passed through
 }
 
+// ---------- Phase 1 ---------- //
 console.log("Starting. Loading list of images already converted");
 getImageFiles();
-
-// find raw_wiki_articles/images -regex ".*[^.]...$"

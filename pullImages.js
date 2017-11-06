@@ -5,6 +5,7 @@ const fs = require("graceful-fs");
 const { loadListFile, cleanUrl, getFilename, prependUrl } = require("./_helper");
 const { WIKI_LIST, CONCURRENT_CONNECTIONS, SAVE_PATH, WIKI_DL, LOG_MISSING } = require("./config");
 
+// --------- Phase 3 --------- //
 function massDownloadImages(imageSources) {
   const startTime = Date.now() / 1000;
   const totalCount = Object.keys(imageSources).length;
@@ -74,10 +75,12 @@ function massDownloadImages(imageSources) {
   };
 }
 
+// --------- Phase 2 --------- //
 function gatherImageList(zimList) {
-  const imageSources = {};
   let logCounter = 0;
   const startTime = Date.now() / 1000;
+
+  const imageSources = {};
   const totalCount = zimList.length;
 
   function processHtmlFile(filename, callback) {
@@ -94,10 +97,7 @@ function gatherImageList(zimList) {
     const htmlFilePath = path.join(WIKI_DL, filename + ".html");
     fs.readFile(htmlFilePath, "utf8", (err, html) => {
       logCounter++;
-      if (err) {
-        callback();
-        return;
-      }
+      if (err) { callback(); return; }
       /* I am not replacing anything (the replace function doesn't mutate but 
       returns a new object). I am using this because the replace method allows
       for the g flag. exec does not. Kind of a hack in the name of science! */
@@ -114,18 +114,14 @@ function gatherImageList(zimList) {
   };
 }
 
-// --------- Init --------- //
+// --------- Phase 1 --------- //
 /* Load up all the html files, find the image links, add to list,
 then download each image (only if not found locally */
 
 // Create image folder if not exist
-fs.access(SAVE_PATH, fs.constants.F_OK, doesntExist => {
-  if (doesntExist) fs.mkdirSync(SAVE_PATH);
-});
-
-console.log("Loading list");
+fs.access(SAVE_PATH, fs.constants.F_OK, doesntExist => { if (doesntExist) fs.mkdirSync(SAVE_PATH); });
+// Load the wiki_list.lst file first
 loadListFile(WIKI_LIST).then(zimList => {
   console.log("List loaded. Starting to open html and seek image links");
   gatherImageList(zimList);
 });
-// gatherImageList(["ABBA"]);

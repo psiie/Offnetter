@@ -37,10 +37,7 @@ function generateIndex(indexList) {
 
 console.log('Loading list of processed files');
 fs.readdir(PROCESSED_WIKI_DL, (err, files) => {
-  if (err) {
-    console.log('Fatal error: Cannot read directory');
-    return;
-  }
+  if (err) { console.log('Fatal error: Cannot read directory'); return; }
   let fileList = files.filter(file => /\.html/.test(file));
   fileList = fileList.map(file => file.split('.').slice(0, -1)[0]);
   fileList = fileList.filter(file => !/index/.test(file));
@@ -55,6 +52,5 @@ fs.readdir(PROCESSED_WIKI_DL, (err, files) => {
     else dupRemover[file] = 1;
   });
 
-  // generateIndex(fileList);
   generateIndex(Object.keys(dupRemover));
 });
