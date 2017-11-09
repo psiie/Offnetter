@@ -67,13 +67,17 @@ function modifyHtml(zimList) {
         return `<link rel="stylesheet" href="index.css" /> ${m}`;
       });
 
+      // BUG: when a video, we end up replacing <a> tag with <span>. Ends up killing the reference
       newHtml = newHtml.replace(/<a\s+?href="([^\s]*?)".*?>(.*?)<\/\s?a>/g, (m, a, b) => {
         // dont touch anything if an anchor
         if (a[0] === "#") return m;
         // Shorten to a relative path and add .html
         const href = a.split("/").slice(-1)[0];
         if (zimList[href]) return `<a href="${href}.html">${b}</a>`;
+        else if (/(?:ogv|ogg|webm|mp4|mp3|wav|aac)/.test(href))
+          return `<a href="images/${href}">${b}</a>`;
         else return `<span>${b}</span>`;
+        // else return `<div>HERE!!!!</div>`;
       });
 
       // Fix images so they show up
@@ -85,6 +89,12 @@ function modifyHtml(zimList) {
         newLink = decodeURIComponent(newLink);
         return `img src="images/${newLink}" onerror="this.style.display='none'"`;
       });
+
+      // Fix videos so that will hide on error
+      newHtml = newHtml.replace(/<video(.+?)>/g, (m, a) => {
+        return `<video ${a} onerror="this.style.display='none'">`;
+      });
+
 
       /* Remove sidebar - Goes from #mw-navigation to #footer. Litterally
       deletes everything in between. #mw-navigation typically is at the end */

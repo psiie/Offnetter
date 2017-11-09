@@ -38,6 +38,7 @@ function convertListOfImages(imagesArr) {
     const exportImagePath = path.join(exportPath, decodeURIComponent(image));
     const ext = image.split(".").slice(-1)[0];
 
+    // convert to function, and perform if on if image or video
     let convertion = gm(imagePath) //
       .noProfile() //
       .strip() //
