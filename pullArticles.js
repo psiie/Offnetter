@@ -44,7 +44,9 @@ function downloadWikiArticles(articleListArr) {
           if (err) console.log("problems appending to error file", err);
           setTimeout(callback, 1000 * delay429);
         });
-      } else setTimeout(callback, 1000 * delay429);
+      } else {
+        setTimeout(callback, 1000 * delay429);
+      }
     });
   }
 
@@ -77,7 +79,7 @@ function downloadWikiArticles(articleListArr) {
   const queue = async.queue(processArticle, CONCURRENT_CONNECTIONS);
   queue.push(articleListArr);
   queue.drain = () => {
-    console.log("All articles downloaded");
+    console.log("\nAll articles downloaded");
     process.exit();
   };
 }
