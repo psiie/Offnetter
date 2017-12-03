@@ -1,4 +1,4 @@
-const WIKI_LIST = 'frwiki-test-short.txt';
+const WIKI_LIST = 'frwiki-top100.txt';
 let MEDIA_WIKI = "https://fr.wikipedia.org/wiki/";
 let CONCURRENT_CONNECTIONS = 8;
 // -------------------------------------------------------------------------- //
@@ -12,6 +12,7 @@ const PROCESSED_WIKI_DL = path.join(__dirname, "processed_wiki_articles");
 const IMAGE_EXTENSIONS = {
   svg: 1,
   png: 1,
+  gif: 1,
   jpg: 1,
   ico: 1
 };

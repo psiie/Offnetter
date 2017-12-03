@@ -7,6 +7,10 @@ const cheerio = require("cheerio");
 const gm = require("gm");
 const fs = require("graceful-fs");
 const fse = require("fs-extra");
+const imagemin = require('imagemin');
+const imageminPngquant = require('imagemin-pngquant');
+const { execFile } = require('child_process');
+const gifsicle = require('gifsicle');
 const {
   SAVE_PATH,
   RELATIVE_SAVE_PATH,
@@ -37,22 +41,58 @@ function convertListOfImages(imagesArr) {
     const imagePath = path.join(SAVE_PATH, image);
     const exportImagePath = path.join(exportPath, decodeURIComponent(image));
     const ext = image.split(".").slice(-1)[0];
-
     // convert to function, and perform if on if image or video
-    let convertion = gm(imagePath) //
-      .noProfile() //
-      .strip() //
-      .interlace("Plane") //
-      .colorspace("RGB"); //
-    // .colors(64); // Can corrupt some images
-    convertion.quality(50);
+    const convertPng = () => {
+      imagemin([imagePath], path.join(PROCESSED_WIKI_DL, RELATIVE_SAVE_PATH), {
+        use: [ imageminPngquant({
+          quality: '0-10',
+          speed: 10,
+          nofs: true,
+          // floyd: 0.5,
+          posterize: 4
+        })],
+      }).then(callback);
+    };
+    const convertGif = () => {
+      execFile(gifsicle, [
+        '--no-app-extensions',
+        '--no-extensions',
+        '--no-comments',
+        '--no-names',
+        '--colors', '64',
+        '--use-colormap', 'web',
+        '--optimize', '3',
+        '-o', exportImagePath, 
+        imagePath
+      ], callback)
+    };
+    const convertOther = () => {
+      let convertion = gm(imagePath) //
+        .noProfile() //
+        .strip() //
+        .interlace("Plane") //
+        .colorspace("RGB"); //
+      // .colors(64); // Can corrupt some images
+      convertion.quality(50);
 
-    convertion.write(exportImagePath, err => {
-      process.stdout.clearLine();
-      process.stdout.cursorTo(0);
-      if (err) console.log("Error writing", image, err);
-      callback();
-    });
+      convertion.write(exportImagePath, err => {
+        process.stdout.clearLine();
+        process.stdout.cursorTo(0);
+        if (err) console.log("Error writing", image, err);
+        callback();
+      });
+    };
+
+    switch (ext) {
+      case 'png':
+        convertPng();
+        break;
+      case 'gif':
+        convertGif();
+        break;
+      default:
+        convertOther();
+    }
   }
 
   let logCounter = 0;

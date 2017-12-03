@@ -104,7 +104,7 @@ function gatherImageList(zimList) {
       for the g flag. exec does not. Kind of a hack in the name of science! */
       // Note, {1,128} needs to be fixed. needs to be .+? but grabs too much atm.
       html.replace(/img.+?src="(.+?)"/g, (m, a) => imageSources[a] = 1);
-      html.replace(/href="(.{1,128}?\.(?=ogv|ogg|webm|mp4|mp3|wav|aac).{3,4})"/g, (m, a) => imageSources[a] = 1);
+      // html.replace(/href="(.{1,128}?\.(?=ogv|ogg|webm|mp4|mp3|wav|aac).{3,4})"/g, (m, a) => imageSources[a] = 1);
       callback();
     });
   }
