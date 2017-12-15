@@ -18,7 +18,8 @@ Commons.loadListFile(config.WIKI_LIST, list => {
     fs.access(path.join(config.WIKI_DL, `${article}.html`), fs.constants.R_OK, pathNotFound => {
       if (pathNotFound) {
         terminal.print(`Downloading ${article.slice(0, 40)}`);
-        article.download(article, config.MEDIA_WIKI + article, pullQueue.push, callback);
+        callback();
+        // article.download(article, config.MEDIA_WIKI + article, pullQueue.push, callback);
         return;
       }
       callback();

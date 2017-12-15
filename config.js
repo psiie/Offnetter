@@ -1,6 +1,6 @@
-const WIKI_LIST = 'frwiki-top100.txt';
+const WIKI_LIST = 'frwiki-10gb.txt';
 let MEDIA_WIKI = "https://fr.wikipedia.org/wiki/";
-let CONCURRENT_CONNECTIONS = 8;
+let CONCURRENT_CONNECTIONS = 16;
 // -------------------------------------------------------------------------- //
 const path = require("path");
 const LOG_MISSING = true;
