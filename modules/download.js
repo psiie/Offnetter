@@ -1,6 +1,7 @@
 const fs = require('graceful-fs');
 const path = require('path');
 const Config = require('./config');
+const Commons = require('./commons');
 const request = require('download');
 const Terminal = require('./terminal');
 
@@ -15,7 +16,8 @@ class Download {
     this.queuePushFn = () => {};
 
     setInterval(() => {
-      this.delay429 > 0 ? this.delay429-- : this.delay429 = 0;
+      if (this.delay429 > 0) this.delay429--;
+      else this.delay429 = 0;
     }, 5 * 60 * 1000);
   }
 
@@ -28,6 +30,7 @@ class Download {
   }
 
   onError(err, callback) {
+    console.log('some sort of error');
     // Push article back on the queue if it is a 429 (too many requests)
     if (err.statusCode === 429) {
       terminal.print(`429 pushing ${this.queueItem} back on the queue. Delaying myself...`);
@@ -48,7 +51,8 @@ class Download {
     this.queuePushFn = queuePushFn;
     this.callback = callback;
 
-    request(url) //
+    const cleanUrl = Commons.sanitizeURL(url);
+    request(cleanUrl) //
     .then(data => this.onSuccess(data, callback)) //
     .catch(err => this.onError(err, callback)); //
   }

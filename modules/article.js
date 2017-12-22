@@ -1,4 +1,3 @@
-// const downloadGET = require('download');
 const fs = require('graceful-fs');
 const path = require('path');
 const urlPath = require('url');

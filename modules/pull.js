@@ -1,3 +1,4 @@
+const path = require('path');
 const Config = require('./config');
 const Commons = require('./commons');
 const Queue = require('./queue');
@@ -6,7 +7,11 @@ const Terminal = require('./terminal');
 const config = new Config();
 
 class Pull {
-  constructor() {
+  constructor(listFile) {
+    const wikilistPath = path.join(__dirname, '..', 'selections', config.WIKI_LIST);
+    const listFilePath = path.join(__dirname, '..', listFile);
+    console.log('listfile', listFilePath);
+    this.listFile = listFile ? listFilePath : wikilistPath;
     this.terminal = new Terminal();
     this.eachFn = this.eachFn.bind(this);
     this.queue = new Queue(config.CONCURRENT_CONNECTIONS, this.eachFn);
@@ -27,7 +32,7 @@ class Pull {
   }
 
   init() {
-    Commons.loadListFile(config.WIKI_LIST, list => {
+    Commons.loadListFile(this.listFile, list => {
       this.terminal.setListLength(list.length);
       this.queue.setDrain(this.onFinish);
       this.queue.push(list);
