@@ -34,6 +34,7 @@
     "no-plusplus": "off",
     "no-shadow": "off",
     "prefer-rest-params": "off",
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "no-return-assign": "off"
   }
 }

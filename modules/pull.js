@@ -9,8 +9,7 @@ const config = new Config();
 class Pull {
   constructor(listFile) {
     const wikilistPath = path.join(__dirname, '..', 'selections', config.WIKI_LIST);
-    const listFilePath = path.join(__dirname, '..', listFile);
-    console.log('listfile', listFilePath);
+    const listFilePath = path.join(__dirname, '..', listFile || '');
     this.listFile = listFile ? listFilePath : wikilistPath;
     this.terminal = new Terminal();
     this.eachFn = this.eachFn.bind(this);
@@ -31,11 +30,15 @@ class Pull {
     this.articleFn(listItem, callback);
   }
 
+  beforeStart(list) {
+    this.queue.push(list);
+  }
+
   init() {
     Commons.loadListFile(this.listFile, list => {
       this.terminal.setListLength(list.length);
       this.queue.setDrain(this.onFinish);
-      this.queue.push(list);
+      this.beforeStart(list);
     });
   }
 }

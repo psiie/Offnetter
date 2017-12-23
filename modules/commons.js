@@ -4,7 +4,7 @@ const fs = require('graceful-fs');
 class Commons {
   static loadListFile(filename, callback) {
     /* We must load in the list to be processed before downloading */
-    new Promise(resolve => {
+    return new Promise(resolve => {
       const wikiList = [];
       const lineReader = readline.createInterface({
         input: fs.createReadStream(filename),
