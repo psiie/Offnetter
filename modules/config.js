@@ -2,8 +2,8 @@ const path = require('path');
 
 class Config {
   constructor() {
-    this.WIKI_LIST = 'frwiki-top100.txt';
-    this.MEDIA_WIKI = 'https://fr.wikipedia.org/wiki/';
+    this.WIKI_LIST = 'wiki_list_10g.lst';
+    this.MEDIA_WIKI = 'https://en.wikipedia.org/wiki/';
 
     this.path = path;
     this.CONCURRENT_CONNECTIONS = 8;

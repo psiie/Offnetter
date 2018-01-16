@@ -10,6 +10,8 @@ preprocessed_wiki_articles*
 acceptance_tests/results/*
 *processed_wiki_articles
 *raw_wiki_articles*
+assetList.txt
+NOSEARCH
 
 # Created by https://www.gitignore.io/api/node,osx
 

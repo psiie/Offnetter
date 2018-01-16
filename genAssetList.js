@@ -13,22 +13,15 @@ class GetAssetList extends Pull {
     this.allVideoSources = {};
 
     this.onFinish = this.onFinish.bind(this);
+    this.outputFilename = path.join(__dirname, 'assetList.txt');
+    
+    // only write if file doesnt exist
+    fs.writeFileSync(this.outputFilename, '', 'utf8')
   }
 
   onFinish() {
     console.log('Finished parsing keys. Writing to file.', Object.keys(this.allImageSources).length);
     const outputFilename = path.join(__dirname, 'assetList.txt');
-
-    const allAssets = Object.assign(
-      {},
-      Object.keys(this.allImageSources),
-      Object.keys(this.allVideoSources),
-    );
-
-    fs.writeFileSync(outputFilename, '', 'utf8');
-    Object.keys(allAssets).forEach(key => {
-      fs.appendFileSync(outputFilename, `${allAssets[key]}\n`, 'utf8');
-    });
 
     console.log('Done');
     process.exit();
@@ -38,9 +31,13 @@ class GetAssetList extends Pull {
     const getVideos = false;
     const assets = article.findAssets(listItem, getVideos);
     const { imageSources, videoSources } = assets || [{}, {}];
+    
+    const pageAssets = Object.assign({}, imageSources, videoSources);
 
-    this.allImageSources = Object.assign({}, this.allImageSources, imageSources);
-    this.allVideoSources = Object.assign({}, this.allVideoSources, videoSources);
+    Object.keys(pageAssets).forEach(key => {
+      fs.appendFileSync(this.outputFilename, `${key}\n`, 'utf8');
+    });
+
     callback();
   }
 }

@@ -11,7 +11,7 @@ class Queue {
   }
 
   push(arr) {
-    this.queue.push(arr);
+    this.queue && this.queue.push(arr);
   }
 }
 
