@@ -20,7 +20,7 @@ class GetAssetList extends Pull {
   }
 
   onFinish() {
-    console.log('Finished parsing keys. Writing to file.', Object.keys(this.allImageSources).length);
+    console.log('\nFinished parsing keys. Writing to file.', Object.keys(this.allImageSources).length);
     const outputFilename = path.join(__dirname, 'assetList.txt');
 
     console.log('Done');

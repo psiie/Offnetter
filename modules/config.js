@@ -2,7 +2,7 @@ const path = require('path');
 
 class Config {
   constructor() {
-    this.WIKI_LIST = 'wiki_list_10g.lst';
+    this.WIKI_LIST = 'wiki_list1k.lst';
     this.MEDIA_WIKI = 'https://en.wikipedia.org/wiki/';
 
     this.path = path;

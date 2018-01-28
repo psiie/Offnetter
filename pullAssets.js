@@ -26,7 +26,7 @@ class PullAssets extends Pull {
 
   eachFn(listItem, callback) {
     this.terminal.incLogCounter();
-    this.terminal.print(`GET ${listItem}`);
+    this.terminal.print(`GET ${listItem.slice(0, 40)}`);
     this.assetFn(listItem, callback);
   }
 }

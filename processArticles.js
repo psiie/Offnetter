@@ -10,9 +10,9 @@ const articleList = {};
 
 class ProcessArticles extends Pull {
   constructor() {
-    super();
+    const assetListFile = 'assetList.txt';
+    super(assetListFile);
     this.wikiList = {};
-    // this.assetList = {};
   }
 
   articleFn(listItem, callback) {
@@ -22,14 +22,17 @@ class ProcessArticles extends Pull {
 
   async beforeStart(list) {
     console.log('beforelist', list.length);
-
-    list.forEach(item => this.wikiList[item] = true);
-
-    // const assetFilename = path.join(__dirname, 'assetList.txt');
-    // const assetListArr = await Commons.loadListFile(assetFilename, null);
+    // Sanitize Asset links as they are dirty
+    // const assetListArr = list.map(item => Commons.sanitizeURL(item));
     // assetListArr.forEach(item => this.assetList[item] = true);
+    
+    // load list of wiki articles & turn into object
+    const wikiListFile = path.join(__dirname, 'selections', config.WIKI_LIST)
+    const wikiList = await Commons.loadListFile(wikiListFile, null);
+    // TODO: reduce wikiList to only include successfully downloaded files
+    wikiList.forEach(item => this.wikiList[item] = true);
 
-    this.queue.push(list);
+    this.queue.push(wikiList);
   }
 }
 
